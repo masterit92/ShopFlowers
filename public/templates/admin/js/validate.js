@@ -1,3 +1,0 @@
-$(function(){
-    $("#frmLogin").validate();
-});

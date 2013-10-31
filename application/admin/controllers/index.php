@@ -1,5 +1,5 @@
 <?php
-session_start();
+@session_start();
 class Admin_Controllers_Index extends Libs_Controller
 {
     public function __construct()
