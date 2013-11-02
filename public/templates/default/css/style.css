@@ -203,3 +203,18 @@ span.title_icon {
 span.red{
     color:#990000;
 }
+
+/*start about user*/
+.about_icon{
+    float: left;
+}
+.about_header h1{
+    color: #A81F22;
+    font-size: 18px;
+}
+.about_detal{
+    font-size: 12px;
+    padding: 5px 15px;
+    text-align: justify;
+}
+/*end about user*/

@@ -1,5 +1,5 @@
 <?php
-class Default_Controllers_About extends Libs_Controller{
+class Admin_Controllers_About extends Libs_Controller{
     public function __construct() {
         parent::__construct();
     }
@@ -8,8 +8,8 @@ class Default_Controllers_About extends Libs_Controller{
         $this->view->render('about/index');
     }
     public function getAbout(){
-        $obj = new Default_Models_tblAbout();
-        $arrAbout = $obj->getAbout();
-        $this->view->arrAbout = $arrAbout ;
+        $obj = new Admin_Models_tblAbout();
+        $listAbout = $obj->getAllAbout();
+        $this->view->listAbout = $listAbout;
     }
 }
