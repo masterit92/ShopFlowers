@@ -17,23 +17,6 @@ class Models_tblCustomers extends Libs_Model
     private $post_date;
     private $first_name;
     private $last_name;
-    private $dob;
-
-    /**
-     * @param mixed $dob
-     */
-    public function setDob($dob)
-    {
-        $this->dob = $dob;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDob()
-    {
-        return $this->dob;
-    }
 
     /**
      * @param mixed $address
@@ -209,45 +192,5 @@ class Models_tblCustomers extends Libs_Model
     public function getTitle()
     {
         return $this->title;
-    }
-
-    public function setCustomerValue($row, $isKey=FALSE)
-    {
-        $cus = new  Models_tblCustomers();
-        if($isKey){
-            $cus->setCusId($row['cus_id']);
-        }
-        $cus->setPhone($row['phone']);
-        $cus->setEmail($row['email']);
-        $cus->setAddress($row['address']);
-        $cus->setAvatar($row['avatar']);
-        $cus->setFirstName($row['first_name']);
-        $cus->setLastName($row['last_name']);
-        $cus->setPostDate($row['post_date']);
-        $cus->setGender($row['gender']);
-        $cus->setPassword($row['password']);
-        $cus->setTitle($row['title']);
-        $cus->setDob($row['dob']);
-        return $cus;
-    }
-
-    public function getColumnAndValue(Models_tblCustomers $cus, $isKey)
-    {
-        $arr_data= array();
-        if($isKey){
-            $arr_data['cus_id']= $cus->getCusId();
-        }
-        $arr_data['email']= $cus->getEmail();
-        $arr_data['password']= $cus->getPassword();
-        $arr_data['phone']= $cus->getPhone();
-        $arr_data['address']=$cus->getAddress();
-        $arr_data['first_name']= $cus->getFirstName();
-        $arr_data['last_name']= $cus->getLastName();
-        $arr_data['gender']=$cus->getGender();
-        $arr_data['title']=$cus->getTitle();
-        $arr_data['dob']= $cus->getDob();
-        $arr_data['post_date']= $cus->getPostDate();
-        $arr_data['avatar']= $cus->getAvatar();
-        return $arr_data;
     }
 }
