@@ -70,10 +70,14 @@
             'jquery.autogrow-textarea.js',
             'jquery.uploadify-3.1.min.js',
             'jquery.history.js',
-            'charisma.js'
+            'charisma.js',
+            'news/news.js'
         );
         $render->renderJS('admin', $arrFileJS);
         ?>
+        <script type="text/javascript">
+            var ROOT_URL = '<?PHP echo URL_BASE ?>';
+        </script>
         <link href="<?php echo URL_BASE ?>/favicon.ico" rel="shortcut icon"/>
     </head>
     <body>
