@@ -55,7 +55,18 @@ class Models_tblImages extends  Libs_Model{
         return $this->url;
     }
 
-    public function getAllImageByIDPro($pro_id){
+   public function setCustomerValue($row, $isKey = FALSE) {
+        
+    }
 
+    public function getAllImageByIDPro($pro_id) {
+        $listImg = array();
+        $execute = $this->queryUnit->getSelect('tbl_images', " pro_id= '$pro_id'");
+        if (mysql_num_rows($execute) > 0) {
+            while ($row = mysql_fetch_assoc($execute)) {
+                
+            }
+        }
+        return $listImg;
     }
 }
