@@ -1,6 +1,5 @@
 
-
-<h2>Quản lý tin tức</h2>
+<h3>Quản lý tin tức</h3>
 
 <form method="post" name="frmList_news">
     <table cellpadding="0" cellspacing="0" border="1">

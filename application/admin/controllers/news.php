@@ -37,8 +37,17 @@ class Admin_Controllers_News extends Libs_Controller {
 
         $this->view->aryData = $aryResult;
         $this->view->keyword = $oldKeyWord;
-        $this->view->paging = $pagers;
         $this->view->render('news/listNews');
+    }
+
+    /**
+     * @desc: load form data
+     * 
+     * @author: ThaiNV
+     * @since: 04-11-2013
+     */
+    public function loadFormData() {
+        $this->view->render('news/formData');
     }
 
 }

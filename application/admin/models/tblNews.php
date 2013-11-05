@@ -40,16 +40,4 @@ class Admin_Models_tblNews extends Models_tblNews {
         return $intIsOk;
     }
 
-    public function paging(&$aryResult, &$pagers) {
-        $this->getListNews($rs);
-        $totalRecords = count($rs);
-        $limit = 1;
-        $pi = empty($_GET['p']) ? 1 : $_GET['p'];
-        $offset = $limit * ($pi - 1);
-        $sql = $this->_queryUnit->getSelect('tbl_news', $where, $orderBy, $offset, $limit);
-        $aryResult = $this->_queryUnit->fetchAll($sql);
-        $url = 'news';
-        $pagers = $this->_queryUnit->pagers($totalRecords, $limit, '', $url, $css);
-    }
-
 }
