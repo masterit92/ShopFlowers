@@ -23,26 +23,33 @@ class Admin_Models_tblNews extends Models_tblNews {
      */
     public function getListNews(&$aryResult, $aryCondition) {
         try {
-            //Build data to get list
-            $aryData = array(
-                'news_id',
-                'news_title',
-                'news_content',
-                'news_start_date',
-                'news_end_date',
-                'news_image'
-            );
+            $where = '1 = 1';
+            if (isset($aryCondition['keyWord']) && $aryCondition['keyWord'] != '') {
+                $where .= 'news_title LIKE "%' . $aryCondition['keyWord'] . '%"';
+            }
             $orderBy = 'news_id DESC';
             //Get query
-            $query = $this->_queryUnit->getSelect('tbl_news', null, $orderBy);
+            $query = $this->_queryUnit->getSelect('tbl_news', $where, $orderBy);
             //Get result
-            $aryResult = mysql_fetch_assoc($query);
+            $aryResult = $this->_queryUnit->fetchAll($query);
             $intIsOk = 1;
         } catch (Exception $e) {
             echo $e->getMessage();
             $intIsOk = -1;
         }
         return $intIsOk;
+    }
+
+    public function paging(&$aryResult, &$pagers) {
+        $this->getListNews($rs);
+        $totalRecords = count($rs);
+        $limit = 1;
+        $pi = empty($_GET['p']) ? 1 : $_GET['p'];
+        $offset = $limit * ($pi - 1);
+        $sql = $this->_queryUnit->getSelect('tbl_news', $where, $orderBy, $offset, $limit);
+        $aryResult = $this->_queryUnit->fetchAll($sql);
+        $url = 'news';
+        $pagers = $this->_queryUnit->pagers($totalRecords, $limit, '', $url, $css);
     }
 
 }
