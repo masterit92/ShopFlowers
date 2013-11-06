@@ -7,16 +7,23 @@
         include_once 'templates/render.php';
         $render = new render();
         $arrFileCSS = array(
-            'transdmin.css'
+            'transdmin.css',
+            'jquery-ui-1.10.3.custom.css',
         );
         $render->renderCSS('admin/style', $arrFileCSS);
         $arrFileJS = array(
-            'jquery.js',
-            'jNice.js'
+            'jquery-1.9.1.js',
+            'jquery-ui-1.10.3.custom.js',
+            'jNice.js',
         );
         $render->renderJS('admin/style', $arrFileJS);
         ?>
         <script type="text/javascript">
+            //ThaiNV: set datepicker for all project:
+            $(window).load(function() {
+                $(".datepicker").datepicker();
+            });
+            //Set root url:
             var ROOT_URL = '<?PHP echo URL_BASE ?>';
         </script>
     </head>

@@ -1,63 +1,54 @@
-<div>
-    <ul class="breadcrumb">
-        <li>
-            <a href="#">Home</a> <span class="divider">/</span>
-        </li>
-        <li>
-            <a href="#">Tables</a>
-        </li>
-    </ul>
-</div>
 
-<div class="row-fluid sortable">		
-    <div class="box span12">
-        <div class="box-header well" data-original-title>
-            <h2><i class="icon-user"></i> Members</h2>
-            <div class="box-icon">
-                <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-                <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-                <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-            </div>
-        </div>
-        <div class="box-content">
-            <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Date registered</th>
-                        <th>Role</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>   
-                <tbody>
-                    <tr>
-                        <td>David R</td>
-                        <td class="center">2012/01/01</td>
-                        <td class="center">Member</td>
-                        <td class="center">
-                            <span class="label label-success">Active</span>
-                        </td>
-                        <td class="center">
-                            <a class="btn btn-success" href="#">
-                                <i class="icon-zoom-in icon-white"></i>  
-                                View                                            
-                            </a>
-                            <a class="btn btn-info" href="#">
-                                <i class="icon-edit icon-white"></i>  
-                                Edit                                            
-                            </a>
-                            <a class="btn btn-danger" href="#">
-                                <i class="icon-trash icon-white"></i> 
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>            
-        </div>
-    </div><!--/span-->
+<h3>Quản lý tin tức</h3>
 
-</div><!--/row-->
+<form method="post" name="frmList_news">
+    <table cellpadding="0" cellspacing="0" border="1">
+        <thead>
+            <tr>
+                <td colspan="8">
+                    <a href="#" class="add">Add new</a>
+                    <span>
+                        <input type="text" name="txtKey_word" id="txtKey_word" value="<?php echo $this->keyword ?>"/>
+                        <input type="submit" value="Search" />
+                        <input type="button" value="Reset" onclick="document.getElementById('txtKey_word').value = null;"/>
+                    </span>
+                </td>
 
+            </tr>
+            <tr>
+                <th><input type="checkbox"></th>
+                <th>Stt</th>
+                <th>Tiêu đề</th>
+                <th>Nội dung</th>
+                <th>Ngày đăng</th>
+                <th>Ngày hết hạn</th>
+                <th>Ảnh</th>
+                <th>Tùy chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $nbr = 0;
+            foreach ($this->aryData as $value):
+                $nbr++;
+                ?>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><?php echo $nbr ?></td>
+                    <td><?php echo $value['news_title'] ?></td>
+                    <td><?php echo $value['news_content'] ?></td>
+                    <td><?php echo $value['news_start_date'] ?></td>
+                    <td><?php echo $value['news_end_date'] ?></td>
+                    <td><?php echo $value['news_image'] ?></td>
+                    <td class="action">
+                        <a href="#" class="view">View</a>
+                        <a href="#" class="edit">Edit</a>
+                        <a href="#" class="delete">Delete</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
 
+    </table>
+    <?php echo $this->paging ?>
+</form>
