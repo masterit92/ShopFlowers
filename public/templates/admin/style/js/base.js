@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    
 });
 /**
  *@desc: base javascript function
@@ -82,5 +82,8 @@ var BaseController = {
         var keyWord = document.getElementById('publicKey_word').value;
         keyWord = (keyWord !== '') ? keyWord : '%';
         window.location.href = ROOT_URL + '/admin/index/searchPublic?controller=' + controller + '&keyWord=' + keyWord;
+    },
+    addClass: function() {
+        $("#testMenu").addClass('active');
     }
 };

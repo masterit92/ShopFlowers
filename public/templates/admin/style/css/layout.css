@@ -101,16 +101,17 @@ h1 span { display: none; }
 
 #sidebar .sideNav li a {
     display: block;
-    color: #646464;
+    color: blue;
     background: #f6f6f6;
     text-decoration: none;
     height: 29px;
     line-height: 29px;
     padding: 0 19px;
     width: 141px;
+    font-size: medium;
 }
 
-#sidebar .sideNav li a:hover { background: #fdfcf6; }
+#sidebar .sideNav li a:hover { background: skyblue; }
 
 #sidebar .sideNav li a.active, #sidebar .sideNav li a.active:hover {
     background: #f0f7fa;
