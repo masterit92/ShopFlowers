@@ -1,14 +1,14 @@
 <?php
+
 @session_start();
-class Admin_Controllers_Index extends Libs_Controller
-{
-    public function __construct()
-    {
+
+class Admin_Controllers_Index extends Libs_Controller {
+
+    public function __construct() {
         parent::__construct();
     }
 
-    public function index()
-    {
+    public function index() {
         $model_user = new Admin_Models_tblUsers();
         $flag = false;
         if (isset($_COOKIE['ck_user_admin']) && isset($_COOKIE['ck_pass_admin'])) {
@@ -40,16 +40,32 @@ class Admin_Controllers_Index extends Libs_Controller
         }
         $this->view->render('index/index');
     }
-    public function logout(){
+
+    public function logout() {
         session_destroy();
         session_unset();
         setcookie('ck_user_admin');
         setcookie('ck_pass_admin');
         $this->view->render('index/logout');
     }
-    public function home(){
+
+    public function home() {
         $model_user = new Admin_Models_tblUsers();
         $this->view->listAllUser = $model_user->getAllUsers();
         $this->view->render('index/home');
     }
+
+//    public function searchPublic() {
+//        $controller = $_GET['controller'];
+//        $keyWord = $_GET['keyWord'];
+//        switch ($controller) {
+//            case 'news':
+//                $newsObj = new Admin_Controllers_News();
+//                if ($newsObj->listNews($keyWord)) {
+//                    header("location: news.php ");
+//                }
+//                break;
+//        }
+//    }
+
 }
