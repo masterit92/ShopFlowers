@@ -7,16 +7,23 @@
         include_once 'templates/render.php';
         $render = new render();
         $arrFileCSS = array(
-            'transdmin.css'
+            'transdmin.css',
+            'jquery-ui-1.10.3.custom.css',
         );
         $render->renderCSS('admin/style', $arrFileCSS);
         $arrFileJS = array(
-            'jquery.js',
-            'jNice.js'
+            'jquery-1.9.1.js',
+            'jquery-ui-1.10.3.custom.js',
+            'jNice.js',
         );
         $render->renderJS('admin/style', $arrFileJS);
         ?>
         <script type="text/javascript">
+            //ThaiNV: set datepicker for all project:
+            $(window).load(function() {
+                $(".datepicker").datepicker();
+            });
+            //Set root url:
             var ROOT_URL = '<?PHP echo URL_BASE ?>';
         </script>
     </head>
@@ -46,12 +53,10 @@
                     <div id="container">
                         <div id="sidebar">
                             <ul class="sideNav">
-                                <li><a href="#">Exchange</a></li>
-                                <li><a href="#">Print resources</a></li>
-                                <li><a href="#">Training &amp; Support</a></li>
-                                <li><a href="#">Books</a></li>
-                                <li><a href="#">Safari books online</a></li>
-                                <li><a href="#">Events</a></li>
+                                <li><a href="<?php echo URL_BASE ?>/admin/category">Category</a></li>
+                                <li><a href="#">Products</a></li>
+                                <li><a href="<?php echo URL_BASE ?>/admin/ads">Ads</a></li>
+                                <li><a href="<?php echo URL_BASE ?>/admin/user">Users</a></li>
                             </ul>
                         </div>    
 

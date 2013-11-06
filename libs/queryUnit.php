@@ -21,10 +21,18 @@ class Libs_QueryUnit{
         }
         return $query;
     }
+    //Category   
+    public function getCatByParentId($tableName, $cat_id){
+        $query="SELECT * FROM ".$tableName." WHERE parent_id = '$cat_id'";
+        //print_r($query);die;
+        return $this->executeQuery($query);
+    }
+    //End    
     public function getSelect($tableName,$condition=null,$orderBy=null){
         $query="SELECT * FROM ".$tableName;
         $query=$this->addCondition($query,$condition);
         $query=$this->addOrderBy($query,$orderBy);
+        //print_r($query);die;
         return $this->executeQuery($query);
     }
     public function getInsert($tableName,$arrColumnAndValue){
