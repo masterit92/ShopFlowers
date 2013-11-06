@@ -35,6 +35,8 @@ CKEDITOR.editorConfig = function(config) {
 
     // Make dialogs simpler.
     config.removeDialogTabs = 'image:advanced;link:advanced';
+    //Bỏ thẻ <p></p>:
+    config.enterMode = CKEDITOR.ENTER_BR;
     //Cấu hình cho ckfinder
 
     config.filebrowserBrowseUrl = 'localhost/ckfinder/ckfinder.html';
