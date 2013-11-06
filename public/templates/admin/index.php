@@ -42,24 +42,31 @@
                 <h1><a href="#"><span>Shop Flowers</span></a></h1>
 
                 <ul id="mainNav">
-                    <li><a href="#" class="active">DASHBOARD</a></li>
-                    <li><a href="#">ADMINISTRATION</a></li>
-                    <li><a href="#">DESIGN</a></li>
-                    <li><a href="#">OPTION</a></li>
-                    <li class=""><a href="<?php echo URL_BASE ?>/admin/logout">LOGOUT</a></li>
-                    <li class="logout"><a href="#">Xin chào: <?php if (isset($_SESSION['full_name_admin'])) echo $_SESSION['full_name_admin']; ?></a></li>
+                    <li class=""><a href="#">Xin chào: <?php if (isset($_SESSION['full_name_admin'])) echo $_SESSION['full_name_admin']; ?></a></li>
+
+                    <?php
+//                    $controller = str_replace('/', '', strstr(strstr($_SERVER['REQUEST_URI'], 'admin'), '/'));
+                    ?>
+                    <li class="logout"><a href="<?php echo URL_BASE ?>/admin/logout">LOGOUT</a></li>
                 </ul>
 
                 <div id="containerHolder">
                     <div id="container">
                         <div id="sidebar">
                             <ul class="sideNav">
-                                <li><a href="#">Exchange</a></li>
-                                <li><a href="#">Print resources</a></li>
-                                <li><a href="#">Training &amp; Support</a></li>
-                                <li><a href="#">Books</a></li>
-                                <li><a href="#">Safari books online</a></li>
-                                <li><a href="#">Events</a></li>
+                                <li><a href="<?php echo URL_BASE . '/admin/news' ?>">Manager news</a></li>
+                                <li><a href="#">----------------------</a></li>
+                                <li><a href="#">----------------------</a></li>
+                                <li><a href="<?php echo URL_BASE . '/admin/about' ?>">Manager about</a></li>
+                                <li><a href="#">----------------------</a></li>
+                                <li><a href="#">----------------------</a></li>
+                                <li><a href="#">Manager Bình</a></li>
+                                <li><a href="#">---------------------- </a></li>
+                                <li><a href="#">---------------------- </a></li>
+                                <li><a href="#">Manager Hùng</a></li>
+                                <li><a href="#">---------------------- </a></li>
+                                <li><a href="#">----------------------</a></li>
+                                <li><a href="#">----------------------</a></li>
                             </ul>
                         </div>    
 
