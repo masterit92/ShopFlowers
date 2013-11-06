@@ -84,15 +84,6 @@ class Libs_QueryUnit {
         }
     }
 
-    public function pagers($totalRecords, $limit, $limit_pagers = '', $url = '', $css) {
-        $totaPages = ceil($totalRecords / $limit);
-        $pagers = '';
-        for ($i = 1; $i <= $totaPages; $i++) {
-            $pagers.="<a href='$url&p=$i' class='$css'>$i</a>";
-        }
-        return $pagers;
-    }
-
     private function addLimit($query, $offSet, $limit) {
         if ($offSet != '' && $limit != '') {
             $query.=" LIMIT $offSet,$limit";
