@@ -20,7 +20,7 @@ class Admin_Controllers_News extends Libs_Controller {
     }
 
     /**
-     * @desc: get list news
+     * @desc: list action
      * 
      * @author: ThaiNV
      * @since: 04-11-2013
@@ -47,7 +47,40 @@ class Admin_Controllers_News extends Libs_Controller {
      * @since: 04-11-2013
      */
     public function loadFormData() {
+        $aryResult = array();
+        $aryCondition['newsId'] = $_GET['id'];
+        $intIsOk = $this->_logic->getListNews($aryResult, $aryCondition);
+        if ($intIsOk == 1) {
+            $this->view->aryData = $aryResult;
+        }
         $this->view->render('news/formData');
+    }
+
+    /**
+     * @desc: save action
+     * 
+     * @author: ThaiNV
+     * @since: 06/11/2013
+     */
+    public function save() {
+        $intIsOk = $this->_logic->saveNews($_POST);
+        if ($intIsOk == 1) {
+            $this->redir(URL_BASE . '/admin/news');
+        }
+    }
+
+    /**
+     * @desc: delete action
+     * 
+     * @author: ThaiNV
+     * @since: 06/11/2013
+     */
+    public function delete() {
+        $listId = $_GET['listId'];
+        $intIsOk = $this->_logic->delNews($listId);
+        if ($intIsOk == 1) {
+            $this->redir(URL_BASE . '/admin/news');
+        }
     }
 
 }
