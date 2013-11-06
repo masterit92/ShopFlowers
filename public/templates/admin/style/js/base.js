@@ -16,7 +16,7 @@ var BaseController = {
      */
 
     deleteOneRecord: function(msg, url) {
-        if (confirm("Are you sure delete  " + msg + "?")) {
+        if (confirm("Bạn có chắc chắn muốn xóa  " + msg + "?")) {
             window.location.href = url;
         }
     },
