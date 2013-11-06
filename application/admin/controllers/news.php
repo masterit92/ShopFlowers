@@ -27,7 +27,7 @@ class Admin_Controllers_News extends Libs_Controller {
      */
     public function listNews() {
         $aryResult = $aryCodition = array();
-        $oldKeyWord = '';
+        $oldKeyWord = $oldPubKeyWord = '';
         $keyword = $_POST['txtKey_word'];
         if (!empty($keyword)) {
             $oldKeyWord = $keyword;
