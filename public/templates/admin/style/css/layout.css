@@ -281,6 +281,21 @@ h3 {
     border: none;
     background: url(../img/button-submit.gif) no-repeat left top;
 }
+/* Phân trang ---------------------------------------- */
+.libsPaging{
+    text-decoration: none;
+    font-size: medium;
+    color: #54A6D5;
+    margin-left: 5px;
+}
+.libsPaging:hover{
+    color: red;
+}
+#libsPaging-active{
+    font-size: large;
+    color: blue;
+    cursor: not-allowed;
+}
 
 /* Footer ---------------------------------------- */
 
@@ -295,3 +310,4 @@ h3 {
 #footer a { color: #9B9B9B; }
 
 #footer a:hover { text-decoration: none; }
+

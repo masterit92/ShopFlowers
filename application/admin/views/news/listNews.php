@@ -57,7 +57,6 @@
                 </tr>
             <?php } ?>
         </tbody>
-
     </table>
-    <?php echo $this->paging ?>
+    <h2><?php echo $this->pages_list ?></h2>
 </form>

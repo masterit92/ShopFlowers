@@ -6,7 +6,7 @@ class Libs_QueryUnit {
         $this->db = new Libs_Database();
     }
 
-    private function executeQuery($query) {
+    public function executeQuery($query) {
         $conn = $this->db->connect();
         $result = mysql_query($query, $conn) or die('Command sql fails!');
         $this->db->disconnect($conn);

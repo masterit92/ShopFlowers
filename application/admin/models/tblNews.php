@@ -16,34 +16,6 @@ class Admin_Models_tblNews extends Models_tblNews {
     }
 
     /**
-     * @desc: get list data of news
-     * 
-     * @author: ThaiNV
-     * @since: 04-11-2013
-     */
-    public function getListNews(&$aryResult, $aryCondition) {
-        try {
-            $where = '1 = 1';
-            if (isset($aryCondition['keyWord']) && $aryCondition['keyWord'] != '') {
-                $where .= ' AND news_title LIKE "%' . $aryCondition['keyWord'] . '%"';
-            }
-            if (isset($aryCondition['newsId']) && $aryCondition['newsId'] != '') {
-                $where .= ' AND news_id = ' . $aryCondition['newsId'];
-            }
-            $orderBy = 'news_id DESC';
-            //Get query
-            $query = $this->_queryUnit->getSelect('tbl_news', $where, $orderBy);
-            //Get result
-            $aryResult = $this->_queryUnit->fetchAll($query);
-            $intIsOk = 1;
-        } catch (Exception $e) {
-            echo $e->getMessage();
-            $intIsOk = -1;
-        }
-        return $intIsOk;
-    }
-
-    /**
      * @desc: insert news to database
      * 
      * @author: ThaiNV
@@ -87,6 +59,42 @@ class Admin_Models_tblNews extends Models_tblNews {
             $intIsOk = -1;
         }
         return $intIsOk;
+    }
+
+    /**
+     * @desc: get list data of news with paginator
+     * 
+     * @author: ThaiNV
+     * @since: 04-11-2013
+     */
+    public function paging(&$aryData, $aryCondition) {
+        $paging = new Libs_Paging();
+        $limit = 10;
+        // Tổng số bản ghi
+        $paging->findTotal('tbl_news');
+        // Tổng số trang
+        $paging->findPages($limit);
+        // Bắt đầu từ bản ghi
+        $start = $paging->rowStart($limit);
+        // Trang hiện tại
+        $curpage = ($start / $limit) + 1;
+        //data
+        $where = '1 = 1';
+        if (isset($aryCondition['keyWord']) && $aryCondition['keyWord'] != '') {
+            $where .= ' AND news_title LIKE "%' . $aryCondition['keyWord'] . '%"';
+        }
+        if (isset($aryCondition['newsId']) && $aryCondition['newsId'] != '') {
+            $where .= ' AND news_id = ' . $aryCondition['newsId'];
+        }
+        $orderBy = 'news_id DESC';
+        $sql = "SELECT * FROM tbl_news 
+                WHERE $where
+                ORDER BY $orderBy
+                LIMIT $start,$limit";
+        $rs = $this->_queryUnit->executeQuery($sql);
+        $aryData = $this->_queryUnit->fetchAll($rs);
+        $pages_list = $paging->pagesList($curpage, 'admin', 'news');
+        return $pages_list;
     }
 
 }

@@ -33,10 +33,11 @@ class Admin_Controllers_News extends Libs_Controller {
             $oldKeyWord = $keyword;
             $aryCodition['keyWord'] = str_replace(' ', '%', $keyword);
         }
-        $this->_logic->getListNews($aryResult, $aryCodition);
+        $pages_list = $this->_logic->paging($aryResult, $aryCodition);
 
         $this->view->aryData = $aryResult;
         $this->view->keyword = $oldKeyWord;
+        $this->view->pages_list = $pages_list;
         $this->view->render('news/listNews');
     }
 
