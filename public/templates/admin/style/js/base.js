@@ -1,3 +1,6 @@
+$(document).ready(function() {
+
+});
 /**
  *@desc: base javascript function
  *
@@ -68,6 +71,16 @@ var BaseController = {
                 }
             }
         }
+    },
+    /**
+     * @desc: process sending infomation to public search
+     * 
+     * @author: ThaiNV
+     * @since: 06/11/2013
+     */
+    searchPublic: function(controller) {
+        var keyWord = document.getElementById('publicKey_word').value;
+        keyWord = (keyWord !== '') ? keyWord : '%';
+        window.location.href = ROOT_URL + '/admin/index/searchPublic?controller=' + controller + '&keyWord=' + keyWord;
     }
-
 };
