@@ -8,47 +8,50 @@ class Admin_Controllers_About extends Libs_Controller {
 
     public function index() {
         $obj = new Admin_Models_tblAbout();
-        
+        //hiển thị ra bảng about
         $this->view->listAbout = $obj->getAllAbout();
         $this->view->render('about/index');
     }
 
     /**
-     * them noi dung about
+     * gọi tới form
      */
-    public function loadDataInsert() {
-        $this->view->render('about/insertAbout');
+    public function loadForm() {
+        //lấy id
+        $about_id = $_GET['id'];
+        //lấy bản ghi trong bảng theo id
+        $obj = new Admin_Models_tblAbout();
+        $array = $obj->getAboutByID($about_id);
+
+        $this->view->listAbout = $array;
+        $this->view->render('about/form');
     }
 
+    /**
+     * thêm bản ghi
+     */
     public function insertAboutAction() {
+        //lấy giá trị nhập vào
         $obj = new Admin_Models_tblAbout();
-        //lay gia tri
         $obj->setTitle($_POST['title']);
         $obj->setContent($_POST['content']);
-        //insert
+        //thực hiện câu lệnh
         if ($obj->insertAbout($obj)) {
             header("location: about.php");
         }
     }
 
     /**
-     * sua noi dung about
+     * sửa bản ghi
      */
-    public function loadDataEdit() {
-        //lay id
-        $about_id = $_GET['id'];
-        //lay mang ket qua theo id
-    	$obj = new Admin_Models_tblAbout();
-    	$this->view->listAbout = $obj->getAboutByID($about_id);
-    	$this->view->render('about/editAbout');
-    }
     public function editAboutAction() {
+        $about_id = $_POST['about_id'];
+
         $obj = new Admin_Models_tblAbout();
-        
         $obj->setTitle($_POST['title']);
         $obj->setContent($_POST['content']);
-        //insert
-        if ($obj->updateAbout($obj)) {
+
+        if ($obj->updateAbout($obj, $about_id)) {
             header("location: about.php");
         }
     }

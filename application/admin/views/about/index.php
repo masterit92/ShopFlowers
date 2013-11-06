@@ -7,7 +7,7 @@ $array = $this->listAbout;
         <thead>
             <tr>
                 <td colspan="8">
-                    <a href="<?php echo URL_BASE ?>/admin/about/loadDataInsert" class="add">Insert</a>
+                    <a href="<?php echo URL_BASE ?>/admin/about/loadForm?id=0" class="add">Insert</a>
                     <span>
                         <input type="text" name="txtKey_word" id="txtKey_word" value="<?php echo $this->keyword ?>"/>
                         <input type="submit" value="Search" />
@@ -34,7 +34,7 @@ $array = $this->listAbout;
                     <td><?php echo $value['content']; ?></td>
                     <td class="action">
                         <a class="view" href="#">View</a>
-                        <a class="edit" href="<?php echo URL_BASE ?>/admin/about/loadDataEdit?id=<?php echo $value['about_id']; ?>">Edit</a>
+                        <a class="edit" href="<?php echo URL_BASE ?>/admin/about/loadForm?id=<?php echo $value['about_id']; ?>">Edit</a>
                         <a class="delete" href="<?php echo URL_BASE ?>/admin/about/deleteAbout?id=<?php echo $value['about_id']; ?>">Delete</a>
                     </td>
                 </tr>
