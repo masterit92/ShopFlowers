@@ -33,7 +33,7 @@ class Admin_Controllers_News extends Libs_Controller {
             $oldKeyWord = $keyword;
             $aryCodition['keyWord'] = str_replace(' ', '%', $keyword);
         }
-        $pages_list = $this->_logic->paging($aryResult, $aryCodition);
+        $pages_list = $this->_logic->getListWithPaginator($aryResult, $aryCodition);
 
         $this->view->aryData = $aryResult;
         $this->view->keyword = $oldKeyWord;
@@ -50,10 +50,8 @@ class Admin_Controllers_News extends Libs_Controller {
     public function loadFormData() {
         $aryResult = array();
         $aryCondition['newsId'] = $_GET['id'];
-        $intIsOk = $this->_logic->getListNews($aryResult, $aryCondition);
-        if ($intIsOk == 1) {
-            $this->view->aryData = $aryResult;
-        }
+        $this->_logic->getListWithPaginator($aryResult, $aryCondition);
+        $this->view->aryData = $aryResult;
         $this->view->render('news/formData');
     }
 
