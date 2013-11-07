@@ -69,14 +69,11 @@ class Admin_Models_tblNews extends Models_tblNews {
      */
     public function getListWithPaginator(&$aryData, $aryCondition) {
         $paging = new Libs_Paging();
-        $limit = 10;
-        // Tổng số trang
+        $limit = 5;
+        $paging->findTotal('tbl_news');
         $paging->findPages($limit);
-        // Bắt đầu từ bản ghi
         $start = $paging->rowStart($limit);
-        // Trang hiện tại
         $curpage = ($start / $limit) + 1;
-        //data
         $where = '1 = 1';
         if (isset($aryCondition['keyWord']) && $aryCondition['keyWord'] != '') {
             $where .= ' AND news_title LIKE "%' . $aryCondition['keyWord'] . '%"';
