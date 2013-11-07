@@ -69,7 +69,7 @@ class Admin_Models_tblNews extends Models_tblNews {
      */
     public function paging(&$aryData, $aryCondition) {
         $paging = new Libs_Paging();
-        $limit = 10;
+        $limit = 1;
         // Tổng số bản ghi
         $paging->findTotal('tbl_news');
         // Tổng số trang
