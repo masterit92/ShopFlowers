@@ -71,7 +71,7 @@ class Admin_Models_tblNews extends Models_tblNews {
         $paging = new Libs_Paging();
         $limit = 5;
         $paging->findTotal('tbl_news');
-        $paging->findPages($limit);
+        $countPage = $paging->findPages($limit);
         $start = $paging->rowStart($limit);
         $curpage = ($start / $limit) + 1;
         $where = '1 = 1';
@@ -89,7 +89,8 @@ class Admin_Models_tblNews extends Models_tblNews {
         $rs = $this->_queryUnit->executeQuery($sql);
         $aryData = $this->_queryUnit->fetchAll($rs);
         $pages_list = $paging->pagesList($curpage, 'admin', 'news');
-        return $pages_list;
+        $info = '<a style="margin-right: 20px; color: blue;">' . 'Trang: ' . $curpage . '/' . $countPage . '</a>';
+        return $info . $pages_list;
     }
 
 }
