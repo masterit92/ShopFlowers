@@ -67,11 +67,9 @@ class Admin_Models_tblNews extends Models_tblNews {
      * @author: ThaiNV
      * @since: 04-11-2013
      */
-    public function paging(&$aryData, $aryCondition) {
+    public function getListWithPaginator(&$aryData, $aryCondition) {
         $paging = new Libs_Paging();
-        $limit = 1;
-        // Tổng số bản ghi
-        $paging->findTotal('tbl_news');
+        $limit = 10;
         // Tổng số trang
         $paging->findPages($limit);
         // Bắt đầu từ bản ghi
