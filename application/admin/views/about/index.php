@@ -2,17 +2,13 @@
 $array = $this->listAbout;
 ?>
 <html>
+    <link rel="stylesheet" type="text/css" href="<?php echo URL_BASE?>/templates/admin/css/layout.css"/>
     <h3>About Us</h3>
     <table border ="1">
         <thead>
             <tr>
-                <td colspan="8">
+                <td colspan="4">
                     <a href="<?php echo URL_BASE ?>/admin/about/loadForm?id=0" class="add">Insert</a>
-                    <span>
-                        <input type="text" name="txtKey_word" id="txtKey_word" value="<?php echo $this->keyword ?>"/>
-                        <input type="submit" value="Search" />
-                        <input type="button" value="Reset" onclick="document.getElementById('txtKey_word').value = null;"/>
-                    </span>
                 </td>
             </tr>
             
@@ -28,7 +24,7 @@ $array = $this->listAbout;
             foreach ($array as $value) {
                 $nbr++;
                 ?>
-                <tr>
+                <tr id="data">
                     <td><?php echo $nbr; ?></td>
                     <td><?php echo $value['title']; ?></td>
                     <td><?php echo $value['content']; ?></td>

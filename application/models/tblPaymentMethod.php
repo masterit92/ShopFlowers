@@ -4,16 +4,16 @@ class Models_tblPaymentMethod extends  Libs_Model{
        parent::__construct();
    }
     private $pay_id;
-    private $name;
-    private $image;
-    private $content;
+    private $pay_name;
+    private $pay_imge;
+    private $pay_content;
 
     /**
      * @param mixed $content
      */
-    public function setContent($content)
+    public function setContent($pay_content)
     {
-        $this->content = $content;
+        $this->pay_content = $pay_content;
     }
 
     /**
@@ -21,15 +21,15 @@ class Models_tblPaymentMethod extends  Libs_Model{
      */
     public function getContent()
     {
-        return $this->content;
+        return $this->pay_content;
     }
 
     /**
      * @param mixed $image
      */
-    public function setImage($image)
+    public function setImage($pay_imge)
     {
-        $this->image = $image;
+        $this->pay_img = $pay_imge;
     }
 
     /**
@@ -37,15 +37,15 @@ class Models_tblPaymentMethod extends  Libs_Model{
      */
     public function getImage()
     {
-        return $this->image;
+        return $this->pay_img;
     }
 
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    public function setName($pay_name)
     {
-        $this->name = $name;
+        $this->pay_name = $pay_name;
     }
 
     /**
@@ -53,30 +53,12 @@ class Models_tblPaymentMethod extends  Libs_Model{
      */
     public function getName()
     {
-        return $this->name;
+        return $this->pay_name;
     }
-
-    /**
-     * @param mixed $pay_id
-     */
-    public function setPayId($pay_id)
-    {
+    public function setPayId($pay_id) {
         $this->pay_id = $pay_id;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getPayId()
-    {
+    public function getPayID(){
         return $this->pay_id;
-    }
-
-    public function getAllPay(){
-
-    }
-    public function getPayByID($pay_id){
-
-    }
-
+    }    
 }

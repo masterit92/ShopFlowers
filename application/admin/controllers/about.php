@@ -10,6 +10,7 @@ class Admin_Controllers_About extends Libs_Controller {
         $obj = new Admin_Models_tblAbout();
         //hiển thị ra bảng about
         $this->view->listAbout = $obj->getAllAbout();
+        //đổ ra view
         $this->view->render('about/index');
     }
 
@@ -22,7 +23,7 @@ class Admin_Controllers_About extends Libs_Controller {
         //lấy bản ghi trong bảng theo id
         $obj = new Admin_Models_tblAbout();
         $array = $obj->getAboutByID($about_id);
-
+        //đổ ra view
         $this->view->listAbout = $array;
         $this->view->render('about/form');
     }
@@ -31,8 +32,8 @@ class Admin_Controllers_About extends Libs_Controller {
      * thêm bản ghi
      */
     public function insertAboutAction() {
-        //lấy giá trị nhập vào
         $obj = new Admin_Models_tblAbout();
+        //lấy giá trị nhập vào
         $obj->setTitle($_POST['title']);
         $obj->setContent($_POST['content']);
         //thực hiện câu lệnh
