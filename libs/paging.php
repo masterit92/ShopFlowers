@@ -3,7 +3,7 @@
 /**
  * @desc: Paging
  * 
- * @author: ThaiNV
+ * @author ThaiNV <thainv@smartosc.com>
  * @since: 07-11-2013
  */
 class Libs_Paging {
@@ -16,6 +16,13 @@ class Libs_Paging {
         $this->_queryUnit = new Libs_QueryUnit();
     }
 
+    /**
+     * @desc: get total of record
+     * 
+     * @author: ThaiNV
+     * @since: 08/11/2013
+     * @param type $table
+     */
     public function findTotal($table) {
         if (isset($_GET['total'])) {
             $this->_total = $_GET['total'];
@@ -27,17 +34,44 @@ class Libs_Paging {
         }
     }
 
+    /**
+     * @desc: get total of page
+     * 
+     * @author: ThaiNV
+     * $since: 08/11/2013
+     * @param type $limit
+     */
     public function findPages($limit) {
         $this->_pages = ceil($this->_total / $limit);
     }
 
+    /**
+     * @desc get position of record start in each page
+     * 
+     * @author ThaiNV 
+     * @since 08/11/2013
+     * @param type $limit
+     * @return type
+     */
     function rowStart($limit) {
+        $_GET['page'] = ($_GET['page'] > 0) ? $_GET['page'] : 1;
         return (!isset($_GET['page'])) ? 0 : ($_GET['page'] - 1) * $limit;
     }
 
+    /**
+     * @desc: Get paging
+     * 
+     * @author ThaiNV 
+     * @since 08/11/2013
+     * @param type $curpage
+     * @param type $module
+     * @param type $controller
+     * @return string
+     */
     public function pagesList($curpage, $module, $controller) {
         $total = $this->_total;
         $pages = $this->_pages;
+        $maxPage = 5;
         if ($pages <= 1) {
             return '';
         }
@@ -49,14 +83,46 @@ class Libs_Paging {
         if ($curpage > 1) {
             $page_list .= '<a class="libsPaging" href="' . URL_BASE . '/' . $module . '/' . $controller . '?page=' . ($curpage - 1) . '&total=' . $total . '" title="trang trước"><<</a>';
         }
-
-        for ($i = 1; $i <= $pages; $i++) {
-            if ($i == $curpage) {
-                $page_list .= "<a id='libsPaging-active'>" . $i . "</a>";
-            } else {
-                $page_list .= '<a class="libsPaging" href="' . URL_BASE . '/' . $module . '/' . $controller . '?page=' . $i . '&total=' . $total . '" title="Trang ' . $i . '">' . $i . '</a>';
+        if ($pages <= $maxPage) {
+            for ($i = 1; $i <= $pages; $i++) {
+                if ($i == $curpage) {
+                    $page_list .= "<a id='libsPaging-active'>" . $i . "</a>";
+                } else {
+                    $page_list .= '<a class="libsPaging" href="' . URL_BASE . '/' . $module . '/' . $controller . '?page=' . $i . '&total=' . $total . '" title="Trang ' . $i . '">' . $i . '</a>';
+                }
+                $page_list .= " ";
             }
-            $page_list .= " ";
+        } else {
+            if ($curpage > 0 && $curpage < $maxPage) {
+                for ($i = 1; $i <= $maxPage; $i++) {
+                    if ($i == $curpage) {
+                        $page_list .= "<a id='libsPaging-active'>" . $i . "</a>";
+                    } else {
+                        $page_list .= '<a class="libsPaging" href="' . URL_BASE . '/' . $module . '/' . $controller . '?page=' . $i . '&total=' . $total . '" title="Trang ' . $i . '">' . $i . '</a>';
+                    }
+                    $page_list .= " ";
+                }
+            }
+            if ($curpage >= $maxPage && $curpage + 2 < $pages) {
+                for ($i = $curpage - 2; $i <= $curpage + 2; $i++) {
+                    if ($i == $curpage) {
+                        $page_list .= "<a id='libsPaging-active'>" . $i . "</a>";
+                    } else {
+                        $page_list .= '<a class="libsPaging" href="' . URL_BASE . '/' . $module . '/' . $controller . '?page=' . $i . '&total=' . $total . '" title="Trang ' . $i . '">' . $i . '</a>';
+                    }
+                    $page_list .= " ";
+                }
+            }
+            if ($curpage >= $maxPage && $curpage + 2 >= $pages) {
+                for ($i = $curpage - 2; $i <= $pages; $i++) {
+                    if ($i == $curpage) {
+                        $page_list .= "<a id='libsPaging-active'>" . $i . "</a>";
+                    } else {
+                        $page_list .= '<a class="libsPaging" href="' . URL_BASE . '/' . $module . '/' . $controller . '?page=' . $i . '&total=' . $total . '" title="Trang ' . $i . '">' . $i . '</a>';
+                    }
+                    $page_list .= " ";
+                }
+            }
         }
 
         if (($curpage + 1) <= $pages) {
