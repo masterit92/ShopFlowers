@@ -43,6 +43,7 @@ class Libs_Paging {
      */
     public function findPages($limit) {
         $this->_pages = ceil($this->_total / $limit);
+        return $this->_pages;
     }
 
     /**
