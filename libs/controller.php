@@ -18,5 +18,4 @@ class Libs_Controller {
             exit();
         }
     }
-
 }
