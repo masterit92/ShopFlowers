@@ -1,3 +1,6 @@
+<?php
+$page = new Libs_splitPage($this->listAllUser, 2);
+?>
 <div>
   <h1>USERS</h1>
     <p><label>Search:</label>
@@ -16,9 +19,15 @@
         <th>Actions</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody>      
       <?php
-      foreach($this->listAllUser as $key =>$usr){
+        $dataPage = array();
+        if (isset($_GET['page'])) {
+            $dataPage = $page->getDataPage($_GET['page']);
+        } else {
+            $dataPage = $page->getDataPage(1);
+        }      
+      foreach($dataPage as $key =>$usr){
       ?>
       <tr>
         <td> <?php echo $usr->getUserId(); ?> </td>
@@ -33,5 +42,8 @@
       ?>
     </tbody>
   </table>
-  
+<?php
+$url = URL_BASE . '/admin/user/index';
+echo $page->viewNumPage($url);
+?>
 </div>
