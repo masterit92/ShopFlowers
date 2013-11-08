@@ -91,7 +91,7 @@ class Admin_Controllers_Ads extends Libs_Controller
 		$model= new Admin_Models_tblAds();
         $url_img = $model->getAdsByID($ads_id)->getImage();
         unlink($url_img);
-        //print_r($url_img);die;
+
         $model->deleteAds($ads_id);	
 
         header("location:index");
