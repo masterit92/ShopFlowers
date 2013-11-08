@@ -1,6 +1,6 @@
+
     <?php
     $model= new Admin_Models_tblCategories();
-
         foreach($model->getParentCat() as $key =>$cat){
     ?>
         <b><?php echo $cat->getName().'<br/>'; ?></b>

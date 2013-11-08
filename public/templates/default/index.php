@@ -76,7 +76,9 @@
                 </div>
                 <div class="clear"></div>
                 <div class="right_content_half_box">
-                <?php include_once 'listCategory.php';?>  
+                <?php 
+                    include_once 'listCategory.php';
+                ?>  
                 </div>
             </div>
            
