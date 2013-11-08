@@ -16,8 +16,10 @@
             'jquery-1.9.1.js',
             'jNice.js',
 			'base.js',
+            'jquery.comjquery-1.10.1.min.js',
+            'jquery.js',
             'jquery.validate.js',
-            'jquery-ui-1.10.3.custom.js'
+            'jquery-ui-1.10.3.custom.js',
         );
         $render->renderJS('admin/style', $arrFileJS);
         ?>
