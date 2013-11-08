@@ -60,6 +60,7 @@ class Admin_Controllers_Ads extends Libs_Controller
         $ads->setDateEnd($format_date_end);
 
         if(isset($_FILES["image"]["name"])){
+            //Xoa anh
             unlink($ads->getAdsByID($ads_id)->getImage());
 
             $checkImage = new Libs_uploadImg();
