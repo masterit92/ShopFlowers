@@ -46,8 +46,8 @@
                 <h1><a href="#"><span>Shop Flowers</span></a></h1>
 
                 <ul id="mainNav">
-                    <li class=""><a href="#">Xin chào: <?php if (isset($_SESSION['full_name_admin'])) echo $_SESSION['full_name_admin']; ?></a></li>
-
+                    <li class=""><a href="#">Hello: <?php if (isset($_SESSION['full_name_admin'])) echo $_SESSION['full_name_admin']; ?></a></li>
+                    <li class=""><a href="#">Change Password </a></li>
                     <?php
 //                    $controller = str_replace('/', '', strstr(strstr($_SERVER['REQUEST_URI'], 'admin'), '/'));
                     ?>
