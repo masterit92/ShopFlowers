@@ -2,7 +2,7 @@
     <h2>CATEGORIES</h2> 
     <p><a href="<?php echo URL_BASE?>/admin/category/getCreate">New Category</a></p>
                  
-	<table>
+	<table border="1">
     <thead>
       <tr>
 			  <th>ID</th>
