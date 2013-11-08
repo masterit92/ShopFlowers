@@ -1,4 +1,3 @@
-
 <?php
 $page = new Libs_splitPage($this->listAllPro, 10);
 ?>
