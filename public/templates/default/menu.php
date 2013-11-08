@@ -5,7 +5,7 @@
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="<?php echo URL_BASE?>/products/index?page=1">
             <img src="<?php echo URL_BASE?>/templates/default/images/flowers.png"/> Flowers
         </a>
     </li>

@@ -6,7 +6,7 @@
     <?php
         include_once 'templates/render.php';
         $render= new render();
-        $arrFileCSS= array('style.css','style_menuLogin.css');
+        $arrFileCSS= array('style.css','style_menuLogin.css','content_css.css');
         $render->renderCSS('default',$arrFileCSS);
         $arrFileJS= array('jquery-1.10.2.js','jquery.validate.min.js','messages_vi.js','js_index.js');
         $render->renderJS('default',$arrFileJS);
@@ -27,12 +27,6 @@
     <!--end of header-->
     <div class="center_content">
         <div class="left_content">
-            <form method="get" action="">
-                <input type="text" name="txtName"/>
-                <input type="text" name="txt"/>
-                <input type="text" name="aa"/>
-                <input type="submit"/>
-            </form>
             <?php include_once TEMPLATE; ?>
         </div>
         <!--end of left content-->
@@ -85,16 +79,7 @@
                     Category
                 </div>
             </div>
-            <div class="right_content_half right_content_right">
-                <div class="title">
-                    <span class="title_icon"><img src="<?php echo  URL_BASE?>/templates/default/images/bullet7.png" alt=""/></span>
-                    Flower
-                </div>
-                <div class="clear"></div>
-                <div class="right_content_half_box">
-                    Flower
-                </div>
-            </div>
+           
             <div class="clear"></div>
             <div>
                 <div class="title">

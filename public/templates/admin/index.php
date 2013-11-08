@@ -9,6 +9,7 @@
         $arrFileCSS = array(
             'transdmin.css',
             'jquery-ui-1.10.3.custom.css',
+            'product_css.css'
         );
         $render->renderCSS('admin/style', $arrFileCSS);
         $arrFileJS = array(
@@ -54,6 +55,15 @@
                     <div id="container">
                         <div id="sidebar">
                             <ul class="sideNav">
+<<<<<<< HEAD
+                                <li><a href="#">Exchange</a></li>
+                                <li><a href="#">Print resources</a></li>
+                                <li><a href="#">Training &amp; Support</a></li>
+                                <li><a href="#">Books</a></li>
+                                <li><a href="#">Safari books online</a></li>
+                                <li><a href="#">Events</a></li>
+                                <li><a href="<?php echo URL_BASE?>/admin/products/index?page=1">Products</a></li>
+=======
                                 <li><a href="<?php echo URL_BASE . '/admin/news' ?>">Manager news</a></li>
                                 <li><a href="#">----------------------</a></li>
                                 <li><a href="#">----------------------</a></li>
@@ -67,6 +77,7 @@
                                 <li><a href="#">---------------------- </a></li>
                                 <li><a href="#">----------------------</a></li>
                                 <li><a href="#">----------------------</a></li>
+>>>>>>> e8b9bd962ede7667ab25fb1541198d7ffe585997
                             </ul>
                         </div>    
 
