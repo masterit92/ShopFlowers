@@ -20,7 +20,7 @@ class Admin_Controllers_News extends Libs_Controller {
     }
 
     /**
-     * @desc: get list news
+     * @desc: list action
      * 
      * @author: ThaiNV
      * @since: 04-11-2013
@@ -33,10 +33,11 @@ class Admin_Controllers_News extends Libs_Controller {
             $oldKeyWord = $keyword;
             $aryCodition['keyWord'] = str_replace(' ', '%', $keyword);
         }
-        $this->_logic->getListNews($aryResult, $aryCodition);
+        $pages_list = $this->_logic->getListWithPaginator($aryResult, $aryCodition);
 
         $this->view->aryData = $aryResult;
         $this->view->keyword = $oldKeyWord;
+        $this->view->pages_list = $pages_list;
         $this->view->render('news/listNews');
     }
 
@@ -47,7 +48,38 @@ class Admin_Controllers_News extends Libs_Controller {
      * @since: 04-11-2013
      */
     public function loadFormData() {
+        $aryResult = array();
+        $aryCondition['newsId'] = $_GET['id'];
+        $this->_logic->getListWithPaginator($aryResult, $aryCondition);
+        $this->view->aryData = $aryResult;
         $this->view->render('news/formData');
+    }
+
+    /**
+     * @desc: save action
+     * 
+     * @author: ThaiNV
+     * @since: 06/11/2013
+     */
+    public function save() {
+        $intIsOk = $this->_logic->saveNews($_POST);
+        if ($intIsOk == 1) {
+            $this->redir(URL_BASE . '/admin/news');
+        }
+    }
+
+    /**
+     * @desc: delete action
+     * 
+     * @author: ThaiNV
+     * @since: 06/11/2013
+     */
+    public function delete() {
+        $listId = $_GET['listId'];
+        $intIsOk = $this->_logic->delNews($listId);
+        if ($intIsOk == 1) {
+            $this->redir(URL_BASE . '/admin/news');
+        }
     }
 
 }

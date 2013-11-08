@@ -101,16 +101,17 @@ h1 span { display: none; }
 
 #sidebar .sideNav li a {
     display: block;
-    color: #646464;
+    color: blue;
     background: #f6f6f6;
     text-decoration: none;
     height: 29px;
     line-height: 29px;
     padding: 0 19px;
     width: 141px;
+    font-size: medium;
 }
 
-#sidebar .sideNav li a:hover { background: #fdfcf6; }
+#sidebar .sideNav li a:hover { background: skyblue; }
 
 #sidebar .sideNav li a.active, #sidebar .sideNav li a.active:hover {
     background: #f0f7fa;
@@ -201,6 +202,7 @@ h3 {
 #main table tr td span { text-decoration: none; color: #9b9b9b; float: right; }
 #main table tr td a { text-decoration: none; color: #9b9b9b;}
 #main table tr:hover td .add { color: blue;  font-weight: bold; text-align: left}
+#main table tr:hover td .delete { color: #ff0000;  font-weight: bold; text-align: left}
 #main table tr:hover td a:hover { text-decoration: underline; }
 
 
@@ -280,6 +282,21 @@ h3 {
     border: none;
     background: url(../img/button-submit.gif) no-repeat left top;
 }
+/* Phân trang ---------------------------------------- */
+.libsPaging{
+    text-decoration: none;
+    font-size: medium;
+    color: #54A6D5;
+    margin-left: 5px;
+}
+.libsPaging:hover{
+    color: red;
+}
+#libsPaging-active{
+    font-size: large;
+    color: blue;
+    cursor: not-allowed;
+}
 
 /* Footer ---------------------------------------- */
 
@@ -294,3 +311,7 @@ h3 {
 #footer a { color: #9B9B9B; }
 
 #footer a:hover { text-decoration: none; }
+
+#data{
+    text-align: left;
+}

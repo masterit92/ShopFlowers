@@ -6,7 +6,7 @@ class Libs_QueryUnit {
         $this->db = new Libs_Database();
     }
 
-    private function executeQuery($query) {
+    public function executeQuery($query) {
         $conn = $this->db->connect();
         $result = mysql_query($query, $conn) or die('Command sql fails!');
         $this->db->disconnect($conn);
@@ -82,15 +82,6 @@ class Libs_QueryUnit {
         } else {
             return -1;
         }
-    }
-
-    public function pagers($totalRecords, $limit, $limit_pagers = '', $url = '', $css) {
-        $totaPages = ceil($totalRecords / $limit);
-        $pagers = '';
-        for ($i = 1; $i <= $totaPages; $i++) {
-            $pagers.="<a href='$url&p=$i' class='$css'>$i</a>";
-        }
-        return $pagers;
     }
 
     private function addLimit($query, $offSet, $limit) {

@@ -99,7 +99,7 @@ class Admin_Models_tblAbout extends Libs_Model {
     }
 
     public function updateAbout(Admin_Models_tblAbout $about, $about_id) {
-        $execute = $this->libQuery->getUpdate('tbl_about', $this->getColumnAndValue($about), "about_id='$about_id");
+        $execute = $this->libQuery->getUpdate('tbl_about', $this->getColumnAndValue($about), "about_id='$about_id'");
         if ($execute) {
             return true;
         }

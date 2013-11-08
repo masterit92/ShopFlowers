@@ -1,44 +1,44 @@
 <?php
-$array = $this->listPay;
-?>
-<?php
-$array = $this->listAbout;
+$array = $this->listpay;
 ?>
 <html>
-    <h2>About Us</h2>
-    <table border ="1">
-        <thead>
+    <head>
+        <link rel="stylesheet" type="text/css" href="<?php echo URL_BASE ?>/templates/admin/css/layout.css"/>
+    </head>
+    <h3>Payment Methods</h3>
+    <table border="1">
+        <thead
             <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th width="100">Action</th>
+                <td colspan="5"><a href="<?php echo URL_BASE ?>/admin/paymentMethod/loadForm?id=0" class="add">Insert</a></td>
             </tr>
+            <tr>
+                <th>No.</th>
+                <th>Pay Name</th>
+                <th>Pay Image</th>
+                <th>Pay Content</th>
+                <th>Action</th>
+            </tr>
+        </thead>
         <tbody>
             <?php
+            $nbr = 0;
             foreach ($array as $value) {
+                $nbr++
                 ?>
                 <tr>
-                    <td class="center"><?php echo $value['pay_id']; ?></td>
+                    <td><?php echo $nbr; ?></td>
                     <td><?php echo $value['pay_name']; ?></td>
-                    <td><?php echo $value['pay_img']; ?></td>
-                    <td><?php echo $value['pay_content']; ?></td>
-                    <td class="center">
-                        <a>View</a>
-                        <a class="btn btn-info" href="#">
-                            <i class="icon-edit icon-white"></i>  
-                            Edit                                            
-                        </a>
-                        <a class="btn btn-danger" href="#">
-                            <i class="icon-trash icon-white"></i> 
-                            Delete
-                        </a>
+                    <td><?php echo $value['pay_img'] ?></td>
+                    <td><?php echo $value['pay_content'] ?></td>
+                    <td class="action">
+                        <a class="view" href="#">View</a>
+                        <a class="edit" href="<?php echo URL_BASE ?>/admin/paymentMethod/loadForm?id=<?php echo $value['pay_id']; ?>">Edit</a>
+                        <a class="delete" href="<?php echo URL_BASE ?>/admin/paymentMethod/deletePayment?id=<?php echo $value['pay_id']; ?>">Delete</a>
                     </td>
                 </tr>
                 <?php
             }
             ?>
         </tbody>
-    </thead>
-</table>
+    </table>
 </html>
