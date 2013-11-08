@@ -58,15 +58,14 @@
                     <div id="container">
                         <div id="sidebar">
                             <ul class="sideNav">
-
-                                <li><a href="<?php echo URL_BASE . '/admin/news' ?>">Manager news</a></li>
+								<li><a href="<?php echo URL_BASE . '/admin/news' ?>">Manager news</a></li>
                                 <li><a href="#">----------------------</a></li>
                                 <li><a href="#">----------------------</a></li>
                                 <li><a href="<?php echo URL_BASE . '/admin/about' ?>">Manager about</a></li>
                                 <li><a href="#">----------------------</a></li>
                                 <li><a href="#">----------------------</a></li>
-                                <li><a href="#">Manager Bình</a></li>
-                                <li><a href="#">---------------------- </a></li>
+                                <li><a href="<?php echo URL_BASE?>/admin/products">Manager Product</a></li>
+                                <li><a href="<?php echo URL_BASE?>/admin/customers">Manager Customer</a></li>
                                 <li><a href="#">---------------------- </a></li>
                                 <li><a href="#">Manager Hùng</a></li>
                                 <li><a href="#">---------------------- </a></li>

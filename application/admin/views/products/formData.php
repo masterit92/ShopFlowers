@@ -14,11 +14,7 @@
         <p>
             <label>Category ID:</label>
             <select name="cat">
-                <option>Cha</option>
-                <optgroup>
-                <option>con 1</option>
-                <option>con 2</option>
-                </optgroup>
+               
                 
             </select>
         </p>
