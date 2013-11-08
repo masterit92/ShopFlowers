@@ -54,7 +54,6 @@ class Libs_splitPage {
                 }
             }
         }
-
         $view.='<a href="' . $url . '?page=' . $this->numPage() . '">End</a>';
         $view.='</div>';
         return $view;
