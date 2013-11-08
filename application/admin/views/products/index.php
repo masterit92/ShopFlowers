@@ -3,8 +3,8 @@
 $page = new Libs_splitPage($this->listAllPro, 10);
 ?>
 <h3>List All Products</h3>
-<div>
-    <table border="1">
+<table cellpadding="0" cellspacing="0" border="1">
+    <thead>
         <tr>
             <th>
                 <input type="checkbox" value="" id="checkAll" onclick="BaseController.checkAll();"/>
@@ -18,6 +18,8 @@ $page = new Libs_splitPage($this->listAllPro, 10);
             <th>Album Images</th>
             <th>Action</th>
         </tr>
+    </thead>
+    <tbody>
         <?php
         $pro = new Default_Models_tblProducts();
         $dataPage = array();
@@ -27,8 +29,9 @@ $page = new Libs_splitPage($this->listAllPro, 10);
             $dataPage = $page->getDataPage(1);
         }
         foreach ($dataPage as $key => $pro) {
+            $i++;
             ?>
-            <tr>
+        <tr>
                 <td><input type="checkbox" name="checkOne[]" value="<?php echo $pro->getProId() ?>"/></td>
                 <td><?php echo $pro->getProId(); ?></td>
                 <td><?php echo $pro->getName(); ?></td>
@@ -45,8 +48,8 @@ $page = new Libs_splitPage($this->listAllPro, 10);
                 </td>
             </tr>
         <?php } ?>
-    </table>
-</div>
+    </tbody>
+</table>
 <?php
 $url = URL_BASE . '/admin/products/index';
 echo $page->viewNumPage($url);
