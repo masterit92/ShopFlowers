@@ -7,7 +7,7 @@ class Admin_Controllers_Ads extends Libs_Controller
 
         $this->view->listAds = $model->getAllAds();
         $this->view->render('ads/index');
-        //header("location:ads/index");
+        
     }
     public function getCreate(){
         $this->view->create = true;
