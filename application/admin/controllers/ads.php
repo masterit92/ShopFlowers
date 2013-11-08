@@ -40,23 +40,7 @@ class Admin_Controllers_Ads extends Libs_Controller
         $img = $checkImage->addImg($url_img,'image',$_FILES["image"]["name"]);
 
         $ads->setImage($img[0]);
-        //Up Anh
-        /*
-        $file_path = file_exists($_FILES["image"]["name"]);
-        if(file_exists($file_path)){
-            $this->view->msg = "This file already exists";
-            header("location:ads/form");
-        }else{
-            $resieImage = new Libs_SimpleImage();
-            $resieImage->load($_FILES['image']['tmp_name']);
-            $resieImage->resizeToWidth(70);
-            $resieImage->resizeToHeight(70);
-            $resieImage->save($_FILES['image']['tmp_name']);
 
-            move_uploaded_file($_FILES["image"]["tmp_name"],'images/'.$_FILES["image"]["name"]);
-        }
-        //
-        */
         $ads->insertAds($ads);
         header("location:index");
     }
@@ -75,10 +59,17 @@ class Admin_Controllers_Ads extends Libs_Controller
         $format_date_end = $date_end->format('Y-m-d');
         $ads->setDateEnd($format_date_end);
 
-        $checkImage = new Libs_uploadImg();
-        $url_img = "templates/admin/images";
-        $img = $checkImage->addImg($url_img,'image',$_FILES["image"]["name"]);
-        $ads->setImage($img[0]);
+        if(isset($_FILES["image"]["name"])){
+            unlink($ads->getAdsByID($ads_id)->getImage());
+
+            $checkImage = new Libs_uploadImg();
+            $url_img = "templates/admin/images";
+            $img = $checkImage->addImg($url_img,'image',$_FILES["image"]["name"]);
+            $ads->setImage($img[0]);
+        }else{
+            $img = $ads->getAdsByID($ads_id)->getImage();
+            $ads->setImage($img); 
+        }    
 
         $ads->updateAds($ads,$ads_id);
         header("location:index");
