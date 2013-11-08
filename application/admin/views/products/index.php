@@ -6,7 +6,9 @@ $page = new Libs_splitPage($this->listAllPro, 10);
 <div>
     <table border="1">
         <tr>
-            <th>Check</th>
+            <th>
+                <input type="checkbox" value="" id="checkAll" onclick="BaseController.checkAll();"/>
+            </th>
             <th>ID</th>
             <th>Name</th>
             <th>Thumb</th>
@@ -27,18 +29,18 @@ $page = new Libs_splitPage($this->listAllPro, 10);
         foreach ($dataPage as $key => $pro) {
             ?>
             <tr>
-                <td><input type="checkbox" name="cbPro[]" value="<?php echo $pro->getProId() ?>"/></td>
+                <td><input type="checkbox" name="checkOne[]" value="<?php echo $pro->getProId() ?>"/></td>
                 <td><?php echo $pro->getProId(); ?></td>
                 <td><?php echo $pro->getName(); ?></td>
-                <td><img src="<?php echo URL_BASE . '/' . $pro->getThumb(); ?>" width="100" height="100" title="<?php echo $pro->getDescription();?>"/></td>
+                <td><img src="<?php echo URL_BASE . '/' . $pro->getThumb(); ?>" width="100" height="100" title="<?php echo $pro->getDescription(); ?>"/></td>
                 <td><?php echo '$' . $pro->getPrice(); ?></td>
                 <td><?php echo $pro->getPostDate(); ?></td>
                 <td><?php echo $pro->getStatus(); ?></td>
                 <td>
-                    <a href="<?php echo URL_BASE?>/admin/products/imgByProID?pro_id=<?php echo $pro->getProId(); ?>">View</a>
+                    <a href="<?php echo URL_BASE ?>/admin/products/imgByProID?pro_id=<?php echo $pro->getProId(); ?>">View</a>
                 </td>
                 <td>
-                    <a href="<?php echo URL_BASE?>/admin/products/formData?pro_id=<?php echo $pro->getProId() ?>">Edit</a> | 
+                    <a href="<?php echo URL_BASE ?>/admin/products/formData?pro_id=<?php echo $pro->getProId() ?>">Edit</a> | 
                     <a href="#?pro_id=<?php echo $pro->getProId() ?>" onclick="confirm('Delete?');">Delete</a>
                 </td>
             </tr>
