@@ -2,7 +2,7 @@
 
 class Models_tblProduct extends Libs_Model {
 
-    private $queryUnit;
+    protected $queryUnit;
 
     public function __construct() {
         parent::__construct();
@@ -130,21 +130,22 @@ class Models_tblProduct extends Libs_Model {
         return $this->thumb;
     }
 
-    public function setCustomerValue($row, $isKey = FALSE) {
+    protected function setCustomerValue($row, $isKey = TRUE) {
         $pro = new Models_tblProduct();
         if ($isKey) {
             $pro->setProId($row['pro_id']);
         }
         $pro->setCatId($row['cat_id']);
-        $pro->setDescription($row['descripton']);
+        $pro->setDescription($row['description']);
         $pro->setName($row['name']);
         $pro->setPostDate($row['post_date']);
         $pro->setPrice($row['price']);
         $pro->setStatus($row['status']);
         $pro->setThumb($row['thumb']);
+        return $pro;
     }
 
-    public function getColumnAndValue(Models_tblProduct $pro, $isKey = FALSE) {
+    protected function getColumnAndValue(Models_tblProduct $pro, $isKey = FALSE) {
         $arr_data = array();
         if ($isKey) {
             $arr_data['pro_id'] = $pro->getProId();
@@ -161,7 +162,7 @@ class Models_tblProduct extends Libs_Model {
 
     public function getAllProduct() {
         $listPro = array();
-        $execute = $this->queryUnit->getSelect('tbl_products');
+        $execute = $this->queryUnit->getSelect('tbl_products',NULL,'post_date DESC');
         if (mysql_num_rows($execute) > 0) {
             while ($row = mysql_fetch_assoc($execute)) {
                 $listPro[] = $this->setCustomerValue($row);

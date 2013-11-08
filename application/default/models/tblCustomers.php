@@ -1,6 +1,7 @@
 <?php
-class Default_Models_tblCustomers extends  Models_tblCustomers{
-     public function __construct() {
+class Default_Models_tblCustomers extends Models_tblCustomers{
+
+    public function __construct() {
         parent::__construct();
         $this->queryUnit= new Libs_QueryUnit();
     }

@@ -17,6 +17,23 @@ class Models_tblCustomers extends Libs_Model
     private $post_date;
     private $first_name;
     private $last_name;
+    private $dob;
+
+    /**
+     * @param mixed $dob
+     */
+    public function setDob($dob)
+    {
+        $this->dob = $dob;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDob()
+    {
+        return $this->dob;
+    }
 
     /**
      * @param mixed $address
@@ -193,6 +210,7 @@ class Models_tblCustomers extends Libs_Model
     {
         return $this->title;
     }
+
     public function setCustomerValue($row, $isKey=FALSE)
     {
         $cus = new  Models_tblCustomers();

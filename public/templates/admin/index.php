@@ -9,6 +9,7 @@
         $arrFileCSS = array(
             'transdmin.css',
             'jquery-ui-1.10.3.custom.css',
+            'product_css.css'
         );
         $render->renderCSS('admin/style', $arrFileCSS);
         $arrFileJS = array(
@@ -59,6 +60,7 @@
                                 <li><a href="#">Books</a></li>
                                 <li><a href="#">Safari books online</a></li>
                                 <li><a href="#">Events</a></li>
+                                <li><a href="<?php echo URL_BASE?>/admin/products/index?page=1">Products</a></li>
                             </ul>
                         </div>    
 
