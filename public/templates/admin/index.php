@@ -58,8 +58,7 @@
                     <div id="container">
                         <div id="sidebar">
                             <ul class="sideNav">
-
-                                <li><a href="<?php echo URL_BASE . '/admin/news' ?>">Manager news</a></li>
+								<li><a href="<?php echo URL_BASE . '/admin/news' ?>">Manager news</a></li>
                                 <li><a href="#">----------------------</a></li>
                                 <li><a href="#">----------------------</a></li>
                                 <li><a href="<?php echo URL_BASE . '/admin/about' ?>">Manager about</a></li>
