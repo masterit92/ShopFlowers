@@ -8,42 +8,42 @@ class Admin_Controllers_About extends Libs_Controller {
 
     public function index() {
         $obj = new Admin_Models_tblAbout();
-        //hiển thị ra bảng about
+        //hi?n th? ra b?ng about
         $this->view->listAbout = $obj->getAllAbout();
-        //đổ ra view
+        //�? ra view
         $this->view->render('about/index');
     }
 
     /**
-     * gọi tới form
+     * g?i t?i form
      */
     public function loadForm() {
-        //lấy id
+        //l?y id
         $about_id = $_GET['id'];
-        //lấy bản ghi trong bảng theo id
+        //l?y b?n ghi trong b?ng theo id
         $obj = new Admin_Models_tblAbout();
         $array = $obj->getAboutByID($about_id);
-        //đổ ra view
+        //�? ra view
         $this->view->listAbout = $array;
         $this->view->render('about/form');
     }
 
     /**
-     * thêm bản ghi
+     * th�m b?n ghi
      */
     public function insertAboutAction() {
         $obj = new Admin_Models_tblAbout();
-        //lấy giá trị nhập vào
+        //l?y gi� tr? nh?p v�o
         $obj->setTitle($_POST['title']);
         $obj->setContent($_POST['content']);
-        //thực hiện câu lệnh
+        //th?c hi?n c�u l?nh
         if ($obj->insertAbout($obj)) {
             header("location: about.php");
         }
     }
 
     /**
-     * sửa bản ghi
+     * s?a b?n ghi
      */
     public function editAboutAction() {
         $about_id = $_POST['about_id'];

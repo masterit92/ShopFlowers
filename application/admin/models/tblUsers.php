@@ -66,7 +66,7 @@ class Admin_Models_tblUsers extends Libs_Model
      */
     public function setPhone($phone)
     {
-        $this->phone = $phone;
+        $this->phone = intval($phone);
     }
 
     /**
@@ -131,6 +131,19 @@ class Admin_Models_tblUsers extends Libs_Model
         return $admin;
     }
 
+    public function getSearchUsers($keyword)
+    {
+        $listAdmin = array();
+        $execute = $this->queryUnit->getSelect('tbl_users',"email='$keyword' OR full_name='$keyword' ");
+        if (mysql_num_rows($execute) > 0) {
+            while ($row = mysql_fetch_assoc($execute)) {
+                $admin = $this->setUserValues($row);
+                $listAdmin[] = $admin;
+            }
+        }
+        return $listAdmin;
+    }
+
     public function getAllUsers()
     {
         $listAdmin = array();
@@ -147,14 +160,25 @@ class Admin_Models_tblUsers extends Libs_Model
     public function getUserByID($user_id)
     {
         $admin = null;
-        if (!empty($email) && !empty($password)) {
+        //if (!empty($email) && !empty($password)) {
             $execute = $this->queryUnit->getSelect("tbl_users", "user_id='$user_id'");
             if (mysql_num_rows($execute) > 0) {
                 while ($row = mysql_fetch_assoc($execute)) {
                     $admin = $this->setUserValues($row);
                 }
             }
-        }
+        //}
+        return $admin;
+    }
+    public function getUserByEmail($email)
+    {
+        $admin = null;
+            $execute = $this->queryUnit->getSelect("tbl_users", "email='$email'");
+            if (mysql_num_rows($execute) > 0) {
+                while ($row = mysql_fetch_assoc($execute)) {
+                    $admin = $this->setUserValues($row);
+                }
+            }
         return $admin;
     }
 
@@ -167,9 +191,9 @@ class Admin_Models_tblUsers extends Libs_Model
         return false;
     }
 
-    public function updateUser(Admin_Models_tblUsers $user)
+    public function updateUser(Admin_Models_tblUsers $user, $user_id)
     {
-        $execute=$this->queryUnit->getUpdate('tbl_users', $this->getColumnAndValue($user),"user_id='$user->getUserByID()'");
+        $execute=$this->queryUnit->getUpdate('tbl_users', $this->getColumnAndValue($user),"user_id='$user_id'");
         if($execute){
             return true;
         }

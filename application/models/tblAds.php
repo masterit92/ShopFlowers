@@ -122,11 +122,55 @@ class Models_tblAds extends  Libs_Model{
     {
         return $this->url;
     }
-    public function getAllAds(){
 
+    public function setAdsValues($row)
+    {
+        $ads = new Models_tblAds();
+        $ads->setAdsId($row['ads_id']);
+        $ads->setName($row['name']);
+        $ads->setUrl($row['url']);
+        $ads->setImage($row['image']);
+        $ads->setDateStart($row['date_start']);
+        $ads->setDateEnd($row['date_end']);
+        $ads->setContent($row['content']);
+        return $ads;
+    }
+
+    public function getColumnAndValue(Models_tblAds $ads, $isKey = false)
+    {
+        $arr_data= array();
+        if ($isKey) {
+            $arr_data['ads_id']=$ads->getAdsId();
+        }
+        $arr_data['name']=$ads->getName();
+        $arr_data['url']=$ads->getUrl();
+        $arr_data['image']=$ads->getImage();
+        $arr_data['date_start']=$ads->getDateStart();
+        $arr_data['date_end']=$ads->getDateEnd();
+        $arr_data['content']=$ads->getContent();
+        return $arr_data;
+    }
+
+    public function getAllAds(){
+        $listAds = array();
+        $execute = $this->queryUnit->getSelect('tbl_ads');
+        if (mysql_num_rows($execute) > 0) {
+            while ($row = mysql_fetch_assoc($execute)) {
+                $ads = $this->setAdsValues($row);
+                $listAds[] = $ads;
+            }
+        }
+        return $listAds;
     }
     public function getAdsByID($ads_id){
-
+        $ads = null;
+            $execute = $this->queryUnit->getSelect("tbl_ads", "ads_id='$ads_id'");
+            if (mysql_num_rows($execute) > 0) {
+                while ($row = mysql_fetch_assoc($execute)) {
+                    $ads = $this->setAdsValues($row);
+                }
+            }
+        return $ads;
     }
 
 }

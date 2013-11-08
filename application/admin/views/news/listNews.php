@@ -1,5 +1,5 @@
 
-<h3>Quáº£n lÃ½ tin tá»©c</h3>
+<h3>QuaÒn lyì tin tıìc</h3>
 
 <form method="post" name="frmList_news">
     <table cellpadding="0" cellspacing="0" border="1">
@@ -19,12 +19,12 @@
             <tr>
                 <th><input type="checkbox" name="checkAll" id="checkAll" onclick="BaseController.checkAll();"></th>
                 <th>Stt</th>
-                <th>TiÃªu Ä‘á»</th>
-                <th>Ná»™i dung</th>
-                <th>NgÃ y Ä‘Äƒng</th>
-                <th>NgÃ y háº¿t háº¡n</th>
-                <th>áº¢nh</th>
-                <th>TÃ¹y chá»n</th>
+                <th>Tiêu ğêÌ</th>
+                <th>Nôòi dung</th>
+                <th>Ngày ğãng</th>
+                <th>Ngày hêìt haòn</th>
+                <th>AÒnh</th>
+                <th>Tùy choòn</th>
             </tr>
         </thead>
         <tbody>
@@ -53,7 +53,7 @@
             }else {
                 ?>
                 <tr>
-                    <td colspan="8" style="text-align: center; height: 50px;"><b>KhÃ´ng coÌ dÆ°Ìƒ liÃªÌ£u</b></td>
+                    <td colspan="8" style="text-align: center; height: 50px;"><b>Không coì dıŞ liêòu</b></td>
                 </tr>
             <?php } ?>
         </tbody>

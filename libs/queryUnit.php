@@ -27,11 +27,14 @@ class Libs_QueryUnit {
         return $query;
     }
 
-    public function getSelect($tableName, $condition = null, $orderBy = null, $offset = 0, $limit = 1) {
+    public function getSelect($tableName, $condition = null, $orderBy = null, $offset = 0, $limit = null) {
         $query = "SELECT * FROM " . $tableName;
         $query = $this->addCondition($query, $condition);
         $query = $this->addOrderBy($query, $orderBy);
-        $query = $this->addLimit($query, $offset, $limit);
+		if($limit !== null){
+			$query = $this->addLimit($query, $offset, $limit);
+		}
+        
         return $this->executeQuery($query);
     }
 
@@ -89,6 +92,12 @@ class Libs_QueryUnit {
             $query.=" LIMIT $offSet,$limit";
         }
         return $query;
+    }
+
+public function getCatByParentId($tableName, $cat_id){
+        $query="SELECT * FROM ".$tableName." WHERE parent_id = '$cat_id'";
+        //print_r($query);die;
+        return $this->executeQuery($query);
     }
 
 }

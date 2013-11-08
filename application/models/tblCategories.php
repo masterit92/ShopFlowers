@@ -1,14 +1,8 @@
 <?php
-
-class Models_tblCategories extends Libs_Model {
-
-    private $queryUnit;
-
-    public function __construct() {
-        parent::__construct();
-        $this->queryUnit= new Libs_QueryUnit();
-    }
-
+class Models_tblCategories extends  Libs_Model{
+   public function __construct(){
+       parent::__construct();
+   }
     private $cat_id;
     private $name;
     private $parent_id;
@@ -16,46 +10,53 @@ class Models_tblCategories extends Libs_Model {
     /**
      * @param mixed $cat_id
      */
-    public function setCatId($cat_id) {
+    public function setCatId($cat_id)
+    {
         $this->cat_id = $cat_id;
     }
 
     /**
      * @return mixed
      */
-    public function getCatId() {
+    public function getCatId()
+    {
         return $this->cat_id;
     }
 
     /**
      * @param mixed $name
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
     /**
      * @return mixed
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
     /**
      * @param mixed $parent_id
      */
-    public function setParentId($parent_id) {
+    public function setParentId($parent_id)
+    {
         $this->parent_id = $parent_id;
     }
 
     /**
      * @return mixed
      */
-    public function getParentId() {
+    public function getParentId()
+    {
         return $this->parent_id;
     }
 
-    public function setCategoryValues($row) {
+    public function setCategoryValues($row)
+    {
         $cat = new Models_tblCategories();
         $cat->setCatId($row['cat_id']);
         $cat->setName($row['name']);
@@ -63,20 +64,32 @@ class Models_tblCategories extends Libs_Model {
         return $cat;
     }
 
-    public function getColumnAndValue(Models_tblCategories $cat, $isKey = false) {
-        $arr_data = array();
+    public function getColumnAndValue(Models_tblCategories $cat, $isKey = false)
+    {
+        $arr_data= array();
         if ($isKey) {
-            $arr_data['cat_id'] = $cat->getCatId();
+            $arr_data['cat_id']=$cat->getCatId();
         }
-        $arr_data['name'] = $cat->getName();
-        $arr_data['parent_id'] = $cat->getParentId();
+        $arr_data['name']=$cat->getName();
+        $arr_data['parent_id']=$cat->getParentId();
         return $arr_data;
     }
 
-    public function getParentCat() {
-        $parent_id = 0;
+    public function getParentCat(){
+        $cat_id = 0;
         $listCat = array();
-        $execute = $this->queryUnit->getSelect('tbl_categories', "parent_id ='$parent_id'");
+        $execute = $this->queryUnit->getCatByParentId('tbl_categories',$cat_id);
+        if (mysql_num_rows($execute) > 0) {
+            while ($row = mysql_fetch_assoc($execute)) {
+                $cat = $this->setCategoryValues($row);
+                $listCat[] = $cat;
+            }
+        }
+        return $listCat;
+    }    
+    public function getCatByParentId($cat_id){
+        $listCat = array();
+        $execute = $this->queryUnit->getCatByParentId('tbl_categories',$cat_id);
         if (mysql_num_rows($execute) > 0) {
             while ($row = mysql_fetch_assoc($execute)) {
                 $cat = $this->setCategoryValues($row);
@@ -85,28 +98,14 @@ class Models_tblCategories extends Libs_Model {
         }
         return $listCat;
     }
-
-    public function getCatByParentId($parent_id) {
-        $listCat = array();
-        $execute = $this->queryUnit->getSelect('tbl_categories', "parent_id ='$parent_id'");
-        if (mysql_num_rows($execute) > 0) {
-            while ($row = mysql_fetch_assoc($execute)) {
-                $cat = $this->setCategoryValues($row);
-                $listCat[] = $cat;
-            }
-        }
-        return $listCat;
-    }
-
-    public function getCatByID($cat_id) {
+    public function getCatByID($cat_id){
         $cat = null;
-        $execute = $this->queryUnit->getSelect("tbl_categories", "cat_id='$cat_id'");
-        if (mysql_num_rows($execute) > 0) {
-            while ($row = mysql_fetch_assoc($execute)) {
-                $cat = $this->setCategoryValues($row);
+            $execute = $this->queryUnit->getSelect("tbl_categories", "cat_id='$cat_id'");
+            if (mysql_num_rows($execute) > 0) {
+                while ($row = mysql_fetch_assoc($execute)) {
+                    $cat = $this->setCategoryValues($row);
+                }
             }
-        }
         return $cat;
-    }
-
+    }    
 }

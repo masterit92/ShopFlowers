@@ -2,7 +2,7 @@
 
 class Libs_uploadImg {
 
-    private function checkTypeImg($nameImg) {
+    public function checkTypeImg($nameImg) {
         $file_type = array(".jpg", ".jpeg", ".JPG", ".JPEG", ".png", ".PNG", ".gif", ".GIF");
         $img_type = strstr($nameImg, '.');
         $err = $_FILES["$nameImg"]["error"];
@@ -23,7 +23,7 @@ class Libs_uploadImg {
                         $value = rand(1000, 10000) . "_" . $value;
                         $url = $url_img . "/" . $value;
                     }
-                    $tmp = $_FILES["$name_field"]["tmp_name"]["$key"];
+                    $tmp = $_FILES[$name_field]["tmp_name"][$key];
                     move_uploaded_file($tmp, $url);
                     $arr_url_img[] = $url;
                 }
