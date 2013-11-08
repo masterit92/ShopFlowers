@@ -19,6 +19,10 @@
                 <input type="text" class="text-long" name="txtNews_title" id="news-title" />
             </p>
             <p>
+                <label>Ảnh:</label>
+                <input type="file" name="txtNews_file" id="news-file" multiple="" />
+            </p>
+            <p>
                 <label>Nội dung:</label>
                 <textarea rows="1" cols="1" name="txtNews_content" id="news-content" ></textarea>
                 <script type="text/javascript">CKEDITOR.replace('news-content');</script>

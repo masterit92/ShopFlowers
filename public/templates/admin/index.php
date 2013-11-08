@@ -15,7 +15,7 @@
             'jquery-1.9.1.js',
             'jquery-ui-1.10.3.custom.js',
             'jNice.js',
-            'base.js'
+            'base.js',
         );
         $render->renderJS('admin/style', $arrFileJS);
         ?>
