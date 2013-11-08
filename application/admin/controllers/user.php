@@ -4,7 +4,15 @@ class Admin_Controllers_User extends Libs_Controller
 {
     public function index(){
         $model= new Admin_Models_tblUsers();
-        $this->view->listAllUser = $model->getAllUsers();
+
+        $keyword = trim($_GET['keyword']);
+        if(empty($keyword)){
+            $this->view->listAllUser = $model->getAllUsers();
+        }else{
+            $this->view->listAllUser = $model->getSearchUsers($keyword);
+        }
+
+        $this->view->keyword = $keyword;
         $this->view->render('user/index');
     }
 
@@ -30,21 +38,30 @@ class Admin_Controllers_User extends Libs_Controller
     public function postCreate(){
         $user = new Admin_Models_tblUsers();
 
-        $user->setFullName($_POST['fullname']);
-        $user->setEmail($_POST['email']);
-        $user->setPhone($_POST['phone']);
-        $user->setPassword($_POST['pwd']);        
-        $user->insertUser($user);
-        $user=$user->getUserByEmail($user->getEmail());
+        $email = $_POST['email'];
+        if($user->getUserByEmail($email) ){
+            $this->view->msg = "Sorry, the email $email is taken.";
+            $this->view->create = true;
+            $roleModel = new Admin_Models_tblRoles();
+            $this->view->roles = $roleModel->getAllRole();
+            $this->view->render('user/form');
+        }else{
+            $user->setFullName($_POST['fullname']);
+            $user->setEmail($_POST['email']);
+            $user->setPhone($_POST['phone']);
+            $user->setPassword($_POST['pwd']);        
+            $user->insertUser($user);
+            $user=$user->getUserByEmail($user->getEmail());
 
-        $roleUserModel = new Admin_Models_tblRoleUser();
-        foreach ($_POST['roleUser'] as $key => $value) {
-            $roleUserModel->setRoleId($value);
-            $roleUserModel->setUserId($user->getUserID());
-            $roleUserModel->insertRoleUser($roleUserModel);            
-        }        
+            $roleUserModel = new Admin_Models_tblRoleUser();
+            foreach ($_POST['roleUser'] as $key => $value) {
+                $roleUserModel->setRoleId($value);
+                $roleUserModel->setUserId($user->getUserID());
+                $roleUserModel->insertRoleUser($roleUserModel);            
+            }        
 
-        header("location:user/index");
+            header("location:user/index");
+        }
     }
 
     public function postEdit(){

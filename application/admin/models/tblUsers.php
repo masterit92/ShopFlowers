@@ -131,6 +131,19 @@ class Admin_Models_tblUsers extends Libs_Model
         return $admin;
     }
 
+    public function getSearchUsers($keyword)
+    {
+        $listAdmin = array();
+        $execute = $this->queryUnit->getSelect('tbl_users',"email='$keyword' OR full_name='$keyword' ");
+        if (mysql_num_rows($execute) > 0) {
+            while ($row = mysql_fetch_assoc($execute)) {
+                $admin = $this->setUserValues($row);
+                $listAdmin[] = $admin;
+            }
+        }
+        return $listAdmin;
+    }
+
     public function getAllUsers()
     {
         $listAdmin = array();

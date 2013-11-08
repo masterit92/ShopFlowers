@@ -14,7 +14,7 @@ class Admin_Models_tblAds extends  Models_tblAds{
         }
         return false;
     }
-    public function updateAds(Admin_Models_tblAds $ads){
+    public function updateAds(Admin_Models_tblAds $ads, $ads_id){
         $execute=$this->queryUnit->getUpdate('tbl_ads', $this->getColumnAndValue($ads),"ads_id='$ads_id'");
         if($execute){
             return true;

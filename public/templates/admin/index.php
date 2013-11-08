@@ -13,8 +13,11 @@
         $render->renderCSS('admin/style', $arrFileCSS);
         $arrFileJS = array(
             'jquery-1.9.1.js',
-            'jquery-ui-1.10.3.custom.js',
             'jNice.js',
+            'jquery.comjquery-1.10.1.min.js',
+            'jquery.js',
+            'jquery.validate.js',
+            'jquery-ui-1.10.3.custom.js',
         );
         $render->renderJS('admin/style', $arrFileJS);
         ?>
