@@ -175,6 +175,7 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
         exit();
     }
 
+    
     /**
      * @description load javascript function
      * 
