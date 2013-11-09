@@ -90,7 +90,8 @@
     <div>
         <label for="password">Password</label>              
         <div>
-			<input type="password" name="password" id="password" placeholder="Enter New Password..." >    
+			<input type="password" name="password" id="password" placeholder="Enter New Password..." >
+            <input type="hidden" name="pwd" value="<?php echo ( $this->create ? '' : $this->users->getPassword() ); ?>" />    
 			<span id="pwd1"></span>
       	</div>
     </div>
