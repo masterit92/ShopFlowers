@@ -30,6 +30,7 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
                     unset($_SESSION['cart'][$key]);
                 } elseif (($value > 0) and (is_numeric($value))) {
                     $_SESSION['cart'][$key] = $value;
+                    $_SESSION['totalMoney'] = $this->renderViewCart();
                 }
             }
         }
@@ -92,7 +93,7 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
      */
     public function renderViewCart(&$view) {
         $aryProduct = array();
-        $intIsOk = $this->getProductsOrder($aryProduct);
+        $this->getProductsOrder($aryProduct);
         $view = '<div class="title"><span class="title_icon"><img src="' . URL_BASE . '/templates/default/images/bullet1.gif" alt="" /></span>My cart</div>';
         $view .= '<div class="feat_prod_box_details">';
         $view .= '<form name="frmCart" method="post" action=' . URL_BASE . "/shoppingCart" . '>';
@@ -123,7 +124,7 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
                 $total += $_SESSION['cart'][$value['pro_id']] * $value['price'];
             }
             $view .= '<tr>';
-            $view .= '<td colspan="1"><input type = "submit" value = "Update" name = "Ok"/></td>';
+            $view .= '<td colspan="1"><input style=" color: white ; background: #8A181A; border: 1px #8A181A solid;border-radius: 5px;" type = "submit" value = "accept" name = "Ok"/></td>';
             $view .= '<td colspan="3"></td>';
             $view .= ' <td colspan="1" class="cart_total"><span class="red">TOTAL: </span></td>';
             $view .= '<td>' . $total . ' $' . '</td>';
@@ -141,7 +142,7 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
         $view .= '</form>';
 
         $view .= '</div>';
-        return $intIsOk;
+        return $total;
     }
 
     /**
@@ -156,6 +157,7 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
             unset($_SESSION['cart']);
         } else {
             unset($_SESSION['cart'][$proId]);
+            $_SESSION['totalMoney'] = $this->renderViewCart();
         }
         $this->view->render('shoppingCart/index');
         $loadJS = $this->loadJsFunction('DefaultController.showCart()');
@@ -169,13 +171,12 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
      * @since 09/11/2013
      */
     public function showCart() {
-        $cart = '';
-        $intIsOk = $this->renderViewCart($cart);
-        echo json_encode(array('cart' => $cart, 'intIsOk' => $intIsOk));
+        $cart = $total = '';
+        $_SESSION['totalMoney'] = $this->renderViewCart($cart);
+        echo json_encode(array('cart' => $cart));
         exit();
     }
 
-    
     /**
      * @description load javascript function
      * 
