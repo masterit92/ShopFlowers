@@ -71,8 +71,13 @@ class Admin_Controllers_User extends Libs_Controller
         $user->setEmail($_POST['email']);
         $user->setFullName($_POST['fullname']);
         $user->setPhone($_POST['phone']); 
-        $user->setPassword($_POST['pwd']);   
 
+        if( empty($_POST['password']) ) {
+            $user->setPassword($_POST['pwd']); 
+        }else{
+            $user->setPassword($_POST['password']); 
+        }
+         
         $roleUserModel = new Admin_Models_tblRoleUser();
         $roleUserModel->deleteRoleUser($userId);
 
