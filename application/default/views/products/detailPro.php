@@ -29,7 +29,6 @@ $pro = $this->proByID;
         </div>
         <!--end add product to cart-->
     </div>
-    <div id="loading"></div>
     <div class="clear"></div>
     <?php
     $img = new Models_tblImages();
