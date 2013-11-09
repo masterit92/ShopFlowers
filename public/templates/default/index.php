@@ -1,3 +1,6 @@
+<?php
+@session_start();
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -45,8 +48,28 @@
                         <div class="title"><span class="title_icon"><img src="<?php echo URL_BASE ?>/templates/default/images/cart.gif" alt=""/></span>My
                             cart
                         </div>
-                        <div class="home_cart_content"> 3 x items | <span class="red">TOTAL: 100$</span></div>
-                        <a href="#" class="view_cart">view cart</a>
+                        <!--ThaiNV: set info of shopping cart-->
+                        <div class="home_cart_content">
+                            <?php
+                            $intIsOk = -1;
+                            if (isset($_SESSION['cart'])) {
+                                foreach ($_SESSION['cart'] as $k => $v) {
+                                    if (isset($k)) {
+                                        $intIsOk = 1;
+                                    }
+                                }
+                            }
+
+                            if ($intIsOk != 1) {
+                                echo '0 x items | <span class="red">TOTAL: 0$</span>';
+                            } else {
+                                $items = $_SESSION['cart'];
+                                echo count($items) . ' x items | <span class="red">TOTAL: ' . $_SESSION['totalMoney'] . '$' . '</span>';
+                            }
+                            ?>
+                        </div>
+                        <a href="<?php echo URL_BASE . '/shoppingCart' ?>" class="view_cart">view cart</a>
+                        <!--END set info of shopping cart-->
                     </div>
                     <div class="right_content_half">
                         <div class="title">
