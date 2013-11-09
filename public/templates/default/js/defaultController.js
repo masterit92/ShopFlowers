@@ -24,23 +24,10 @@ var DefaultController = {
             url: url,
             data: 'proId=' + data,
             success: function(data) {
-                DefaultController.callBackAddToCart(data);
+                var obj = $.parseJSON(data);
+                $(".left_content").html(obj.cart);
             }
         });
-    },
-    /**
-     * @description call back addToCart
-     *
-     * @author ThaiNV 
-     * @since 09/11/2013
-     */
-    callBackAddToCart: function(data) {
-        var obj = $.parseJSON(data);
-        if (obj.intIsOk === 1) {
-            $(".left_content").html(obj.cart);
-        } else {
-            $(".left_content").html('Error');
-        }
     },
     /**
      * @description show shopping cart
@@ -54,19 +41,9 @@ var DefaultController = {
             type: 'post',
             url: url,
             success: function(data) {
-                DefaultController.callBackShowCart(data);
+                var obj = $.parseJSON(data);
+                $(".left_content").html(obj.cart);
             }
         });
-    },
-    /**
-     * @description call back showCart
-     *
-     * @author ThaiNV 
-     * @since 09/11/2013
-     */
-    callBackShowCart: function(data) {
-        var obj = $.parseJSON(data);
-        $(".left_content").html(obj.cart);
-
     }
 };
