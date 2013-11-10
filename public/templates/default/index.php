@@ -68,7 +68,7 @@
                             }
                             ?>
                         </div>
-                        <a href="<?php echo URL_BASE . '/shoppingCart' ?>" class="view_cart">view cart</a>
+                        <a class="view_cart" onclick="DefaultController.showCart()" style="cursor: pointer">View cart</a>
                         <!--END set info of shopping cart-->
                     </div>
                     <div class="right_content_half">
