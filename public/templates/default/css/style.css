@@ -269,3 +269,86 @@ span.red{
 }
 /*end about user*/
 
+/*---------------contact_form------------------*/
+.contact_form{
+    width:355px;
+    float:left;
+    padding:25px;
+    margin:20px 0 0 15px;
+    _margin:20px 0 0 5px;
+    border:1px #DFD1D2 dashed;
+    position:relative;
+}
+.form_row{
+    width:335px;
+    _width:355px;
+    clear:both;
+    padding:10px 0 10px 0;
+    _padding:5px 0 5px 0;
+    color:#a53d17;
+}
+label.contact{
+    width:75px;
+    float:left;
+    font-size:12px;
+    text-align:right;
+    padding:4px 5px 0 0;
+    color: #333333;
+}
+input.contact_input{
+    width:253px;
+    height:18px;
+    background-color:#fff;
+    color:#999999;
+    border:1px #DFDFDF solid;
+    float:left;
+}
+textarea.contact_textarea{
+    width:253px;
+    height:120px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:12px;
+    color: #999999;
+    background-color:#fff;
+    border:1px #DFDFDF solid;
+    float:left;
+}
+input.register{
+    width:71px;
+    height:25px;
+    border:none;
+    cursor:pointer;
+    text-align:center;
+    float:right;
+    color:#FFFFFF;
+    background:url(../images/register_bt.gif) no-repeat center;
+}
+a.contact{
+    width:53px;
+    height:24px;
+    display:block;
+    float:right;
+    margin:0 0 0 10px;
+    background:url(../images/contact_bt.gif) no-repeat center;
+    text-decoration:none;
+    text-align:center;
+    line-height:24px;
+    color:#fff;
+}
+.terms{
+    padding:0 0 0 80px;
+}
+.form_subtitle{
+    position:absolute;
+    top:-11px;
+    left:7px;
+    width:auto;
+    height:20px;
+    background-color:#990000;
+    text-align:center;
+    padding:0 7px 0 7px;
+    color:#FFFFFF;
+    font-size:11px;
+    line-height:20px;
+}
+
