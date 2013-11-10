@@ -53,7 +53,6 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
             $qty = 1;
         }
         $_SESSION['cart'][$proId] = $qty;
-        $this->showCart();
     }
 
     /**
@@ -93,10 +92,11 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
      */
     public function renderViewCart(&$view) {
         $aryProduct = array();
+        $total = 0;
         $this->getProductsOrder($aryProduct);
         $view = '<div class="title"><span class="title_icon"><img src="' . URL_BASE . '/templates/default/images/bullet1.gif" alt="" /></span>My cart</div>';
         $view .= '<div class="feat_prod_box_details">';
-        $view .= '<form name="frmCart" method="post" action=' . URL_BASE . "/shoppingCart" . '>';
+        $view .= '<form name="frmCart" id="frmCart" method="post" action=' . URL_BASE . "/shoppingCart" . '>';
 
         $view .= '<table class="cart_table">'; //start Table
         //head
@@ -119,12 +119,13 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
                 $view .= '<td>' . "<input style='text-align: center; border: 1px black solid' type='text' size='5' maxlength='10'" . 'value=' . $_SESSION['cart'][$value['pro_id']] . " name='qty[" . $value['pro_id'] . "]'></input>" . '</td>';
                 $view .= '<td>' . $value['description'] . '</td>';
                 $view .= '<td>' . $_SESSION['cart'][$value['pro_id']] * $value['price'] . ' $' . '</td>';
-                $view .= '<td>' . '<a href="' . URL_BASE . "/shoppingCart/deleteCart?proId=" . $value["pro_id"] . '">Delete</a>' . '</td>';
+                $view .= '<td><input type="button" onclick="DefaultController.deleteCart(' . $value["pro_id"] . ')" value="Delete"></td>';
+                $view .= '<td><input type="hidden" name="product[' . $value["name"] . ']" value="' . $value["pro_id"] . '"></td>';
                 $view .= '</tr>';
                 $total += $_SESSION['cart'][$value['pro_id']] * $value['price'];
             }
             $view .= '<tr>';
-            $view .= '<td colspan="1"><input style=" color: white ; background: #8A181A; border: 1px #8A181A solid;border-radius: 5px;" type = "submit" value = "accept" name = "Ok"/></td>';
+            $view .= '<td colspan="1"><input style=" color: white ; background: #8A181A; border: 1px #8A181A solid;border-radius: 5px;" type = "submit" value = "Save" name = "Ok"/></td>';
             $view .= '<td colspan="3"></td>';
             $view .= ' <td colspan="1" class="cart_total"><span class="red">TOTAL: </span></td>';
             $view .= '<td>' . $total . ' $' . '</td>';
@@ -134,11 +135,15 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
             $view .= '<tr>';
             $view .= '<td colspan="7"> Your cart is empty</td>';
             $view .= '</tr>';
+            $view .= '<tr>';
+            $view .= '<td colspan="1"><input style=" color: white ; background: #8A181A; border: 1px #8A181A solid;border-radius: 5px;" type = "submit" value = "Save" name = "Ok"/></td>';
+            $view .= '<td colspan="6"></td>';
+            $view .= '</tr>';
         }
 
         $view .= '</table>';
         //end Table
-        $view .= ' <a href="' . URL_BASE . '/products' . '" class="continue">&lt; continue</a> <a href="" class="checkout">checkout &gt;</a> </div>';
+        $view .= ' <a href="' . URL_BASE . '/products' . '" class="continue">&lt; continue</a> <a onclick="DefaultController.loadFormCustom()" style="cursor: pointer" class="checkout">checkout &gt;</a> </div>';
         $view .= '</form>';
 
         $view .= '</div>';
@@ -152,16 +157,13 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
      * @since 09/11/2013
      */
     public function deleteCart() {
-        $proId = $_GET['proId'];
+        $proId = $_POST['proId'];
         if ($proId == 0) {
             unset($_SESSION['cart']);
         } else {
             unset($_SESSION['cart'][$proId]);
             $_SESSION['totalMoney'] = $this->renderViewCart();
         }
-        $this->view->render('shoppingCart/index');
-        $loadJS = $this->loadJsFunction('DefaultController.showCart()');
-        echo $loadJS;
     }
 
     /**
@@ -171,7 +173,7 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
      * @since 09/11/2013
      */
     public function showCart() {
-        $cart = $total = '';
+        $cart = '';
         $_SESSION['totalMoney'] = $this->renderViewCart($cart);
         echo json_encode(array('cart' => $cart));
         exit();
@@ -189,6 +191,33 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
         $script .= '<script type="text/javascript"> var BASE_URL = ' . '"' . URL_BASE . '"' . '</script>';
         $script .= '<script type="text/javascript">' . $jsFuncName . '</script>';
         return $script;
+    }
+
+    /**
+     * @description load form customer
+     * 
+     * @author ThaiNV 
+     * @since 09/11/2013
+     */
+    public function loadFormInfo() {
+        $form = file_get_contents('http://' . $_SERVER['SERVER_NAME'] . '/shopFlowers/application/default/views/shoppingCart/formInfo.php');
+//        $strId = join(',', $_POST['product']);
+        echo json_encode(array('form' => $form));
+        exit();
+    }
+
+    /**
+     * @description save customer information
+     * 
+     * @author ThaiNV 
+     * @since 09/11/2013
+     */
+    public function saveOrderInfo() {
+        $aryParams = $_POST;
+        $aryProduct = array();
+        $this->getProductsOrder($aryProduct);
+        $dbCus = new Default_Models_tblCustomers();
+        $intIsOk = $dbCus->buildDataOrder($aryParams);
     }
 
 }
