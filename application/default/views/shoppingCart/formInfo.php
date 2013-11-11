@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="form_row">
-                <input type="button" class="register" value="Next" onclick="DefaultController.saveOrder();" />
+                <input type="button" class="register" value="Next" onclick="DefaultController.loadPaymentMethod();" />
             </div>
         </form>
     </div>
