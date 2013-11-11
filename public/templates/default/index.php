@@ -48,28 +48,12 @@
                         <div class="title"><span class="title_icon"><img src="<?php echo URL_BASE ?>/templates/default/images/cart.gif" alt=""/></span>My
                             cart
                         </div>
-                        <!--ThaiNV: set info of shopping cart-->
+                        <!--ThaiNV START: set info of shopping cart-->
                         <div class="home_cart_content">
-                            <?php
-                            $intIsOk = -1;
-                            if (isset($_SESSION['cart'])) {
-                                foreach ($_SESSION['cart'] as $k => $v) {
-                                    if (isset($k)) {
-                                        $intIsOk = 1;
-                                    }
-                                }
-                            }
 
-                            if ($intIsOk != 1) {
-                                echo '0 x items | <span class="red">TOTAL: 0$</span>';
-                            } else {
-                                $items = $_SESSION['cart'];
-                                echo count($items) . ' x items | <span class="red">TOTAL: ' . $_SESSION['totalMoney'] . '$' . '</span>';
-                            }
-                            ?>
                         </div>
                         <a class="view_cart" onclick="DefaultController.showCart()" style="cursor: pointer">View cart</a>
-                        <!--END set info of shopping cart-->
+                        <!--ThaiNV END: set info of shopping cart-->
                     </div>
                     <div class="right_content_half">
                         <div class="title">
