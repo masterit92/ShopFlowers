@@ -1,4 +1,5 @@
 <?php
+
 class Admin_Models_tblProduct extends  Models_tblProduct{
     public function __construct() {
         parent::__construct();
