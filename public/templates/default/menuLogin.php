@@ -8,19 +8,19 @@
         </a>
         <ul>
             <li>
-                <a href="#">
+                <a href="<?php echo URL_BASE ?>/customers/changePass">
                      <span class="title_icon"><img src="<?php echo URL_BASE?>/templates/default/images/changepass.png"/></span>
                     Change password
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="<?php echo URL_BASE ?>/customers/changeProfile">
                     <span class="title_icon"><img src="<?php echo URL_BASE?>/templates/default/images/profile_edit.png"/></span>
                     Change profile
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="<?php echo URL_BASE ?>/customers/logout">
                     <span class="title_icon"><img src="<?php echo URL_BASE?>/templates/default/images/log_out.png"/></span>
                         Log out
                 </a>

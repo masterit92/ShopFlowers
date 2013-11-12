@@ -1,5 +1,5 @@
 <?php
-$page = new Libs_splitPage($this->listAllCus, 2);
+$page = new Libs_splitPage($this->listAllCus, 10);
 ?>
 <div>
   <h1>CUSTOMERS</h1>
