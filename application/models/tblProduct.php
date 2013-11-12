@@ -162,7 +162,7 @@ class Models_tblProduct extends Libs_Model {
 
     public function getAllProduct() {
         $listPro = array();
-        $execute = $this->queryUnit->getSelect('tbl_products',NULL,'post_date DESC');
+        $execute = $this->queryUnit->getSelect('tbl_products', NULL, 'post_date DESC');
         if (mysql_num_rows($execute) > 0) {
             while ($row = mysql_fetch_assoc($execute)) {
                 $listPro[] = $this->setCustomerValue($row);
@@ -172,7 +172,7 @@ class Models_tblProduct extends Libs_Model {
     }
 
     public function getProByID($id_pro) {
-        $pro= null;
+        $pro = null;
         $execute = $this->queryUnit->getSelect('tbl_products', "pro_id='$id_pro'");
         if (mysql_num_rows($execute) > 0) {
             $row = mysql_fetch_assoc($execute);
@@ -183,7 +183,7 @@ class Models_tblProduct extends Libs_Model {
 
     public function getProByCatID($cat_id) {
         $listPro = array();
-        $execute = $this->queryUnit->getSelect('tbl_products'," cat_id='$cat_id'");
+        $execute = $this->queryUnit->getSelect('tbl_products', " cat_id='$cat_id'");
         if (mysql_num_rows($execute) > 0) {
             while ($row = mysql_fetch_assoc($execute)) {
                 $listPro[] = $this->setCustomerValue($row);
@@ -195,6 +195,18 @@ class Models_tblProduct extends Libs_Model {
     public function getProOrderByPrice($order) {
         $listPro = array();
         $execute = $this->queryUnit->getSelect('tbl_products', null, " price $order");
+        if (mysql_num_rows($execute) > 0) {
+            while ($row = mysql_fetch_assoc($execute)) {
+                $listPro[] = $this->setCustomerValue($row);
+            }
+        }
+        return $listPro;
+    }
+
+    public function getSearch($ProName) {
+        $listPro = array();
+
+        $execute = $this->queryUnit->getSelect('tbl_products', "name Like '%$ProName%'");
         if (mysql_num_rows($execute) > 0) {
             while ($row = mysql_fetch_assoc($execute)) {
                 $listPro[] = $this->setCustomerValue($row);

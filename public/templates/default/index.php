@@ -25,6 +25,26 @@
         <script type="text/javascript">
             var BASE_URL = '<?PHP echo URL_BASE ?>';
         </script>
+        
+        <script>
+            $(function() {
+                $("#btnSearch").click(function() {
+                    var txtSearch = $("#txtSearch").val();
+                    if (txtSearch != '') {
+                        var url = '<?php echo URL_BASE . '/products?search='; ?>' + txtSearch;
+                        $("#content_left").load(url);
+                    }
+                });
+                $("#priceMin").click(function() {
+                    var url = '<?php echo URL_BASE . '/products?order=ASC'; ?>';
+                    $("#content_left").load(url);
+                });
+                $("#priceMax").click(function() {
+                    var url = '<?php echo URL_BASE . '/products?order=DESC'; ?>';
+                    $("#content_left").load(url);
+                });
+            });
+        </script>
     </head>
     <body>
         <div id="wrap">
@@ -39,7 +59,7 @@
             </div>
             <!--end of header-->
             <div class="center_content">
-                <div class="left_content">
+                <div class="left_content" id="content_left">
                     <?php include_once TEMPLATE; ?>
                 </div>
                 <!--end of left content-->
@@ -62,7 +82,13 @@
                         </div>
                         <div class="clear"></div>
                         <div class="right_content_half_content">
-                            Search
+                             Flower:
+                            <input type="text" id="txtSearch" placeholder="Search..."/>
+                            <input type="button" id="btnSearch" value="Search"/>
+                            <br/>
+                            Price: 
+                            <br/><a href="#" id="priceMin">Min >> Max</a>
+                            <br/><a href="#" id="priceMax">Max >> Min</a>
                         </div>
                     </div>
                     <div class="right_content_half">
@@ -72,8 +98,14 @@
                         </div>
                         <div class="clear"></div>
                         <div class="right_content_half_content">
-                            Best Sellers
-                            <?php echo $this->test ?>
+                             Best Sellers<br/>
+                            Best Sellers<br/>
+                            Best Sellers<br/>
+                            Best Sellers<br/>
+                            Best Sellers<br/>
+                            Best Sellers<br/>
+                            Best Sellers<br/>
+                            Best Sellers<br/>
                         </div>
                     </div>
                     <div class="right_content_half">
