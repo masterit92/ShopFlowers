@@ -1,5 +1,4 @@
 <?php
-
 class Admin_Models_tblImages extends Models_tblImages {
 
     public function __construct() {
