@@ -31,7 +31,7 @@
         <div class="div_pro_list">
             <div class="pro_item">
                 <a href="<?php echo URL_BASE.'/products/detailPro' ?>?pro_id=<?php echo $pro->getProId(); ?>">
-                    <img src="<?php echo URL_BASE ?>/templates/default/<?php echo $pro->getThumb() ?>" title="<?php echo $pro->getName();?>" alt="No Image" width="90" height="90"/>
+                    <img src="<?php echo URL_BASE ?>/<?php echo $pro->getThumb() ?>" title="<?php echo $pro->getName();?>" alt="No Image" width="90" height="90"/>
                     <?php echo $pro->getName(); ?>
                 </a>
             </div>

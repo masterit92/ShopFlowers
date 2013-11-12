@@ -1,6 +1,7 @@
 <!--Products -->
 <?php
 $page = new Libs_splitPage($this->listAllPro, 12);
+if(!empty($this->listAllPro)){
 ?>
 <div class="pro_box">
     <div class="title">
@@ -28,7 +29,13 @@ $page = new Libs_splitPage($this->listAllPro, 12);
     <?php } ?>
     <div class="clear"></div>
     <?php
-    $url = URL_BASE . '/products/index';
-    echo $page->viewNumPage($url);
+    if ($page->numPage() > 1) {
+        $url = URL_BASE . '/products/index';
+        echo $page->viewNumPage($url);
+    }
     ?>
 </div>
+<?php }else{
+    echo "<b>No data!</b>";
+}
+?>
