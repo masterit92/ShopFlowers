@@ -195,12 +195,10 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
      * @author ThaiNV 
      * @since 09/11/2013
      */
-    public function loadFormInfo() {
-        $aryProId = $_POST['id'];
-        $aryQty = $_POST['qty'];
-        $aryPrice = $_POST['price'];
+    public function loadFormInfo(&$aryQty) {
+        //Mảng số lượng
+        $_SESSION['aryQty'] = $_POST['qty'];
         $form = file_get_contents('http://' . $_SERVER['SERVER_NAME'] . '/shopFlowers/application/default/views/shoppingCart/formInfo.php');
-//        $strId = join(',', $_POST['product']);
         echo json_encode(array('form' => $form));
         exit();
     }
@@ -211,8 +209,9 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
      * @author ThaiNV 
      * @since 09/11/2013
      */
-    public function loadPaymentMethod() {
-        $aryParams = $_POST;
+    public function loadPaymentMethod(&$aryCusInfo) {
+        //Mảng thông tin khách hàng
+        $_SESSION['aryCus'] = $_POST;
         $payView = $this->renderPayMethod();
         echo json_encode(array('view' => $payView));
         exit();
@@ -225,14 +224,18 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
      * @since 09/11/2013
      */
     public function renderPayMethod() {
-        $aryPayment = $this->getPayMethod();
-        $payView = "<h1>Phuong thuc thanh toan</h1>";
-        foreach ($aryPayment as $value) {
-            $payView .= "<h3><input type='radio' name='methodName' id='" . $value['pay_id'] . "'>" . $value['name'] . "</h3>";
+        //Mảng phương thức thanh toán
+        $aryPayMethod = $this->getPayMethod();
+        $payView = "<form id='frmPayMethod'>";
+        $payView .= "<h1>Phuong thuc thanh toan</h1>";
+        foreach ($aryPayMethod as $value) {
+            $payView .= "<h3><input value='" . $value['pay_id'] . "' type='radio' name='methodName' id='" . $value['pay_id'] . "'>" . $value['name'] . "</h3>";
             $payView .= "<p>" . $value['content'] . "</p>";
             $payView .= "<p>" . $value['image'] . "</p>";
         }
+        $payView .='<input type="button" class="register" value="Complete" onclick="DefaultController.saveOrder();" style="margin-right: 15px;" />';
         $payView .='<input type="button" class="register" value="Back" onclick="DefaultController.loadFormCustom();" style="margin-right: 15px;" />';
+        $payView .= '</form>';
         return $payView;
     }
 
@@ -255,7 +258,11 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
      * @since 09/11/2013
      */
     public function saveOrderInfo() {
-        $aryParams = $_POST;
+        //get information for build data insert
+        $aryCusInfo = $_SESSION['aryCus'];
+        $aryQty = $_SESSION['aryQty'];
+        $payId = $_POST['payId'];
+        
         $aryProduct = array();
         $this->getProductsOrder($aryProduct);
         $dbCus = new Default_Models_tblCustomers();
