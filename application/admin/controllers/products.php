@@ -1,5 +1,4 @@
 <?php
-
 class Admin_Controllers_Products extends Libs_Controller {
 
     public function __construct() {
