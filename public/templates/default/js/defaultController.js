@@ -138,11 +138,12 @@ var DefaultController = {
      */
     saveOrder: function() {
         var url = BASE_URL + '/shoppingCart/saveOrderInfo';
-        var data = $('#frm-Customer').serialize();
+        //Lấy phương thức thanh toán
+        var payId = $('input[name=methodName]:checked', '#frmPayMethod').val();
         $.ajax({
             type: "post",
             url: url,
-            data: data,
+            data: 'payId=' + payId,
             success: function(data) {
 
             }
