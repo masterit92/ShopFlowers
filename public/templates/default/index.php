@@ -28,6 +28,7 @@
         
         <script>
             $(function() {
+			
                 $("#btnSearch").click(function() {
                     var txtSearch = $("#txtSearch").val();
                     if (txtSearch != '') {
