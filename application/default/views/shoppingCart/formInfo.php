@@ -65,6 +65,7 @@
             </div>
             <div class="form_row">
                 <input type="button" class="register" value="Next" onclick="DefaultController.loadPaymentMethod();" />
+                <input type="button" class="register" value="Back" onclick="DefaultController.showCart();" style="margin-right: 15px;"/>
             </div>
         </form>
     </div>
