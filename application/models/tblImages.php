@@ -2,7 +2,7 @@
 
 class Models_tblImages extends Libs_Model {
 
-    private $queryUnit;
+    protected $queryUnit;
 
     public function __construct() {
         parent::__construct();
@@ -63,6 +63,15 @@ class Models_tblImages extends Libs_Model {
         $img->setProId($row['pro_id']);
         $img->setUrl($row['url']);
         return $img;
+    }
+    public function getColumnAndValue(Models_tblImages $img, $isKey= FALSE){
+        $arr_data= array();
+        if($isKey){
+            $arr_data["img_id"]= $img->getImgId();
+        }
+        $arr_data["pro_id"]= $img->getProId();
+        $arr_data["url"]= $img->getUrl();
+        return $arr_data;
     }
 
     public function getAllImageByIDPro($pro_id) {
