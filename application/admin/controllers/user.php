@@ -23,7 +23,7 @@ class Admin_Controllers_User extends Libs_Controller
         $this->view->render('user/form');
     }
     public function getEdit($user_id){
-    	$user_id = $_GET['id'];
+        $user_id = $_GET['id'];
 
         $roleModel = new Admin_Models_tblRoles();
         $this->view->roles = $roleModel->getAllRole();
@@ -31,9 +31,9 @@ class Admin_Controllers_User extends Libs_Controller
         $roleUserModel = new Admin_Models_tblRoleUser();
         $this->view->rolesUserID = $roleUserModel->getAllRoleByID($user_id);
 
-    	$model= new Admin_Models_tblUsers();
-    	$this->view->users = $model->getUserByID($user_id);
-    	$this->view->render('user/form');
+        $model= new Admin_Models_tblUsers();
+        $this->view->users = $model->getUserByID($user_id);
+        $this->view->render('user/form');
     }
     public function postCreate(){
         $user = new Admin_Models_tblUsers();
@@ -49,7 +49,7 @@ class Admin_Controllers_User extends Libs_Controller
             $user->setFullName($_POST['fullname']);
             $user->setEmail($_POST['email']);
             $user->setPhone($_POST['phone']);
-            $user->setPassword($_POST['pwd']);        
+            $user->setPassword( md5($_POST['pwd']) );        
             $user->insertUser($user);
             $user=$user->getUserByEmail($user->getEmail());
 
@@ -73,9 +73,9 @@ class Admin_Controllers_User extends Libs_Controller
         $user->setPhone($_POST['phone']); 
 
         if( empty($_POST['password']) ) {
-            $user->setPassword($_POST['pwd']); 
+            $user->setPassword( md5($_POST['pwd']) ); 
         }else{
-            $user->setPassword($_POST['password']); 
+            $user->setPassword( md5($_POST['password']) ); 
         }
          
         $roleUserModel = new Admin_Models_tblRoleUser();
@@ -91,13 +91,13 @@ class Admin_Controllers_User extends Libs_Controller
         header("location:user/index"); 
     }
     public function postDelete(){
-    	$userId = $_GET['id'];
+        $userId = $_GET['id'];
 
         $roleUserModel = new Admin_Models_tblRoleUser();
         $roleUserModel->deleteRoleUser($userId);
 
-		$model= new Admin_Models_tblUsers();
-        $model->deleteUser($userId);	
+        $model= new Admin_Models_tblUsers();
+        $model->deleteUser($userId);    
 
         header("location:user/index");
     }

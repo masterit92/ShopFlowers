@@ -134,7 +134,7 @@ class Admin_Models_tblUsers extends Libs_Model
     public function getSearchUsers($keyword)
     {
         $listAdmin = array();
-        $execute = $this->queryUnit->getSelect('tbl_users',"email='$keyword' OR full_name='$keyword' ");
+        $execute = $this->queryUnit->getSelect('tbl_users',"email LIKE '$$keyword$' OR full_name LIKE '%$keyword%' ");
         if (mysql_num_rows($execute) > 0) {
             while ($row = mysql_fetch_assoc($execute)) {
                 $admin = $this->setUserValues($row);

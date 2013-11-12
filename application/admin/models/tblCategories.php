@@ -5,7 +5,7 @@ class Admin_Models_tblCategories extends Models_tblCategories
     {
         parent::__construct();
         $this->queryUnit = new Libs_QueryUnit();
-    }	
+    }   
     public function insertCat(Admin_Models_tblCategories $cat)
     {
         $execute=$this->queryUnit->getInsert('tbl_categories', $this->getColumnAndValue($cat));

@@ -1,5 +1,5 @@
-<?php if(isset($_SESSION['user'])){?>
-<a href="#">Login</a> | <a href="#">Register</a>
+<?php if(!isset($_SESSION['user'])){?>
+<a href="<?php echo URL_BASE?>/customers">Login</a> | <a href="<?php echo URL_BASE?>/customers/register">Register</a>
 <?php }else{?>
 <ul id="nav">
      <span class="title_icon"><img src="<?php echo URL_BASE?>/templates/default/images/thumb2.gif" width="30" height="30" alt=""></span>

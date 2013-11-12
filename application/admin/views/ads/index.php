@@ -3,7 +3,7 @@
 <div id="main">
 <h3>ADS</h3>
 <p><a href="<?php echo URL_BASE?>/admin/ads/getCreate">New Ads</a></p>
-    <table cellpadding="0" cellspacing="0">
+    <table cellpadding="0" cellspacing="0" border="1">
     <tr>
       <th>ID</th>
       <th>Tên </th>

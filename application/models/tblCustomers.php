@@ -1,9 +1,11 @@
 <?php
 class Models_tblCustomers extends Libs_Model
 {
+    protected $queryUnit;
     public function __construct()
     {
         parent::__construct();
+        $this->queryUnit = new Libs_QueryUnit();
     }
 
     private $cus_id;
@@ -14,10 +16,31 @@ class Models_tblCustomers extends Libs_Model
     private $address;
     private $gender;
     private $avatar;
+    private $active;
+    private $resetkey;
     private $post_date;
     private $first_name;
     private $last_name;
     private $dob;
+
+
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    public function setResetkey($resetkey)
+    {
+        $this->resetkey = $resetkey;
+    }
+    public function getResetkey()
+    {
+        return $this->resetkey;
+    } 
 
     /**
      * @param mixed $dob
@@ -221,6 +244,8 @@ class Models_tblCustomers extends Libs_Model
         $cus->setEmail($row['email']);
         $cus->setAddress($row['address']);
         $cus->setAvatar($row['avatar']);
+        $cus->setActive($row['active']);
+        $cus->setResetkey($row['resetkey']);
         $cus->setFirstName($row['first_name']);
         $cus->setLastName($row['last_name']);
         $cus->setPostDate($row['post_date']);
@@ -248,6 +273,58 @@ class Models_tblCustomers extends Libs_Model
         $arr_data['dob']= $cus->getDob();
         $arr_data['post_date']= $cus->getPostDate();
         $arr_data['avatar']= $cus->getAvatar();
+        $arr_data['active']= $cus->getActive();
+        $arr_data['resetkey']= $cus->getResetkey();
+
         return $arr_data;
     }
+
+    public function getCustomerByID($cus_id)
+    {
+        $cus= NULL;
+        $execute= $this->queryUnit->getSelect('tbl_customers', "cus_id='$cus_id'");
+        if(mysql_num_rows($execute)>0){
+            $row= mysql_fetch_assoc($execute);
+            $cus= $this->setCustomerValue($row,true);
+        }
+        return $cus;
+    }
+    public function getCusByEmail($email)
+    {
+        $cus = null;
+            $execute = $this->queryUnit->getSelect("tbl_customers", "email='$email'");
+            if (mysql_num_rows($execute) > 0) {
+                while ($row = mysql_fetch_assoc($execute)) {
+                    $cus = $this->setCustomerValue($row,true);
+                }
+            }
+        return $cus;
+    }    
+    public function insertCus(Models_tblCustomers $cus)
+    {
+        $execute=$this->queryUnit->getInsert('tbl_customers', $this->getColumnAndValue($cus));
+        if($execute){
+            return true;
+        }
+        return false;
+    } 
+    public function updateCus(Models_tblCustomers $cus, $email)
+    {
+        $execute=$this->queryUnit->getUpdate('tbl_customers', $this->getColumnAndValue($cus),"email='$email'");
+        if($execute){
+            return true;
+        }
+        return false;
+    }    
+    public function getActiveKey($resetkey)
+    {
+        $cus = null;
+            $execute = $this->queryUnit->getSelect("tbl_customers", "resetkey='$resetkey'");
+            if (mysql_num_rows($execute) > 0) {
+                while ($row = mysql_fetch_assoc($execute)) {
+                    $cus = $this->setCustomerValue($row);
+                }
+            }
+        return $cus;
+    }     
 }

@@ -5,8 +5,8 @@ class Admin_Models_tblAds extends  Models_tblAds{
     {
         parent::__construct();
         $this->queryUnit = new Libs_QueryUnit();
-    }	
-    	
+    }   
+        
     public function insertAds(Admin_Models_tblAds $ads){
         $execute=$this->queryUnit->getInsert('tbl_ads', $this->getColumnAndValue($ads));
         if($execute){

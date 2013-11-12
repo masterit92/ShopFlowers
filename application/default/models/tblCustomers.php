@@ -69,7 +69,7 @@ class Default_Models_tblCustomers extends Models_tblCustomers {
      */
     public function buildDataOrder($aryParams) {
         $this->saveCustomer($aryParams);
-        $aryReceived['name'] = ($aryParams['txtRec_name	'] == '') ? $aryParams['txtCus_lastName	'] . $aryParams['txtCus_firtName'] : $aryParams['txtRec_name'];
+        $aryReceived['name'] = ($aryParams['txtRec_name '] == '') ? $aryParams['txtCus_lastName '] . $aryParams['txtCus_firtName'] : $aryParams['txtRec_name'];
         $aryReceived['email'] = ($aryParams['txtRec_email'] == '') ? $aryParams['txtCus_email'] : $aryParams['txtRec_email'];
         $aryReceived['adress'] = ($aryParams['txtRec_adress'] == '') ? $aryParams['txtCus_adrres'] : $aryParams['txtRec_adress'];
         

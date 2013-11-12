@@ -3,7 +3,7 @@
 class Admin_Controllers_Customers extends Libs_Controller
 {
     public function index(){
-        $model= new Admin_Models_tblCustomers();
+        $model = new Admin_Models_tblCustomers();
 
         $keyword = trim($_GET['keyword']);
         if(empty($keyword)){
@@ -17,10 +17,10 @@ class Admin_Controllers_Customers extends Libs_Controller
     }
     
     public function postDelete(){
-    	$cusId = $_GET['id'];
+        $cusId = $_GET['id'];
 
-		$model= new Admin_Models_tblUsers();
-        $model->deleteUser($cusId);	
+        $model= new Admin_Models_tblUsers();
+        $model->deleteUser($cusId); 
 
         header("location:index");
     }

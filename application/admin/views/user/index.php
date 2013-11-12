@@ -9,7 +9,7 @@ $page = new Libs_splitPage($this->listAllUser, 2);
     </form>
     </p>
     <p> <a href="<?php echo URL_BASE?>/admin/user/getCreate">New User</a> </p>
-  <table>
+  <table border="1">
     <thead>
       <tr>
         <th>ID</th>

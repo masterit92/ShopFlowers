@@ -2,10 +2,10 @@
     <h2>CATEGORIES</h2> 
     <p><a href="<?php echo URL_BASE?>/admin/category/getCreate">New Category</a></p>
                  
-	<table border="1">
+  <table border="1">
     <thead>
       <tr>
-			  <th>ID</th>
+        <th>ID</th>
         <th>Name </th>
         <th>Action</th>
       </tr>
@@ -35,6 +35,6 @@
       <?php
         }
       }  
-      ?>			
-	</tbody></table>
+      ?>      
+  </tbody></table>
 </div><br/><br/>

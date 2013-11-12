@@ -14,14 +14,14 @@ class Admin_Controllers_Ads extends Libs_Controller
         $this->view->render('ads/form');
     }
     public function getEdit(){
-    	$ads_id = $_GET['id'];
+        $ads_id = $_GET['id'];
 
-    	$model= new Admin_Models_tblAds();
-    	$this->view->ads = $model->getAdsByID($ads_id);
+        $model= new Admin_Models_tblAds();
+        $this->view->ads = $model->getAdsByID($ads_id);
         $this->view->render('ads/form');
     }    
     public function postCreate(){
-    	$ads= new Admin_Models_tblAds();
+        $ads= new Admin_Models_tblAds();
 
         $ads->setName($_POST['name']);
         $ads->setUrl($_POST['ads_url']);
@@ -76,14 +76,14 @@ class Admin_Controllers_Ads extends Libs_Controller
     }
 
     public function postDelete(){
-    	$ads_id = $_GET['id'];
+        $ads_id = $_GET['id'];
         $url_img = "templates/admin/images";
 
-		$model= new Admin_Models_tblAds();
+        $model= new Admin_Models_tblAds();
         $url_img = $model->getAdsByID($ads_id)->getImage();
         unlink($url_img);
 
-        $model->deleteAds($ads_id);	
+        $model->deleteAds($ads_id); 
 
         header("location:index");
     }
