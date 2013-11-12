@@ -232,6 +232,7 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
             $payView .= "<p>" . $value['content'] . "</p>";
             $payView .= "<p>" . $value['image'] . "</p>";
         }
+        $payView .='<input type="button" class="register" value="Back" onclick="DefaultController.loadFormCustom();" style="margin-right: 15px;" />';
         return $payView;
     }
 
