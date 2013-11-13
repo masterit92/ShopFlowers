@@ -4,5 +4,5 @@
     		echo $this->msg;
     }
     ?>
-	Click <a href="">vào đây</a> để quay lại trang chủ. <br /> <br />		
+	Click <a href="">here</a> to back home! <br /> <br />		
 </div>

@@ -67,7 +67,7 @@ if (isset($_SESSION['user_admin']) && isset($_SESSION['full_name_admin'])) {
                 </div>
             <?php } ?>
             <p>
-                <input type="submit" value="Login" name="btnLogin" id="tbnLogin"/>
+                <input type="submit" value="Login" name="btnLogin" id="btnLogin"/>
             </p>
         </center>
     </form>

@@ -81,13 +81,15 @@ class Default_Controllers_Customers extends Libs_Controller{
 
                 $mail->Body = $body;
 
-                if(!$mail->Send()) 
-                    $msg = "Không gửi được mail !";
-
+                if(!$mail->Send()){ 
+                    $this->view->msg = "Send mail error!";
+                }else{
+                   $cus->insertCus($cus);
+                    $this->view->msg = "Register successful! Please login now."; 
+                }    
             //END
-            $cus->insertCus($cus);
-            $this->view->msg = "Register successful! Please login now.";    
-            header("location: index");
+                
+            $this->view->render('customers/index');
         }
         //$this->view->render('customers/register');
     }
