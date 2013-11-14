@@ -1,5 +1,4 @@
 <?php
-include_once '<?php echo URL_BASE ?>/style.css';
 $array = $this->arrAbout;
 foreach ($array as $value) {
     ?>

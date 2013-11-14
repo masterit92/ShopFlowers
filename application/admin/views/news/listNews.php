@@ -1,5 +1,5 @@
 
-<h3>QuaÒn lyì tin týìc</h3>
+<h3>News</h3>
 
 <form method="post" name="frmList_news">
     <table cellpadding="0" cellspacing="0" border="1">
@@ -18,13 +18,13 @@
             </tr>
             <tr>
                 <th><input type="checkbox" name="checkAll" id="checkAll" onclick="BaseController.checkAll();"></th>
-                <th>Stt</th>
-                <th>Tiêu ðêÌ</th>
-                <th>Nôòi dung</th>
-                <th>Ngày ðãng</th>
-                <th>Ngày hêìt haòn</th>
-                <th>AÒnh</th>
-                <th>Tùy choòn</th>
+                <th>No.</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Image</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -43,7 +43,6 @@
                         <td><?php echo $value['news_end_date'] ?></td>
                         <td><?php echo $value['news_image'] ?></td>
                         <td class="action">
-                            <a href="#" class="view">View</a>
                             <a href="<?php echo URL_BASE . '/admin/news/loadFormData&id=' . $value['news_id'] ?>" class="edit">Edit</a>
                             <a href="#" onclick="BaseController.deleteOneRecord('this new', '<?php echo URL_BASE . '/admin/news/delete&listId=' . $value['news_id'] ?>');" class="delete">Delete</a>
                         </td>
@@ -53,7 +52,7 @@
             }else {
                 ?>
                 <tr>
-                    <td colspan="8" style="text-align: center; height: 50px;"><b>Không coì dýÞ liêòu</b></td>
+                    <td colspan="8" style="text-align: center; height: 50px;"><b>No data!</b></td>
                 </tr>
             <?php } ?>
         </tbody>

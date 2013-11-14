@@ -1,5 +1,5 @@
 <?php
-$array = $this->arrPayment;
+$array = $this->listPayment;
 foreach ($array as $value) {
     echo $value['pay_name'];
 }

@@ -201,8 +201,8 @@ h3 {
 
 #main table tr td span { text-decoration: none; color: #9b9b9b; float: right; }
 #main table tr td a { text-decoration: none; color: #9b9b9b;}
-#main table tr:hover td .add { color: blue;  font-weight: bold; text-align: left}
-#main table tr:hover td .delete { color: #ff0000;  font-weight: bold; text-align: left}
+#main table tr:hover td .add { color: blue;  font-weight: bold; text-align: left;}
+#main table tr:hover td .delete { color: #ff0000;  font-weight: bold; text-align: left;}
 #main table tr:hover td a:hover { text-decoration: underline; }
 
 
@@ -282,7 +282,7 @@ h3 {
     border: none;
     background: url(../img/button-submit.gif) no-repeat left top;
 }
-/* Phân trang ---------------------------------------- */
+/* paging ---------------------------------------- */
 .libsPaging{
     text-decoration: none;
     font-size: medium;
@@ -311,7 +311,4 @@ h3 {
 #footer a { color: #9B9B9B; }
 
 #footer a:hover { text-decoration: none; }
-
-#data{
-    text-align: left;
-}
+/*trangvt------about------------*/

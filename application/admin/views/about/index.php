@@ -2,7 +2,7 @@
 $array = $this->listAbout;
 ?>
 <html>
-    <link rel="stylesheet" type="text/css" href="<?php echo URL_BASE?>/templates/admin/css/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo URL_BASE?>"/>
     <h3>About Us</h3>
     <table border ="1">
         <thead>
@@ -16,7 +16,7 @@ $array = $this->listAbout;
                 <th>No.</th>
                 <th>Title</th>
                 <th>Content</th>
-                <th width="120">Action</th>
+                <th width="100">Action</th>
             </tr>
         <tbody>
             <?php
@@ -24,12 +24,11 @@ $array = $this->listAbout;
             foreach ($array as $value) {
                 $nbr++;
                 ?>
-                <tr id="data">
+                <tr>
                     <td><?php echo $nbr; ?></td>
                     <td><?php echo $value['title']; ?></td>
                     <td><?php echo $value['content']; ?></td>
                     <td class="action">
-                        <a class="view" href="#">View</a>
                         <a class="edit" href="<?php echo URL_BASE ?>/admin/about/loadForm?id=<?php echo $value['about_id']; ?>">Edit</a>
                         <a class="delete" href="<?php echo URL_BASE ?>/admin/about/deleteAbout?id=<?php echo $value['about_id']; ?>">Delete</a>
                     </td>
