@@ -1,3 +1,4 @@
+
 <?php
 $pro = new Default_Models_tblProducts();
 $pro = $this->proByID;
@@ -9,7 +10,7 @@ $pro = $this->proByID;
     </div>
     <div class="clear"></div>
     <div class="pro_box_img_detail">
-        <img src="<?php echo URL_BASE ?>/<?php echo $pro->getThumb() ?>" alt="No Image" width="130" height="130"/>
+        <img class="zoom_01" src='<?php echo URL_BASE ?>/<?php echo $pro->getThumb() ?>' data-zoom-image="<?php echo URL_BASE ?>/<?php echo $pro->getThumb() ?>" width="100" height="100"/>
     </div>
     <div class="pro_box_content_detail">
         <div class='detail'>
@@ -23,6 +24,11 @@ $pro = $this->proByID;
                 </a>
             </div>
         <?php } ?>
+        <!--ThaiNV: add product to cart-->
+        <div class="addProToCart">
+            <a onclick="DefaultController.addToCart(<?php echo $_GET['pro_id'] ?>);"><img src="<?php echo URL_BASE . '/templates/default/images/order_now.gif'; ?>"/></a>
+        </div>
+        <!--end add product to cart-->
     </div>
     <div class="clear"></div>
     <?php
@@ -34,7 +40,8 @@ $pro = $this->proByID;
             <?php
             foreach ($listImgByPro as $key => $img) {
                 ?>
-                <img src="<?php echo URL_BASE ?>/<?php echo $img->getUrl() ?>" width="110" height="120" alt="No Image"/>
+            <img class="zoom_01" src="<?php echo URL_BASE ?>/<?php echo $img->getUrl() ?>" data-zoom-image="<?php echo URL_BASE ?>/<?php echo $img->getUrl() ?>" width="120" height="120"/>
+                
             <?php }
             ?>
         </div>
@@ -66,9 +73,9 @@ if (count($listProR) > 0) {
                     </a>
                 </div>
             </div>
-            <?php
-        }?>
-        </div>
-<?php
-    }
-    ?>
+            <?php }
+        ?>
+    </div>
+    <?php
+}
+?>

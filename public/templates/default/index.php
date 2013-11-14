@@ -16,7 +16,9 @@
             'jquery.validate.min.js',
             'messages_vi.js',
             'js_index.js',
-            'defaultController.js'
+            'defaultController.js',
+            'jquery-1.8.3.min.js',
+            'jquery.elevatezoom.js'
         );
         $render->renderJS('default', $arrFileJS);
         ?>
@@ -25,10 +27,10 @@
         <script type="text/javascript">
             var BASE_URL = '<?PHP echo URL_BASE ?>';
         </script>
-        
+
         <script>
             $(function() {
-			
+
                 $("#btnSearch").click(function() {
                     var txtSearch = $("#txtSearch").val();
                     if (txtSearch != '') {
@@ -44,6 +46,8 @@
                     var url = '<?php echo URL_BASE . '/products?order=DESC'; ?>';
                     $("#content_left").load(url);
                 });
+                
+                $(".zoom_01").elevateZoom({zoomWindowPosition: 1, zoomWindowOffetx: 10});
             });
         </script>
     </head>
@@ -83,13 +87,13 @@
                         </div>
                         <div class="clear"></div>
                         <div class="right_content_half_content">
-                             Flower:
+                            Flower:
                             <input type="text" id="txtSearch" placeholder="Search..."/>
                             <input type="button" id="btnSearch" value="Search"/>
                             <br/>
                             Price: 
-                            <br/><a href="#" id="priceMin">Min >> Max</a>
-                            <br/><a href="#" id="priceMax">Max >> Min</a>
+                            <br/><input type="radio" name="rdb" id="priceMin">Min >> Max
+                                <br/><input type="radio" name="rdb" id="priceMax">Max >> Min
                         </div>
                     </div>
                     <div class="right_content_half">
@@ -99,7 +103,7 @@
                         </div>
                         <div class="clear"></div>
                         <div class="right_content_half_content">
-                             Best Sellers<br/>
+                            Best Sellers<br/>
                             Best Sellers<br/>
                             Best Sellers<br/>
                             Best Sellers<br/>

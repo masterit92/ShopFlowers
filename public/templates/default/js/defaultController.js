@@ -107,7 +107,13 @@ var DefaultController = {
             data: data,
             success: function(data) {
                 var obj = $.parseJSON(data);
-                $(".left_content").html(obj.form);
+                if (obj.intIsOk == -1) {
+                    alert('Cart is empty');
+                    DefaultController.showCart();
+                    return false;
+                } else {
+                    $(".left_content").html(obj.form);
+                }
             }
         });
     },

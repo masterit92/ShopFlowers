@@ -1,4 +1,5 @@
 <h3>List Album Images</h3>
+<input type="button" value="Back" onclick="javascript:history.go(-1)"/>
 <?php
 $img = new Admin_Models_tblImages();
 ?> 
@@ -8,6 +9,7 @@ $img = new Admin_Models_tblImages();
     <<a href="#"  onclick="BaseController.deleteMultiRecord('products', 'delListImg?pro_id=<?php echo $_GET['pro_id']?>');">Delete All</a></b>
 </b>
 <br/>
+
 <?php
 if (isset($_GET['action']) && $_GET['action'] == 'insert') {
     ?>
@@ -62,3 +64,4 @@ if (isset($_GET['action']) && $_GET['action'] == 'insert') {
         ?>
     </table>
 </div>
+
