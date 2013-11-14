@@ -30,7 +30,6 @@
 
         <script>
             $(function() {
-
                 $("#btnSearch").click(function() {
                     var txtSearch = $("#txtSearch").val();
                     if (txtSearch != '') {
@@ -53,10 +52,12 @@
                 });
                 
                 $(".zoom_01").elevateZoom({zoomWindowPosition: 1, zoomWindowOffetx: 10});
+                
+                
             });
         </script>
     </head>
-    <body>
+    <body >
         <div id="wrap">
             <div class="header">
                 <div class="logo"><a href="<?php echo URL_BASE ?>"><img src="<?php echo URL_BASE ?>/templates/default/images/logo.gif" alt="" border="0"/></a></div>
