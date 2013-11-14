@@ -7,14 +7,14 @@
     <div class="pro_box_img">
         <img src="" alt="No Image" width="120" height="120"/>
     </div>
-    <div class="pro_box_content">adfsdfsd</div>
+    <div class="pro_box_content">Flower Bouquet Vincent with vase & secco Sunflowers and roses a colourful composition. Unique bouquet with 3 orange roses, 3 sunflowers and plenty of greens. Diameter about 30 cm. With a package of flower nutrients and nursing instructions. Included: Free vase and a secco 0,2l </div>
 </div>
 <div class="clear"></div>
 <div class="pro_box">
     <div class="pro_box_img">
         <img src="" alt="No Image" width="120" height="120"/>
     </div>
-    <div class="pro_box_content">adfsdfsd</div>
+    <div class="pro_box_content">Your Christmas tree: 1 Picea conica 30-40 cm, 1 red ribbon, 4 bundles of cinnamon. The tree is delivered in a pot (aprox. 50 cm) and red bag.</div>
 </div>
 <div class="clear"></div>
 

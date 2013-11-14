@@ -51,8 +51,9 @@ $pro = $this->proByID;
             <?php
             foreach ($listImgByPro as $key => $img) {
                 ?>
-                    <img class="zoom_01" src="<?php echo URL_BASE ?>/<?php echo $img->getUrl() ?>" data-zoom-image="<?php echo URL_BASE ?>/<?php echo $img->getUrl() ?>" width="100" height="100"/>
-          
+                <img class="zoom_01" src="<?php echo URL_BASE ?>/<?php echo $img->getUrl() ?>" data-zoom-image="<?php echo URL_BASE ?>/<?php echo $img->getUrl() ?>" width="116" height="120"/>
+                <!--trangvt resize of img-->
+
             <?php }
             ?>
         </div>

@@ -11,7 +11,7 @@
         </a>
     </li>
     <li <?php if(strtolower(CONTROLLER)=='news') echo "class='selected'"?>>
-        <a href="#">
+        <a href="<?php echo URL_BASE?>/news">
             <img src="<?php echo URL_BASE?>/templates/default/images/menu_news.png"/> News
         </a>
     </li>
@@ -36,4 +36,4 @@
         </a>
     </li>
 </ul>
-<!--trangvt insert link of contact and buyingtip-->
+<!--trangvt insert link of contact and buyingtip, news-->
