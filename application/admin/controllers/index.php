@@ -28,6 +28,7 @@ class Admin_Controllers_Index extends Libs_Controller {
         }
         if ($flag) {
             if ($admin != null) {
+                $_SESSION['user_id'] = $admin->getUserId();
                 $_SESSION['user_admin'] = $admin->getEmail();
                 $_SESSION['full_name_admin'] = $admin->getFullName();
             } else {

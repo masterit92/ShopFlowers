@@ -67,10 +67,19 @@
                                 <li><a href="<?php echo URL_BASE?>/admin/products">Manager Product</a></li>
                                 <li><a href="<?php echo URL_BASE?>/admin/customers">Manager Customer</a></li>
                                 <li><a href="#">---------------------- </a></li>
+                                <?php 
+                                    if(isset($_SESSION['user_id'])){
+                                        $permission = new Admin_Models_tblUsers();
+                                        if($permission->isAdmin()){
+                                ?>
                                 <li><a href="#">Manager Hùng</a></li>
                                 <li><a href="#">---------------------- </a></li>
                                 <li><a href="#">----------------------</a></li>
                                 <li><a href="#">----------------------</a></li>
+                                <?php 
+                                        }
+                                    } 
+                                ?>
 
                             </ul>
                         </div>    
