@@ -211,7 +211,6 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
 //        } else {
 //            $cusInfo = null;
 //        }
-
         //end
         $form = file_get_contents('http://' . $_SERVER['SERVER_NAME'] . '/shopFlowers/application/default/views/shoppingCart/formInfo.php');
         echo json_encode(array('form' => $form, 'intIsOk' => $inIsOk));
@@ -263,7 +262,7 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
      */
     public function getPayMethod() {
         $payMethod = new Default_Models_tblPaymentMethod();
-        $aryPayment = $payMethod->getPayment();
+        $aryPayment = $payMethod->getAllPayment();
         return $aryPayment;
     }
 
