@@ -25,10 +25,10 @@
         <script type="text/javascript">
             var BASE_URL = '<?PHP echo URL_BASE ?>';
         </script>
-        
+
         <script>
             $(function() {
-			
+
                 $("#btnSearch").click(function() {
                     var txtSearch = $("#txtSearch").val();
                     if (txtSearch != '') {
@@ -83,7 +83,7 @@
                         </div>
                         <div class="clear"></div>
                         <div class="right_content_half_content">
-                             Flower:
+                            Flower:
                             <input type="text" id="txtSearch" placeholder="Search..."/>
                             <input type="button" id="btnSearch" value="Search"/>
                             <br/>
@@ -99,7 +99,7 @@
                         </div>
                         <div class="clear"></div>
                         <div class="right_content_half_content">
-                             Best Sellers<br/>
+                            Best Sellers<br/>
                             Best Sellers<br/>
                             Best Sellers<br/>
                             Best Sellers<br/>
