@@ -113,6 +113,11 @@ var DefaultController = {
                     return false;
                 } else {
                     $(".left_content").html(obj.form);
+                    if (obj.view !== '') {
+//                        $('.guestInfomartion').hide();
+                        $('.guestInfomartion').empty();
+                        $(".customerInformation").html(obj.view);
+                    }
                 }
             }
         });
@@ -124,17 +129,60 @@ var DefaultController = {
      * @since 09/11/2013
      */
     loadPaymentMethod: function() {
-        var url = BASE_URL + '/shoppingCart/loadPaymentMethod';
-        var data = $('#frm-Customer').serialize();
-        $.ajax({
-            type: "post",
-            url: url,
-            data: data,
-            success: function(data) {
-                var obj = $.parseJSON(data);
-                $(".left_content").html(obj.view);
-            }
-        });
+        var email = $('.txtCus_email').val();
+        var phone = $('.txtCus_phone').val();
+        var errMes = '';
+        var doLoad = 1;
+        var emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+        var phonePattern = /^\+?\d{2}[- ]?\d{3}[- ]?\d{5}$/;
+        if ($('.txtCus_firtName').val() === '') {
+            errMes += 'First name must be not null\n';
+            doLoad = -1;
+        }
+        if ($('.txtCus_lastName').val() === '') {
+            errMes += 'Last name must be not null\n';
+            doLoad = -1;
+        }
+        if (email === '') {
+            errMes += 'Email must be not null\n';
+            doLoad = -1;
+        }
+        if (email !== '' && !email.match(emailPattern)) {
+            errMes += 'Email invalid\n';
+            doLoad = -1;
+        }
+        if (phone === '') {
+            errMes += 'Phone must be not null\n';
+            doLoad = -1;
+        }
+        if (phone !== '' && !phone.match(phonePattern)) {
+            errMes += 'Phone invalid\n';
+            doLoad = -1;
+        }
+        if ($('.txtCus_adrres').val() === '') {
+            errMes += 'Adress must be not null\n';
+            doLoad = -1;
+        }
+        if ($('.txtDelivery_date').val() === '') {
+            errMes += 'Delivery date must be not null\n';
+            doLoad = -1;
+        }
+        if (doLoad === -1) {
+            alert(errMes);
+            return false;
+        } else {
+            var url = BASE_URL + '/shoppingCart/loadPaymentMethod';
+            var data = $('#frm-Customer').serialize();
+            $.ajax({
+                type: "post",
+                url: url,
+                data: data,
+                success: function(data) {
+                    var obj = $.parseJSON(data);
+                    $(".left_content").html(obj.view);
+                }
+            });
+        }
     },
     /**
      * @description save customer information
@@ -156,26 +204,8 @@ var DefaultController = {
                 $(".left_content").html(obj.bill);
             }
         });
-    },
-    /**
-     * @description finish shopping
-     *
-     * @author ThaiNV 
-     * @since 09/11/2013
-     */
-
-    completeShopping: function() {
-        var url = BASE_URL + '/shoppingCart/finishShopping';
-        $.ajax({
-            type: "post",
-            url: url,
-            success: function(data) {
-                var obj = $.parseJSON(data);
-                if (obj.intIsOk == 1) {
-                    $(".left_content").html(obj.view);
-                }
-            }
-        });
     }
+
+
 
 };
