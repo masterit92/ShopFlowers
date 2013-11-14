@@ -35,11 +35,8 @@
     <body>
         <?php
         if (!isset($_SESSION['user_admin'])) {
-            if (CONTROLLER == 'Index' && ACTION == 'index') {
                 include_once TEMPLATE;
-            } else {
-                header('Location: ' . URL_BASE . '/admin');
-            }
+            
             ?>
         <?php } else { ?>
             <div id="wrapper">
