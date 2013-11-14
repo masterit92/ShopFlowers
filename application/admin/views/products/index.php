@@ -76,7 +76,7 @@ $page = new Libs_splitPage($this->listAllPro, 10);
                     </td>
                     <td>
                         <a href="<?php echo URL_BASE ?>/admin/products/formData?pro_id=<?php echo $pro->getProId() ?>&&page=<?php echo $_GET['page'] ?>">Edit</a>
-                        <a href="<?php echo URL_BASE ?>/admin/products/delete?pro_id=<?php echo $pro->getProId() ?>&&page=<?php echo $_GET['page'] ?>" onclick="confirm('Delete?');">Delete</a>
+                        <a href="<?php echo URL_BASE ?>/admin/products/delete?pro_id=<?php echo $pro->getProId() ?>&&page=<?php echo $_GET['page'] ?>" onclick="return confirm('Delete?');">Delete</a>
                     </td>
                 </tr>
                 <?php

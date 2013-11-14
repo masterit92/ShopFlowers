@@ -30,7 +30,6 @@
 
         <script>
             $(function() {
-
                 $("#btnSearch").click(function() {
                     var txtSearch = $("#txtSearch").val();
                     if (txtSearch != '') {
@@ -46,12 +45,19 @@
                     var url = '<?php echo URL_BASE . '/products?order=DESC'; ?>';
                     $("#content_left").load(url);
                 });
+                $(".cat").click(function (){
+                    var catID= $(this).attr('cat_id');
+                    var url = '<?php echo URL_BASE . '/products?cat_id='; ?>'+catID;
+                    $("#content_left").load(url);
+                });
                 
                 $(".zoom_01").elevateZoom({zoomWindowPosition: 1, zoomWindowOffetx: 10});
+                
+                
             });
         </script>
     </head>
-    <body>
+    <body >
         <div id="wrap">
             <div class="header">
                 <div class="logo"><a href="<?php echo URL_BASE ?>"><img src="<?php echo URL_BASE ?>/templates/default/images/logo.gif" alt="" border="0"/></a></div>
@@ -86,12 +92,12 @@
                             Search
                         </div>
                         <div class="clear"></div>
-                        <div class="right_content_half_content">
-                            Flower:
+                        <div class="right_content_half_content" >
+                            <b>Flower:</b>
                             <input type="text" id="txtSearch" placeholder="Search..."/>
                             <input type="button" id="btnSearch" value="Search"/>
                             <br/>
-                            Price: 
+                            <b>Price:</b> 
                             <br/><input type="radio" name="rdb" id="priceMin">Min >> Max
                                 <br/><input type="radio" name="rdb" id="priceMax">Max >> Min
                         </div>
@@ -148,14 +154,10 @@
                         </div>
                     </div>
                     <div class="">
-                        <div class="title">
-                            <span class="title_icon"><img src="<?php echo URL_BASE ?>/templates/default/images/Online support.png" alt=""/></span>
-                            Online support
-                        </div>
-                        <div class="clear"></div>
-                        <div class="right_content_half_box">
-                            Online support
-                        </div>
+                        Quảng cáo ở đây
+                        <?php
+                            include_once 'listAds.php';
+                        ?>
                     </div>
                     <!--end of Search-->
                     <!--end of cart-->

@@ -15,7 +15,7 @@
         $arrFileJS = array(
             'jquery-1.9.1.js',
             'jNice.js',
-			'base.js',
+            'base.js',
             'jquery.comjquery-1.10.1.min.js',
             'jquery.js',
             'jquery.validate.js',
@@ -35,12 +35,8 @@
     <body>
         <?php
         if (!isset($_SESSION['user_admin'])) {
-            if (CONTROLLER == 'Index' && ACTION == 'index') {
-                include_once TEMPLATE;
-            } else {
-                header('Location: ' . URL_BASE . '/admin');
-            }
-            ?>
+            include_once TEMPLATE;
+        ?>
         <?php } else { ?>
             <div id="wrapper">
                 <h1><a href="#"><span>Shop Flowers</span></a></h1>
@@ -58,27 +54,28 @@
                     <div id="container">
                         <div id="sidebar">
                             <ul class="sideNav">
-								<li><a href="<?php echo URL_BASE . '/admin/news' ?>">Manager news</a></li>
-                                <li><a href="#">----------------------</a></li>
-                                <li><a href="#">----------------------</a></li>
-                                <li><a href="<?php echo URL_BASE . '/admin/about' ?>">Manager about</a></li>
-                                <li><a href="#">----------------------</a></li>
-                                <li><a href="#">----------------------</a></li>
-                                <li><a href="<?php echo URL_BASE?>/admin/products">Manager Product</a></li>
-                                <li><a href="<?php echo URL_BASE?>/admin/customers">Manager Customer</a></li>
+                                <li><a href="#">Dashboard</a></li>
                                 <li><a href="#">---------------------- </a></li>
-                                <?php 
-                                    if(isset($_SESSION['user_id'])){
-                                        $permission = new Admin_Models_tblUsers();
-                                        if($permission->isAdmin()){
-                                ?>
-                                <li><a href="#">Manager Hùng</a></li>
+                                <li><a href="<?php echo URL_BASE . '/admin/about' ?>">Manager About</a></li>
+                                <li><a href="<?php echo URL_BASE . '/admin/news' ?>">Manager News</a></li>
+                                <li><a href="<?php echo URL_BASE . '/admin/contact' ?>">Manager Contact</a></li>
+                                <li><a href="<?php echo URL_BASE ?>/admin/customers">Manager Customer</a></li>
+                                <li><a href="<?php echo URL_BASE ?>/admin/products">Manager Product</a></li>
+                                <li><a href="<?php echo URL_BASE ?>/admin/category">Manager Category</a></li>
+                                <li><a href="<?php echo URL_BASE ?>/admin/ads">Manager Ads</a></li>
+                                <li><a href="">Manager Order</a></li>
+                                <li><a href="<?php echo URL_BASE . '/admin/paymentMethod' ?>">Manager Payment</a></li>
+
                                 <li><a href="#">---------------------- </a></li>
-                                <li><a href="#">----------------------</a></li>
-                                <li><a href="#">----------------------</a></li>
-                                <?php 
-                                        }
-                                    } 
+                                <?php
+                                if (isset($_SESSION['user_id'])) {
+                                    $permission = new Admin_Models_tblUsers();
+                                    if ($permission->isAdmin()) {
+                                        ?>
+                                        <li><a href="<?php echo URL_BASE ?>/admin/user">Manager Users</a></li>
+                                        <?php
+                                    }
+                                }
                                 ?>
 
                             </ul>
@@ -90,7 +87,7 @@
 
                         <div class="clear"></div>
                     </div>
-                </div>	
+                </div>  
 
                 <p id="footer"></p>
             </div>

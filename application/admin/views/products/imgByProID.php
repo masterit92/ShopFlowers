@@ -53,7 +53,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'insert') {
                     </td>
                     <td>
                         <a href="<?php echo URL_BASE ?>/admin/products/imgByProID?pro_id=<?php echo $_GET['pro_id'] ?>&&action=edit&&img_id=<?php echo $img->getImgId() ?>">Edit</a> | 
-                        <a href="<?php echo URL_BASE ?>/admin/products/deleteImg?pro_id=<?php echo $_GET['pro_id'] ?>&&img_id=<?php echo $img->getImgId() ?>" onclick="confirm('Delete?');">Delete</a>
+                        <a href="<?php echo URL_BASE ?>/admin/products/deleteImg?pro_id=<?php echo $_GET['pro_id'] ?>&&img_id=<?php echo $img->getImgId() ?>" onclick="return confirm('Delete?');">Delete</a>
                     </td>
                 </tr>
                 <?php
