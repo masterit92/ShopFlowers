@@ -154,14 +154,10 @@
                         </div>
                     </div>
                     <div class="">
-                        <div class="title">
-                            <span class="title_icon"><img src="<?php echo URL_BASE ?>/templates/default/images/Online support.png" alt=""/></span>
-                            Online support
-                        </div>
-                        <div class="clear"></div>
-                        <div class="right_content_half_box">
-                            Online support
-                        </div>
+                        Quảng cáo ở đây
+                        <?php
+                            include_once 'listAds.php';
+                        ?>
                     </div>
                     <!--end of Search-->
                     <!--end of cart-->
