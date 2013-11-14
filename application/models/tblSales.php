@@ -2,6 +2,7 @@
 class Models_tblSales extends  Libs_Model{
    public function __construct(){
        parent::__construct();
+       $this->queryUnit = new Libs_QueryUnit();
    }
     private $sale_id;
     private $pro_id;
@@ -139,6 +140,37 @@ class Models_tblSales extends  Libs_Model{
     {
         return $this->status;
     }
+
+    public function setSaleValues($row)
+    {
+        $sale = new Models_tblSales();
+        $sale->setSaleId($row['sale_id']);
+        $sale->setProId($row['pro_id']);
+        $sale->setDateStart($row['date_start']);
+        $sale->setDateEnd($row['date_end']);
+        $sale->setContent($row['content']);
+        $sale->setPercentDecrease($row['percent_decrease']);
+        $sale->setImage($row['image']);
+        $sale->setStatus($row['status']);
+        return $sale;
+    }
+
+    public function getColumnAndValue(Models_tblSales $sale, $isKey = false)
+    {
+        $arr_data= array();
+        if ($isKey) {
+            $arr_data['sale_id']=$sale->getSaleId();
+        }
+        $arr_data['pro_id']=$sale->getProId();
+        $arr_data['date_start']=$sale->getDateStart();
+        $arr_data['date_end']=$sale->getDateEnd();
+        $arr_data['content']=$sale->getContent();
+        $arr_data['percent_decrease']=$sale->getPercentDecrease();
+        $arr_data['image']=$sale->getImage();
+        $arr_data['status']=$sale->getStatus();
+        return $arr_data;
+    }
+
     public function getSaleByProID($pro_id){
 
     }
@@ -146,6 +178,13 @@ class Models_tblSales extends  Libs_Model{
 
     }
     public function getSaleByID($sale_id){
-
+        $sale = null;
+            $execute = $this->queryUnit->getSelect("tbl_sales", "sale_id='$sale_id'");
+            if (mysql_num_rows($execute) > 0) {
+                while ($row = mysql_fetch_assoc($execute)) {
+                    $sale = $this->setSaleValues($row);
+                }
+            }
+        return $sale;
     }
 }

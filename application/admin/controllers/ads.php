@@ -59,7 +59,7 @@ class Admin_Controllers_Ads extends Libs_Controller
         $format_date_end = $date_end->format('Y-m-d');
         $ads->setDateEnd($format_date_end);
 
-        if(isset($_FILES["image"]["name"])){
+        if(!empty($_FILES["image"]["name"][0])){
             unlink($ads->getAdsByID($ads_id)->getImage());
 
             $checkImage = new Libs_uploadImg();
