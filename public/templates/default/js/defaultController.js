@@ -151,8 +151,31 @@ var DefaultController = {
             url: url,
             data: 'payId=' + payId,
             success: function(data) {
+                var obj = $.parseJSON(data);
+                $(".home_cart_content").html(obj.cartInfo);
+                $(".left_content").html(obj.bill);
+            }
+        });
+    },
+    /**
+     * @description finish shopping
+     *
+     * @author ThaiNV 
+     * @since 09/11/2013
+     */
 
+    completeShopping: function() {
+        var url = BASE_URL + '/shoppingCart/finishShopping';
+        $.ajax({
+            type: "post",
+            url: url,
+            success: function(data) {
+                var obj = $.parseJSON(data);
+                if (obj.intIsOk == 1) {
+                    $(".left_content").html(obj.view);
+                }
             }
         });
     }
+
 };
