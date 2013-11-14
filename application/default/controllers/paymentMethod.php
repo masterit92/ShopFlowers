@@ -1,15 +1,20 @@
 <?php
-class Default_Controllers_PaymentMethod extends Libs_Controller{
+
+class Default_Controllers_PaymentMethod extends Libs_Controller {
+
     public function __construct() {
         parent::__construct();
     }
-    public function index(){
+
+    public function index() {
         $this->getPayment();
         $this->view->render('paymentMethod/index');
     }
-    public function getPayment(){
+
+    public function getPayment() {
         $obj = new Default_Models_tblPaymentMethod();
-        $arrPayment = $obj->getPayment();
-        $this->view->arrPayment = $arrPayment;        
+        $arrPayment = $obj->getAllPayment();
+        $this->view->listPayment = $arrPayment;
     }
+
 }

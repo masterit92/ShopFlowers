@@ -254,7 +254,7 @@ span.red{
     color:#990000;
 }
 
-/*start about user*/
+/*trangvt-------------start about user*/
 .about_icon{
     float: left;
 }
@@ -264,10 +264,8 @@ span.red{
 }
 .about_detal{
     font-size: 12px;
-    padding: 5px 15px;
-    text-align: justify;
 }
-/*end about user*/
+/*trangvt----------end about user*/
 
 /*---------------contact_form------------------*/
 .contact_form{
