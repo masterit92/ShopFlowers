@@ -196,6 +196,11 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
      * @since 09/11/2013
      */
     public function loadFormInfo(&$aryQty) {
+        //check if empty cart
+        $inIsOk = 1;
+        if (empty($_SESSION['cart'])) {
+            $inIsOk = -1;
+        }
         //Mảng số lượng
         $_SESSION['aryQty'] = $_POST['qty'];
         $form = file_get_contents('http://' . $_SERVER['SERVER_NAME'] . '/shopFlowers/application/default/views/shoppingCart/formInfo.php');
@@ -212,6 +217,7 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
     public function loadPaymentMethod(&$aryCusInfo) {
         //Mảng thông tin khách hàng
         $_SESSION['aryCus'] = $_POST;
+        
         $payView = $this->renderPayMethod();
         echo json_encode(array('view' => $payView));
         exit();
@@ -258,15 +264,33 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
      * @since 09/11/2013
      */
     public function saveOrderInfo() {
-        //get information for build data insert
+        //Địa chỉ giao nhận
         $aryCusInfo = $_SESSION['aryCus'];
-        $aryQty = $_SESSION['aryQty'];
-        $payId = $_POST['payId'];
+        //Kiểm tra lại địa chỉ nhận hàng
+        $aryReceived = $this->reCheckCusInfo($aryCusInfo);
         
-        $aryProduct = array();
-        $this->getProductsOrder($aryProduct);
-        $dbCus = new Default_Models_tblCustomers();
-        $intIsOk = $dbCus->buildDataOrder($aryParams);
+        //Thông tin sản phẩm
+        $aryQty = $_SESSION['aryQty'];
+        //Phương thức thanh toán
+        $payId = $_POST['payId'];
+        //Lưu hóa đơn
+        $order = new Default_Models_tblOrder();
+        $order->saveOrder($aryReceived, $payId);
+    }
+
+    /**
+     * @description :kiểm tra xem người thanh toán và người nhận hàng 
+     *               có là một không.
+     * 
+     * @author ThaiNV 
+     * @since 09/11/2013
+     */
+    public function reCheckCusInfo($aryCusInfo) {
+        $aryReceived['name'] = ($aryCusInfo['txtRec_name '] == '') ? $aryCusInfo['txtCus_firtName'] : $aryCusInfo['txtRec_name'];
+        $aryReceived['email'] = ($aryCusInfo['txtRec_email'] == '') ? $aryCusInfo['txtCus_email'] : $aryCusInfo['txtRec_email'];
+        $aryReceived['adress'] = ($aryCusInfo['txtRec_adress'] == '') ? $aryCusInfo['txtCus_adrres'] : $aryCusInfo['txtRec_adress'];
+        $aryReceived['phone'] = ($aryCusInfo['txtRec_phone'] == '') ? $aryCusInfo['txtCus_phone'] : $aryCusInfo['txtRec_phone'];
+        return $aryReceived;
     }
 
 }

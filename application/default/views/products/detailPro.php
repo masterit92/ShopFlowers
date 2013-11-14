@@ -24,6 +24,11 @@ $pro = $this->proByID;
                 </a>
             </div>
         <?php } ?>
+        <!--ThaiNV: add product to cart-->
+        <div class="addProToCart">
+            <a onclick="DefaultController.addToCart(<?php echo $_GET['pro_id'] ?>);"><img src="<?php echo URL_BASE . '/templates/default/images/order_now.gif'; ?>"/></a>
+        </div>
+        <!--end add product to cart-->
     </div>
     <div class="clear"></div>
     <?php
@@ -68,9 +73,9 @@ if (count($listProR) > 0) {
                     </a>
                 </div>
             </div>
-            <?php
-        }?>
-        </div>
-<?php
-    }
-    ?>
+            <?php }
+        ?>
+    </div>
+    <?php
+}
+?>
