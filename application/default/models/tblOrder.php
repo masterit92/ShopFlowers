@@ -15,12 +15,19 @@ class Default_Models_tblOrder extends Models_tblOrder {
      * @author ThaiNV
      * @since 14/11/2013
      */
-    public function saveOrder($aryReceived, $payId) {
+    public function saveOrder($aryReceived, $payId, $cusEmail = null) {
         //reBuild data
         $lastId = '';
-
+        if ($cusEmail != null) {
+            $cusInfo = $this->checkExistCustom($cusEmail);
+        }
+        if (!empty($cusInfo)) {
+            $cusId = $cusInfo['cus_id'];
+        } else {
+            $cusId = 1;
+        }
         $aryDataInsert = array(
-            'cus_id' => 1,
+            'cus_id' => $cusId,
             'pay_id' => $payId,
             'order_date' => date('Y-m-d H:i:s'),
             'delivery_date' => date('Y-m-d H:i:s', strtotime($aryReceived['date'])),
@@ -42,7 +49,7 @@ class Default_Models_tblOrder extends Models_tblOrder {
      */
     public function checkExistCustom($email) {
         if (isset($email)) {
-            $condition = 'email = ' . $email;
+            $condition = 'email = ' . '"' . $email . '"';
             $res = $this->_queryUnit->getSelect('tbl_customers', $condition);
             $cusInfo = $this->_queryUnit->fetchOne($res);
         }
