@@ -97,14 +97,6 @@ class Admin_Controllers_Products extends Libs_Controller {
             $url_img = $pro->getProByID($_GET['pro_id'])->getThumb();
             if ($pro->deleteProduct($_GET["pro_id"])) {
                 unlink($url_img);
-                $listImg = $img->getAllImageByIDPro($_GET['pro_id']);
-                $listImgID = array();
-                if (count($listImg) > 0) {
-                    foreach ($listImg as $img) {
-                        unlink($img->getUrl());
-                        $img->deleteImg($img->getImgId());
-                    }
-                }
                 echo "<script>alert('Delete Success!')</script>";
             } else {
                 echo "<script>alert('Delete Fail!')</script>";
