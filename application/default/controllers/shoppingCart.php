@@ -142,7 +142,6 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
         $view .= '</form>';
 
         $view .= '</div>';
-        $_SESSION['totalMoney'] = $total;
         return $total;
     }
 
@@ -204,16 +203,8 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
         }
         //Mảng số lượng
         $_SESSION['aryQty'] = $_POST['qty'];
-        //Check customer
-//        if (isset($_SESSION['user'])) {
-//            $dbOrder = new Default_Models_tblOrder();
-//            $cusInfo = $dbOrder->checkExistCustom($_SESSION['user']);
-//        } else {
-//            $cusInfo = null;
-//        }
-        //end
         $form = file_get_contents('http://' . $_SERVER['SERVER_NAME'] . '/shopFlowers/application/default/views/shoppingCart/formInfo.php');
-        echo json_encode(array('form' => $form, 'intIsOk' => $inIsOk));
+        echo json_encode(array('form' => $form));
         exit();
     }
 
@@ -226,7 +217,7 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
     public function loadPaymentMethod(&$aryCusInfo) {
         //Mảng thông tin khách hàng
         $_SESSION['aryCus'] = $_POST;
-
+        
         $payView = $this->renderPayMethod();
         echo json_encode(array('view' => $payView));
         exit();
@@ -262,7 +253,7 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
      */
     public function getPayMethod() {
         $payMethod = new Default_Models_tblPaymentMethod();
-        $aryPayment = $payMethod->getAllPayment();
+        $aryPayment = $payMethod->getPayment();
         return $aryPayment;
     }
 
@@ -277,13 +268,14 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
         $aryCusInfo = $_SESSION['aryCus'];
         //Kiểm tra lại địa chỉ nhận hàng
         $aryReceived = $this->reCheckCusInfo($aryCusInfo);
-
+        
+        //Thông tin sản phẩm
+        $aryQty = $_SESSION['aryQty'];
         //Phương thức thanh toán
         $payId = $_POST['payId'];
         //Lưu hóa đơn
         $order = new Default_Models_tblOrder();
-        $lastInsertId = $order->saveOrder($aryReceived, $payId);
-        $this->saveOrderDetail($lastInsertId);
+        $order->saveOrder($aryReceived, $payId);
     }
 
     /**
@@ -294,81 +286,11 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
      * @since 09/11/2013
      */
     public function reCheckCusInfo($aryCusInfo) {
-        $aryReceived['name'] = ($aryCusInfo['txtRec_name'] == '') ? $aryCusInfo['txtCus_firtName'] : $aryCusInfo['txtRec_name'];
+        $aryReceived['name'] = ($aryCusInfo['txtRec_name '] == '') ? $aryCusInfo['txtCus_firtName'] : $aryCusInfo['txtRec_name'];
         $aryReceived['email'] = ($aryCusInfo['txtRec_email'] == '') ? $aryCusInfo['txtCus_email'] : $aryCusInfo['txtRec_email'];
         $aryReceived['adress'] = ($aryCusInfo['txtRec_adress'] == '') ? $aryCusInfo['txtCus_adrres'] : $aryCusInfo['txtRec_adress'];
         $aryReceived['phone'] = ($aryCusInfo['txtRec_phone'] == '') ? $aryCusInfo['txtCus_phone'] : $aryCusInfo['txtRec_phone'];
-        $aryReceived['date'] = $aryCusInfo['txtDelivery_date'];
-        $aryReceived['requirement'] = $aryCusInfo['txtRequirement'];
         return $aryReceived;
-    }
-
-    /**
-     * @description :save order detail
-     * 
-     * @author ThaiNV 
-     * @since 09/11/2013
-     */
-    public function saveOrderDetail($orderId) {
-        //Thông tin sản phẩm
-        $aryQty = $_SESSION['aryQty'];
-        $orderDetail = new Default_Models_tblOrderDetails();
-        $orderDetail->addOrderDetail($aryQty, $orderId);
-        $this->finishShopping($orderId);
-    }
-
-    /**
-     * @description finish shopping
-     * 
-     * @author ThaiNV 
-     * @since 09/11/2013
-     */
-    public function finishShopping($orderId) {
-        $orderDetail = new Models_tblOrder();
-        $intIsOk = $orderDetail->getBill($orderId, $aryBill);
-        $bill = $this->renderBill($aryBill);
-        unset($_SESSION['cart']);
-        unset($_SESSION['totalMoney']);
-        $numItems = (count($_SESSION['cart']) == 0 ) ? 0 : count($_SESSION['cart']);
-        $totalMoney = $_SESSION['totalMoney'];
-        $infoCart = $numItems . ' x items | <span class="red">TOTAL: ' . $totalMoney . ' $' . '</span>';
-        echo json_encode(array('bill' => $bill, 'cartInfo' => $infoCart));
-        exit();
-    }
-
-    /**
-     * @description render view of orders
-     * 
-     * @author ThaiNV 
-     * @since 09/11/2013
-     */
-    public function renderBill($aryBill) {
-        $bill = '<center><h2>Order success</h2></center>';
-        $bill .= '<table border="1" cellpadding="0" cellspacing="0">';
-        $bill .= '<thead>';
-        $bill .= "<tr>";
-        $bill .= '<th>Status</th>';
-        $bill .= '<th>Name recipient</th>';
-        $bill .= '<th>Address recipien</th>';
-        $bill .= '<th>Order date</th>';
-        $bill .= '<th>Delivery date</th>';
-        $bill .= '<th>Total</th>';
-        $bill .= '</tr>';
-        $bill .= '</thead>';
-        $bill .= '<tbody>';
-        $bill .= '<tr>';
-        $bill .= '<td></td>';
-        $bill .= '<td>' . $aryBill[0]['name_recipient'] . '</td>';
-        $bill .= '<td>' . $aryBill[0]['address_recipient'] . '</td>';
-        $bill .= '<td>' . $aryBill[0]['order_date'] . '</td>';
-        $bill .= '<td>' . $aryBill[0]['delivery_date'] . '</td>';
-        $bill .= '<td>' . $_SESSION['totalMoney'] . ' $' . '</td>';
-        $bill .= '</tr>';
-        $bill .= '</tbody>';
-        $bill .= '</table><br/>';
-        $bill .= '<a href="' . URL_BASE . '/products"><< Continue Shopping</a>';
-
-        return $bill;
     }
 
 }
