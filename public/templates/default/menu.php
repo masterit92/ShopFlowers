@@ -1,4 +1,3 @@
-
 <ul>
     <li <?php if(CONTROLLER=='index') echo "class='selected'";?>>
         <a href="<?php echo URL_BASE?>/index">
