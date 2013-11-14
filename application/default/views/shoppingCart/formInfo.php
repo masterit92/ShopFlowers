@@ -38,10 +38,15 @@
                 <label class="contact"><strong>Requirement:</strong></label>
                 <textarea class="contact_textarea" name="txtRequirement"></textarea>
             </div>
+            <div class="form_row">
+                <label class="contact"><strong>Delivery date: </strong></label>
+                <input type="text" class="contact_input" name="txtDelivery_date"/>
+            </div>
+            <br><br>
             <p>
-                <label>Payment and Delivery in an one adrres</label>
-                <input type="radio" name="checkAdrres" checked="true" id="payment">True
-                <input type="radio" name="checkAdrres" id="delivery" >False
+                <label><strong>Payment and Delivery in an one adrres: </strong></label>
+                <input type="radio" name="checkAdrres" checked="true" id="payment"><strong>True</strong>
+                <input type="radio" name="checkAdrres" id="delivery" ><strong>False</strong>
             </p>
             <br>
             <div id='areaDelivery'>
