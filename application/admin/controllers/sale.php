@@ -60,8 +60,8 @@ class Admin_Controllers_Sale extends Libs_Controller
         $format_date_end = $date_end->format('Y-m-d');
         $sale->setDateEnd($format_date_end);
 
-        if(isset($_FILES["image"]["name"])){
-            unlink($sale->getSaleByID($sale_id)->getImage());
+        if(!empty($_FILES["image"]["name"][0])){
+            unlink($_POST['saleImage']);
 
             $checkImage = new Libs_uploadImg();
             $url_img = "templates/admin/images";
@@ -69,7 +69,7 @@ class Admin_Controllers_Sale extends Libs_Controller
             $sale->setImage($img[0]);
         }else{
             //print_r($_POST['saleImage']);die;
-            $img = $sale->getSaleByID($sale_id)->getImage();
+            $img = $_POST['saleImage'];
             $sale->setImage($img); 
         }    
 
