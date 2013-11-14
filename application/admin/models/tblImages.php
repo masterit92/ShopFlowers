@@ -39,7 +39,7 @@ class Admin_Models_tblImages extends Models_tblImages {
         return $img;
     }
     public function delListImg($listID){
-        $condition = 'img_id IN (' . $listID . ')';
+        $condition = ' img_id  IN (' . $listID . ')';
         $exxcute= $this->queryUnit->getDelete('tbl_images', $condition);
         if($exxcute){
             return TRUE;

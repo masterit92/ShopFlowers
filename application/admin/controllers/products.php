@@ -1,4 +1,5 @@
 <?php
+
 class Admin_Controllers_Products extends Libs_Controller {
 
     public function __construct() {
@@ -9,7 +10,7 @@ class Admin_Controllers_Products extends Libs_Controller {
         $listPro = new Default_Models_tblProducts();
         if (isset($_GET['search'])) {
             $this->view->listAllPro = $listPro->getSearch($_GET['search']);
-            $this->view->render("products/index",FALSE);
+            $this->view->render("products/index", FALSE);
         } else {
             $this->view->listAllPro = $listPro->getAllProduct();
             $this->view->render("products/index");
@@ -67,7 +68,7 @@ class Admin_Controllers_Products extends Libs_Controller {
         $pro->setCatId($_POST['catID']);
         $pro->setStatus($_POST['status']);
         date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $pro->setPostDate(date("YmdHis",time()));
+        $pro->setPostDate(date("YmdHis", time()));
         if (isset($_POST['txtProID'])) {
             $pro->setProId($_POST['txtProID']);
             if ($pro->updateProduct($pro)) {
@@ -92,9 +93,18 @@ class Admin_Controllers_Products extends Libs_Controller {
     public function delete() {
         if (isset($_GET["pro_id"])) {
             $pro = new Admin_Models_tblProduct();
+            $img = new Admin_Models_tblImages();
             $url_img = $pro->getProByID($_GET['pro_id'])->getThumb();
             if ($pro->deleteProduct($_GET["pro_id"])) {
                 unlink($url_img);
+                $listImg = $img->getAllImageByIDPro($_GET['pro_id']);
+                $listImgID = array();
+                if (count($listImg) > 0) {
+                    foreach ($listImg as $img) {
+                        unlink($img->getUrl());
+                        $img->deleteImg($img->getImgId());
+                    }
+                }
                 echo "<script>alert('Delete Success!')</script>";
             } else {
                 echo "<script>alert('Delete Fail!')</script>";

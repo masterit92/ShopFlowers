@@ -46,6 +46,11 @@
                     var url = '<?php echo URL_BASE . '/products?order=DESC'; ?>';
                     $("#content_left").load(url);
                 });
+                $(".cat").click(function (){
+                    var catID= $(this).attr('cat_id');
+                    var url = '<?php echo URL_BASE . '/products?cat_id='; ?>'+catID;
+                    $("#content_left").load(url);
+                });
                 
                 $(".zoom_01").elevateZoom({zoomWindowPosition: 1, zoomWindowOffetx: 10});
             });
@@ -86,12 +91,12 @@
                             Search
                         </div>
                         <div class="clear"></div>
-                        <div class="right_content_half_content">
-                            Flower:
+                        <div class="right_content_half_content" >
+                            <b>Flower:</b>
                             <input type="text" id="txtSearch" placeholder="Search..."/>
                             <input type="button" id="btnSearch" value="Search"/>
                             <br/>
-                            Price: 
+                            <b>Price:</b> 
                             <br/><input type="radio" name="rdb" id="priceMin">Min >> Max
                                 <br/><input type="radio" name="rdb" id="priceMax">Max >> Min
                         </div>

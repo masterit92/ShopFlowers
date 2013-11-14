@@ -13,6 +13,9 @@ class Default_Controllers_Products extends Libs_Controller {
         } else if(isset($_GET['order'])){
             $this->view->listAllPro= $listPro->getProOrderByPrice($_GET['order']);
             $this->view->render("products/index", FALSE);
+        }else if(isset ($_GET['cat_id'])){
+            $this->view->listAllPro= $listPro->getProByCatID($_GET['cat_id']);
+            $this->view->render("products/index", FALSE);
         }
         else{
             $this->view->listAllPro = $listPro->getAllProduct();
