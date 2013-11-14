@@ -60,7 +60,7 @@ class Admin_Controllers_User extends Libs_Controller
                 $roleUserModel->insertRoleUser($roleUserModel);            
             }        
 
-            header("location:user/index");
+            header("location:index");
         }
     }
 
@@ -88,7 +88,7 @@ class Admin_Controllers_User extends Libs_Controller
         }        
 
         $user->updateUser($user,$userId);   
-        header("location:user/index"); 
+        header("location:index"); 
     }
     public function postDelete(){
         $userId = $_GET['id'];
@@ -99,7 +99,7 @@ class Admin_Controllers_User extends Libs_Controller
         $model= new Admin_Models_tblUsers();
         $model->deleteUser($userId);    
 
-        header("location:user/index");
+        header("location:index");
     }
 
 

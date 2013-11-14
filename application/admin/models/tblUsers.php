@@ -208,4 +208,35 @@ class Admin_Models_tblUsers extends Libs_Model
         }
         return false;
     }
+
+    public function isAdmin(){
+        $user_id = $_SESSION['user_id'];
+
+        $roleUserModel = new Admin_Models_tblRoleUser();
+        $rolesUserID = $roleUserModel->getAllRoleByID($user_id);
+
+        foreach($rolesUserID as $key =>$roleUser){
+            if($roleUser->getRoleId() == 1){
+                return true;
+            }else{
+                return false;
+            }
+        }  
+    }
+
+    public function isEditor(){
+        $user_id = $_SESSION['user_id'];
+
+        $roleUserModel = new Admin_Models_tblRoleUser();
+        $rolesUserID = $roleUserModel->getAllRoleByID($user_id);
+
+        foreach($rolesUserID as $key =>$roleUser){
+            if($roleUser->getRoleId() === 2){
+                return true;
+            }else{
+                return false;
+            }
+        }  
+    }
+
 }
