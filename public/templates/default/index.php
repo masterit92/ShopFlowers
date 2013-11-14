@@ -16,7 +16,9 @@
             'jquery.validate.min.js',
             'messages_vi.js',
             'js_index.js',
-            'defaultController.js'
+            'defaultController.js',
+            'jquery-1.8.3.min.js',
+            'jquery.elevatezoom.js'
         );
         $render->renderJS('default', $arrFileJS);
         ?>
@@ -44,6 +46,8 @@
                     var url = '<?php echo URL_BASE . '/products?order=DESC'; ?>';
                     $("#content_left").load(url);
                 });
+                
+                $(".zoom_01").elevateZoom({zoomWindowPosition: 1, zoomWindowOffetx: 10});
             });
         </script>
     </head>
@@ -88,8 +92,8 @@
                             <input type="button" id="btnSearch" value="Search"/>
                             <br/>
                             Price: 
-                            <br/><a href="#" id="priceMin">Min >> Max</a>
-                            <br/><a href="#" id="priceMax">Max >> Min</a>
+                            <br/><input type="radio" name="rdb" id="priceMin">Min >> Max
+                                <br/><input type="radio" name="rdb" id="priceMax">Max >> Min
                         </div>
                     </div>
                     <div class="right_content_half">
