@@ -1,6 +1,6 @@
 
 <ul>
-    <li<?php if(CONTROLLER=='index') echo "class='selected'"?>>
+    <li <?php if(CONTROLLER=='index') echo "class='selected'"?>>
         <a href="<?php echo URL_BASE?>/index">
             <img src="<?php echo URL_BASE?>/templates/default/images/home.png"/> Home
         </a>
