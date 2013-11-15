@@ -8,7 +8,7 @@ if(version_compare(phpversion(),'5.1.0','<')){
 define('DS','/');
 define('EXT','.php');
 
-define('URL_BASE','http://localhost/ShopFlowers/public');
+define('URL_BASE','http://localhost:68/project/ShopFlowers1/public');
 define('DEFAULT_TEMPLATE','default');
 define('DEFAULT_MODULE','Default');
 define('DEFAULT_CONTROLLER','Index');

@@ -1,0 +1,31 @@
+<p><strong>1. I keep running out of vases. How will I ever have enough vases/extras?</strong></p>
+<p>My first reaction is &#8220;don&#8217;t buy them&#8221; but that&#8217;s really bad advice. Every time I play I just continuously buy the fastest 5 minute vases and the 10 minute Thank You cards. I keep buying them while I&#8217;ve got Flower Shop playing in a back window, while I do other, &#8216;important&#8217; things like my homework or watching <a class="zem_slink" title="YouTube" href="http://www.youtube.com/" rel="homepage" target="_blank">YouTube videos</a>. Either I check it every so often or it honks, so I know to go back and buy more. Then, when I&#8217;m going to sleep or going to be away for a while, I purchase the more expensive vases, and save those for only the best flowers that I have (like Stargazer Lilies, which sell on their own for $53 a bundle).</p>
+<p><strong>2. How can I get more money?</strong></p>
+<p>When you level up you get access to flowers that are extremely cost effective. Right now the favorite of my sister&#8217;s are Calla Lilies. I keep my crop field a rotation of the 12 hour, 18 hour, 1, 2, 2.5, and 3 day flowers. This way every so often I&#8217;ll have a lot of good flowers. However, I also keep a small patch open for flowers that take one or so hours to grow so I have something to sell in the off time. If you don&#8217;t have any flowers to sell, don&#8217;t sweat it&#8211; you can either go to your friends and take some of their flowers, or stock up on extras and vases! Also, save up your money. Invest back into your business, and not so much into your avatar or what your shop looks like (unless you&#8217;re expanding it).</p>
+<p><strong>3. How do I unlock X flower?</strong></p>
+<p>The flowers in the first row are unlocked by leveling up. The rest of the ones are unlocked by completing goals, although I must say I can&#8217;t remember half of them so it&#8217;ll take a while for a full list.</p>
+<ul>
+    <li>Peruvian Lilies &#8211; Hire a Temp 5 Times.</li>
+    <li>Poinsettias &#8211; Expand your Shop Once.</li>
+    <li>Pink Tulips &#8211; Pick Pink Tulips from Vivian&#8217;s garden. (Vivian is the level 80 default neighbor.)</li>
+    <li>Chrysanthemums - Play Flower Shop four days in a row.</li>
+    <li>Camellias &#8211; Expand your Garden Once (only received after unlocking Poinsettias via expanding your shop).</li>
+    <li>Daffodils &#8211; Wish Happy Birthday to 3 separate friends.</li>
+    <li>Hydrangeas &#8211; After completing the goal for ordering Thank You Cards, complete the chocolate goal of selling 210 chocolates.</li>
+    <li>Dahlias &#8211; After completing the goals to get 5 cups of coffee and then 10 cups of coffee from your friends (for a total of 15,) you will get the Addicted to Coffee goal with Dahlias as the reward. Receive 50 cups of coffee from friends.</li>
+    <li>Trumpet Vines &#8211;  Complete the &#8216;Will Work for XP&#8217; goal by visiting friends 250 times. The Goodie Goodie goal comes after that. Visit friends 500 times and you will trumpet vines.</li>
+</ul>
+<p>(There&#8217;s a lot I can&#8217;t remember&#8230; if anyone knows, please comment below!)</p>
+<p><strong>4. Why can&#8217;t I grow X flower?</strong></p>
+<p>Certain flowers are seasonal, so you won&#8217;t be able to grow them until the season comes again.</p>
+<p><strong>5. I keep making arrangements, but before I can finish the next one the first one is gone! How will I ever get full shelves?</strong></p>
+<p>There are two solutions to this. 1. Wait until you have a few arrangements (preferably over 40 or 50 flowers) and then open them for buying at the same time, or 2. Hire a temp/full-time employee and have at it! You&#8217;ll have two extra hands and will get twice as much work done in the same amount of time.</p>
+<p><strong>6. What are these cacti I&#8217;m hearing about?</strong></p>
+<p>At around level 30 you&#8217;re allowed to build a greenhouse. Inside a greenhouse you can grow certain kinds of flowers, and they last up to 72 hours before they die out! Be careful, though&#8211; they require their own separate vases to grow. The greenhouse also costs quite a lot to build &#8212;  $80,000. But over time that won&#8217;t seem like such a big sum.</p>
+<p><strong>7. I want to upgrade my flower storage but I don&#8217;t have many friends. What do I do?</strong></p>
+<p>What I did was I added friends from Facebook, and put them in a list called &#8220;Games.&#8221; These people don&#8217;t have access to any other part of my account other than game posts, and I get only their game posts. You can find them all over, especially on Flower Shop&#8217;s page, asking for more neighbors. If you don&#8217;t want to do that, you can either wait for a really long time, or buy some <a class="zem_slink" title="Facebook Credits" href="http://www.facebook.com/credits/" rel="homepage" target="_blank">Facebook credits</a> and spend them on your storage. (If you go this route, I recommend completing the windows and fences first&#8211; making sure you have five windows and ten fence posts. The more parts you get, the less credits it costs you&#8211; and since getting 5/5 windows is a lot easier than getting 25/25 nails, you&#8217;ll cut down the cost a lot faster.)</p>
+<p><strong>8. Is it worth it to expand your garden?</strong></p>
+<p>Yes. Even if you don&#8217;t have a flower storage, you can grow flowers that take a few days to grow in the extra space. Then you don&#8217;t need as much flower storage, but still reap the benefits!</p>
+<p><strong>9. Can&#8217;t I display more than 50 flowers? This is ridiculous!</strong></p>
+<p>Yes. If you upgrade your display cases, you will be able to display more flower arrangements. Generally it goes up by 10 flowers per display. The cases I use hold 80 and cost 6,000. It&#8217;s a good investment in the long run, because you can make more money and spend less time constantly checking the game.</p>
+<p><strong>10. Is it worth it to expand your shop?</strong></p>
