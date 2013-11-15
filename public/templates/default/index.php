@@ -39,8 +39,8 @@
                 $("#btnSearch").click(function() {
                     var txtSearch = $("#txtSearch").val();
                     if (txtSearch != '') {
+                        var txtSearch=txtSearch.replace(' ','%');
                         var url = "<?php echo URL_BASE . "/products?search="; ?>"+txtSearch;
-                        // alert(url);
                         $("#content_left").load(url);
                     }
                 });

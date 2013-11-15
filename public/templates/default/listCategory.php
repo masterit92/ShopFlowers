@@ -13,4 +13,5 @@ foreach ($model->getParentCat() as $key => $cat) {
         <?php
     }
 }
+
 ?>

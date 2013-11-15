@@ -6,9 +6,11 @@ class Libs_QueryUnit {
         $this->db = new Libs_Database();
     }
 
-    public function executeQuery($query) {
+    public function executeQuery($query, &$lastId) {
         $conn = $this->db->connect();
-        $result = mysql_query($query, $conn) or die('Command sql fails!');
+        $result = mysql_query($query, $conn) or die($query . 'Command sql fails!');
+        //ThaiNV: get last insert Id
+        $lastId = mysql_insert_id($conn);
         $this->db->disconnect($conn);
         return $result;
     }
@@ -31,14 +33,14 @@ class Libs_QueryUnit {
         $query = "SELECT * FROM " . $tableName;
         $query = $this->addCondition($query, $condition);
         $query = $this->addOrderBy($query, $orderBy);
-		if($limit !== null){
-			$query = $this->addLimit($query, $offset, $limit);
-		}
-        
+        if ($limit !== null) {
+            $query = $this->addLimit($query, $offset, $limit);
+        }
+
         return $this->executeQuery($query);
     }
 
-    public function getInsert($tableName, $arrColumnAndValue) {
+    public function getInsert($tableName, $arrColumnAndValue, &$lastId) {
         $query = "INSERT INTO " . $tableName . "(";
         $valueInsert = "";
         foreach ($arrColumnAndValue as $column => $value) {
@@ -48,7 +50,7 @@ class Libs_QueryUnit {
         $query = substr($query, 0, -1) . ') VALUES(';
         $valueInsert = substr($valueInsert, 0, -1) . ')';
         $query.=$valueInsert;
-        return $this->executeQuery($query);
+        return $this->executeQuery($query, $lastId);
     }
 
     public function getUpdate($tableName, $arrColumnAndValue, $condition) {
@@ -87,6 +89,17 @@ class Libs_QueryUnit {
         }
     }
 
+    /**
+     * @desc: fetch one sql
+     * 
+     * @author: ThaiNV
+     * @since: 05/11/2013 
+     */
+    public function fetchOne($sql) {
+        $out = $this->fetchAll($sql);
+        return array_shift($out);
+    }
+
     private function addLimit($query, $offSet, $limit) {
         if ($offSet != '' && $limit != '') {
             $query.=" LIMIT $offSet,$limit";
@@ -94,8 +107,8 @@ class Libs_QueryUnit {
         return $query;
     }
 
-public function getCatByParentId($tableName, $cat_id){
-        $query="SELECT * FROM ".$tableName." WHERE parent_id = '$cat_id'";
+    public function getCatByParentId($tableName, $cat_id) {
+        $query = "SELECT * FROM " . $tableName . " WHERE parent_id = '$cat_id'";
         //print_r($query);die;
         return $this->executeQuery($query);
     }
