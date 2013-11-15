@@ -3,7 +3,7 @@
       <div class="feat_prod_box_details">
         <div class="contact_form">
           <div class="form_subtitle">create new account</div>
-          <div class="form_subtitle"><span> 
+          <div><span> 
             <?php 
               if(isset($this->msg)){ 
                 echo $this->msg;

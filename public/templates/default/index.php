@@ -9,7 +9,11 @@
         <?php
         include_once 'templates/render.php';
         $render = new render();
-        $arrFileCSS = array('style.css', 'style_menuLogin.css', 'content_css.css', 'jquery-ui-1.10.3.custom.css');
+        $arrFileCSS = array(
+            'style.css', 
+            'style_menuLogin.css', 
+            'content_css.css', 
+            'jquery-ui-1.10.3.custom.css');
         $render->renderCSS('default', $arrFileCSS);
         $arrFileJS = array(
             'jquery-1.10.2.js',
@@ -19,7 +23,9 @@
             'defaultController.js',
             'jquery-1.8.3.min.js',
             'jquery.elevatezoom.js',
-            'jquery-ui-1.10.3.custom.js'
+            'jquery.js',
+            'jquery.validate.js',
+            'jquery-ui-1.10.3.custom.js',
         );
         $render->renderJS('default', $arrFileJS);
         ?>
