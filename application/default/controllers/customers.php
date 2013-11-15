@@ -20,8 +20,8 @@ class Default_Controllers_Customers extends Libs_Controller{
         $cus = $model->checkLogin($email, $pass);
             if( isset($cus) ){  
                 $_SESSION['user'] = $cus->getEmail();
-
-                $this->view->render('index/index');
+                $_SESSION['fullname']= $cus->getFirstName().' '.$cus->getLastName();
+                header("location:".URL_BASE);
             }else{
                 $this->view->msg = "Email or Password not match. Please try again!";
                 $this->view->render('customers/index');

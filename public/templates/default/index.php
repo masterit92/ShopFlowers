@@ -60,7 +60,7 @@
 
                 $("#priceSmarl").click(function (){
                     var txtPrice= $("#txtPrice").val();
-                    if(txtPrice!=''){
+                    if(txtPrice!='' && !isNaN(txtPrice)){
                         //alert(isNumber(txtPrice));
                         var url = '<?php echo URL_BASE . '/products?price='; ?>'+txtPrice+'&action=<';
                         $("#content_left").load(url);
@@ -68,7 +68,7 @@
                 });
                 $("#priceBig").click(function (){
                     var txtPrice= $("#txtPrice").val();
-                    if(txtPrice!=''){
+                    if(txtPrice!='' && !isNaN(txtPrice)){
                         var url = '<?php echo URL_BASE . '/products?price='; ?>'+txtPrice+'&action=>';
                         $("#content_left").load(url);
                     }

@@ -4,7 +4,7 @@
 <ul id="nav">
      <span class="title_icon"><img src="<?php echo URL_BASE?>/templates/default/images/thumb2.gif" width="30" height="30" alt=""></span>
     <li> <a href="#">
-            Phan The Binh <img src="<?php echo URL_BASE?>/templates/default/images/down.png"/>
+            <?php echo $_SESSION['fullname']?> <img src="<?php echo URL_BASE?>/templates/default/images/down.png"/>
         </a>
         <ul>
             <li>

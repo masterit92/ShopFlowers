@@ -142,6 +142,7 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
         $view .= '</form>';
 
         $view .= '</div>';
+        $_SESSION['totalMoney'] = $total;
         return $total;
     }
 
@@ -203,9 +204,49 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
         }
         //Mảng số lượng
         $_SESSION['aryQty'] = $_POST['qty'];
+        //Check customer
+        if (isset($_SESSION['user'])) {
+            $dbOrder = new Default_Models_tblOrder();
+            $cusInfo = $dbOrder->checkExistCustom($_SESSION['user']);
+            $view = $this->renderCusInfo($cusInfo);
+        } else {
+            $view = '';
+        }
+        //end check
         $form = file_get_contents('http://' . $_SERVER['SERVER_NAME'] . '/shopFlowers/application/default/views/shoppingCart/formInfo.php');
-        echo json_encode(array('form' => $form));
+        echo json_encode(array('form' => $form, 'intIsOk' => $inIsOk, 'view' => $view));
         exit();
+    }
+
+    /**
+     * @description render info of customer login
+     * 
+     * @author ThaiNV 
+     * @since 09/11/2013
+     */
+    public function renderCusInfo($cusInfo) {
+        $view = '';
+        $view .= '<div class="form_row">';
+        $view .= '<label class="contact"><strong>First name:</strong></label>';
+        $view .= '<input type="text" class="contact_input txtCus_firtName" name="Cus_firtName" value="' . $cusInfo['first_name'] . '"/>';
+        $view .= '</div>';
+        $view .= '<div class="form_row">';
+        $view .= ' <label class="contact"><strong>Last name:</strong></label>';
+        $view .= '<input type="text" class="contact_input txtCus_lastName" name="Cus_lastName" value="' . $cusInfo['last_name'] . '"/>';
+        $view .= '</div>';
+        $view .= '<div class="form_row">';
+        $view .= '<label class="contact"><strong>Email:</strong></label>';
+        $view .= '<input type="text" class="contact_input txtCus_email" name="Cus_email" value="' . $cusInfo['email'] . '"/>';
+        $view .= '</div>';
+        $view .= ' <div class="form_row">';
+        $view .= '<label class="contact"><strong>Phone:</strong></label>';
+        $view .= '<input type="text" class="contact_input txtCus_phone" name="Cus_phone" value="' . $cusInfo['phone'] . '"/>';
+        $view .= '</div>';
+        $view .= '<div class="form_row">';
+        $view .= '<label class="contact"><strong>Adrres:</strong></label>';
+        $view .= '<input type="text" class="contact_input txtCus_adrres" name="Cus_adrres" value="' . $cusInfo['address'] . '"/>';
+        $view .= ' </div>';
+        return $view;
     }
 
     /**
@@ -217,7 +258,7 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
     public function loadPaymentMethod(&$aryCusInfo) {
         //Mảng thông tin khách hàng
         $_SESSION['aryCus'] = $_POST;
-        
+
         $payView = $this->renderPayMethod();
         echo json_encode(array('view' => $payView));
         exit();
@@ -253,7 +294,7 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
      */
     public function getPayMethod() {
         $payMethod = new Default_Models_tblPaymentMethod();
-        $aryPayment = $payMethod->getPayment();
+        $aryPayment = $payMethod->getAllPayment();
         return $aryPayment;
     }
 
@@ -268,29 +309,114 @@ class Default_Controllers_ShoppingCart extends Libs_Controller {
         $aryCusInfo = $_SESSION['aryCus'];
         //Kiểm tra lại địa chỉ nhận hàng
         $aryReceived = $this->reCheckCusInfo($aryCusInfo);
-        
-        //Thông tin sản phẩm
-        $aryQty = $_SESSION['aryQty'];
+
         //Phương thức thanh toán
         $payId = $_POST['payId'];
+        if (isset($_SESSION['user'])) {
+            $cusEmail = $_SESSION['user'];
+        } else {
+            $cusEmail = null;
+        }
         //Lưu hóa đơn
         $order = new Default_Models_tblOrder();
-        $order->saveOrder($aryReceived, $payId);
+        $lastInsertId = $order->saveOrder($aryReceived, $payId, $cusEmail);
+        $this->saveOrderDetail($lastInsertId);
     }
 
     /**
-     * @description :kiểm tra xem người thanh toán và người nhận hàng 
-     *               có là một không.
+     * @description : rebuid data customer for saving
      * 
      * @author ThaiNV 
      * @since 09/11/2013
      */
     public function reCheckCusInfo($aryCusInfo) {
-        $aryReceived['name'] = ($aryCusInfo['txtRec_name '] == '') ? $aryCusInfo['txtCus_firtName'] : $aryCusInfo['txtRec_name'];
-        $aryReceived['email'] = ($aryCusInfo['txtRec_email'] == '') ? $aryCusInfo['txtCus_email'] : $aryCusInfo['txtRec_email'];
-        $aryReceived['adress'] = ($aryCusInfo['txtRec_adress'] == '') ? $aryCusInfo['txtCus_adrres'] : $aryCusInfo['txtRec_adress'];
-        $aryReceived['phone'] = ($aryCusInfo['txtRec_phone'] == '') ? $aryCusInfo['txtCus_phone'] : $aryCusInfo['txtRec_phone'];
+        if (isset($_SESSION['user'])) {
+            $aryReceived['name'] = ($aryCusInfo['txtRec_name'] == '') ? $aryCusInfo['Cus_firtName'] : $aryCusInfo['txtRec_name'];
+            $aryReceived['email'] = ($aryCusInfo['txtRec_email'] == '') ? $aryCusInfo['Cus_email'] : $aryCusInfo['txtRec_email'];
+            $aryReceived['adress'] = ($aryCusInfo['txtRec_adress'] == '') ? $aryCusInfo['Cus_adrres'] : $aryCusInfo['txtRec_adress'];
+            $aryReceived['phone'] = ($aryCusInfo['txtRec_phone'] == '') ? $aryCusInfo['Cus_phone'] : $aryCusInfo['txtRec_phone'];
+            $aryReceived['date'] = $aryCusInfo['txtDelivery_date'];
+            $aryReceived['requirement'] = $aryCusInfo['txtRequirement'];
+        } else {
+            $aryReceived['name'] = ($aryCusInfo['txtRec_name'] == '') ? $aryCusInfo['txtCus_firtName'] : $aryCusInfo['txtRec_name'];
+            $aryReceived['email'] = ($aryCusInfo['txtRec_email'] == '') ? $aryCusInfo['txtCus_email'] : $aryCusInfo['txtRec_email'];
+            $aryReceived['adress'] = ($aryCusInfo['txtRec_adress'] == '') ? $aryCusInfo['txtCus_adrres'] : $aryCusInfo['txtRec_adress'];
+            $aryReceived['phone'] = ($aryCusInfo['txtRec_phone'] == '') ? $aryCusInfo['txtCus_phone'] : $aryCusInfo['txtRec_phone'];
+            $aryReceived['date'] = $aryCusInfo['txtDelivery_date'];
+            $aryReceived['requirement'] = $aryCusInfo['txtRequirement'];
+        }
         return $aryReceived;
+    }
+
+    /**
+     * @description :save order detail
+     * 
+     * @author ThaiNV 
+     * @since 09/11/2013
+     */
+    public function saveOrderDetail($orderId) {
+        //Thông tin sản phẩm
+        $aryQty = $_SESSION['aryQty'];
+        $orderDetail = new Default_Models_tblOrderDetails();
+        $orderDetail->addOrderDetail($aryQty, $orderId);
+        $this->finishShopping($orderId);
+    }
+
+    /**
+     * @description finish shopping
+     * 
+     * @author ThaiNV 
+     * @since 09/11/2013
+     */
+    public function finishShopping($orderId) {
+        $orderDetail = new Models_tblOrder();
+        $intIsOk = $orderDetail->getBill($orderId, $aryBill);
+        $bill = $this->renderBill($aryBill);
+        unset($_SESSION['cart']);
+        unset($_SESSION['totalMoney']);
+        $numItems = (count($_SESSION['cart']) == 0 ) ? 0 : count($_SESSION['cart']);
+        $totalMoney = $_SESSION['totalMoney'];
+        $infoCart = $numItems . ' x items | <span class="red">TOTAL: ' . $totalMoney . ' $' . '</span>';
+        echo json_encode(array('bill' => $bill, 'cartInfo' => $infoCart));
+        exit();
+    }
+
+    /**
+     * @description render view of orders
+     * 
+     * @author ThaiNV 
+     * @since 09/11/2013
+     */
+    public function renderBill($aryBill) {
+        if ($aryBill[0]['status'] == 0) {
+            $status = 'Wait for process';
+        }
+        $bill = '<center><h2>Order success</h2></center>';
+        $bill .= '<table border="1" cellpadding="0" cellspacing="0">';
+        $bill .= '<thead>';
+        $bill .= "<tr>";
+        $bill .= '<th>Status</th>';
+        $bill .= '<th>Name recipient</th>';
+        $bill .= '<th>Address recipien</th>';
+        $bill .= '<th>Order date</th>';
+        $bill .= '<th>Delivery date</th>';
+        $bill .= '<th>Total</th>';
+        $bill .= '</tr>';
+        $bill .= '</thead>';
+        $bill .= '<tbody>';
+        $bill .= '<tr>';
+        $bill .= '<td>' . $status . '</td>';
+        $bill .= '<td>' . $aryBill[0]['name_recipient'] . '</td>';
+        $bill .= '<td>' . $aryBill[0]['address_recipient'] . '</td>';
+        $bill .= '<td>' . $aryBill[0]['order_date'] . '</td>';
+        $bill .= '<td>' . $aryBill[0]['delivery_date'] . '</td>';
+        $bill .= '<td>' . $_SESSION['totalMoney'] . ' $' . '</td>';
+        $bill .= '</tr>';
+        $bill .= '</tbody>';
+        $bill .= '</table><br/>';
+        $bill .= '<a href="' . URL_BASE . '/products"><< Continue Shopping</a>';
+
+        return $bill;
     }
 
 }
