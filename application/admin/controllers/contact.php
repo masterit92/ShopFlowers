@@ -10,6 +10,12 @@ class Admin_Controllers_Contact extends Libs_Controller {
         $this->view->listCon = $obj->getAllContact();
         $this->view->render('contact/index');
     }
+    public function viewCon(){
+        $obj = new Admin_Models_tblContact();
+        $id = $_GET['id'];
+        
+    }
+
     public function deleteCon(){
         $obj = new Admin_Models_tblContact();
         $id = $_GET['id'];
