@@ -66,9 +66,9 @@ class Default_Controllers_Customers extends Libs_Controller{
                 $mail->Username   = "hunglk.smartosc@gmail.com"; 
                 $mail->Password   = "lekhachung87";            
 
-                $mail->SetFrom("hunglk.smartosc@gmail.com","LE KHAC HUNG");
+                $mail->SetFrom("hunglk.smartosc@gmail.com","Shop Flowers Online");
                 $mail->AddAddress($email, "MAIL ACTIVE");
-                $mail->AddReplyTo("hunglk.smartosc@gmail.com","LE KHAC HUNG");
+                $mail->AddReplyTo("hunglk.smartosc@gmail.com","Shop Flowers Online");
 
                 $mail->Subject    = "Shop Flowers Online ";
                 $mail->CharSet = "utf-8";
@@ -110,6 +110,52 @@ class Default_Controllers_Customers extends Libs_Controller{
         }
 
         $this->view->render('customers/changePass');
+    }
+
+    public function forgotPass(){   
+        $this->view->render('customers/forgotPass');
+    }
+
+    public function postForgotPass(){     
+        $cus = new Default_Models_tblCustomers();
+        $email = $_POST['email'];
+        if(!$cus->getCusByEmail($email) ){
+            $this->view->msg = "Sorry, the email $email not exit.";
+            $this->view->render('customers/forgotPass');
+        }else{
+            $md5_hash = md5(rand(0, 999));
+            $new_pass = substr($md5_hash, 15, 7);
+            $security_code = md5(substr($md5_hash, 15, 7));
+
+            //SEND MAIL
+                $mail = new PHPMailer();
+                $mail->IsSMTP();                                                                                            
+                $mail->SMTPAuth   = true;                  
+                $mail->SMTPSecure = "ssl";
+                $mail->Host       = "smtp.gmail.com";     
+                $mail->Port       = 465;                     
+                $mail->Username   = "hunglk.smartosc@gmail.com"; 
+                $mail->Password   = "lekhachung87";            
+
+                $mail->SetFrom("hunglk.smartosc@gmail.com","Shop Flowers Online");
+                $mail->AddAddress($email, "Forgot Password");
+                $mail->AddReplyTo("hunglk.smartosc@gmail.com","Shop Flowers Online");
+
+                $mail->Subject    = "Shop Flowers Online ";
+                $mail->CharSet = "utf-8";
+                $body = "Your password is: $new_pass ";
+
+                $mail->Body = $body;
+
+                if(!$mail->Send()){ 
+                    $this->view->msg = "Send mail error!";
+                }else{
+                    $cus->updateCusByEmail($security_code,$email);
+                    $this->view->msg = "Password has been sent!";
+                }    
+            //END
+        }
+        header("location: customers/forgotPass");
     }
 
     public function changeProfile(){     

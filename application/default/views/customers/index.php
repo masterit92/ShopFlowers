@@ -23,6 +23,10 @@
                 Remember me </div>
             </div>
             <div class="form_row">
+              <div class="terms">
+                <a href="<?php echo URL_BASE?>/customers/forgotPass"> Forgot password ? </a> </div>
+            </div>
+            <div class="form_row">
               <input type="submit" name="btnLogin" class="register" value="login" />
             </div>
           </form>
