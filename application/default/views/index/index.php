@@ -19,7 +19,7 @@ if (count($this->listSale) > 0) {
             <div class="pro_box_content">
                 <div class="pro_box_content_sale">
                     <span class='detail_title'>Product:</span> <b><?php echo $proByID->getName(); ?>.</b><br/>
-                    <span class='detail_title'>Date: </span><b><?php echo $sale->getDateStart(); ?></b>  To <b><?php echo $sale->getDateEnd(); ?></b><br/>
+                    <span class='detail_title'>Date: </span><b><?php echo date_format(date_create($sale->getDateStart()),'m/d/Y'); ?> </b>  To <b><?php echo date_format(date_create($sale->getDateEnd()),'m/d/Y'); ?> </b><br/>
                     <span class='detail_title'>Content:</span> <?php echo $sale->getContent(); ?>
                     <span class='detail_title'>Sale:</span> <b><?php echo $sale->getPercentDecrease() ?>%</b><br/>
                     <span class='detail_title'>Price:</span> <b>$<s><?php echo $proByID->getPrice() ?></s></b> --> <b>$<?php echo ($proByID->getPrice() * ($sale->getPercentDecrease() / 100)); ?></b>
