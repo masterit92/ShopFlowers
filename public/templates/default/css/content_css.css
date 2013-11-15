@@ -15,14 +15,13 @@
 .div_pro_list{
     float: left;
     padding: 0px;
-    border: 1px #666666 solid;
     margin: 5px;
 }
 .pro_item{
     float: left;
     text-align: center;
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    min-height: 100px;
     margin: 5px;
 }
 .pro_item a{

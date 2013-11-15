@@ -39,8 +39,8 @@
                 $("#btnSearch").click(function() {
                     var txtSearch = $("#txtSearch").val();
                     if (txtSearch != '') {
-                        var txtSearch=txtSearch.replace(' ','%');
-                        var url = "<?php echo URL_BASE . "/products?search="; ?>"+txtSearch;
+                        var txtSearch = txtSearch.replace(' ', '%');
+                        var url = "<?php echo URL_BASE . "/products?search="; ?>" + txtSearch;
                         $("#content_left").load(url);
                     }
                 });
@@ -58,18 +58,18 @@
                     $("#content_left").load(url);
                 });
 
-                $("#priceSmarl").click(function (){
-                    var txtPrice= $("#txtPrice").val();
-                    if(txtPrice!='' && !isNaN(txtPrice)){
+                $("#priceSmarl").click(function() {
+                    var txtPrice = $("#txtPrice").val();
+                    if (txtPrice != '' && !isNaN(txtPrice)) {
                         //alert(isNumber(txtPrice));
-                        var url = '<?php echo URL_BASE . '/products?price='; ?>'+txtPrice+'&action=<';
+                        var url = '<?php echo URL_BASE . '/products?price='; ?>' + txtPrice + '&action=<';
                         $("#content_left").load(url);
                     }
                 });
-                $("#priceBig").click(function (){
-                    var txtPrice= $("#txtPrice").val();
-                    if(txtPrice!='' && !isNaN(txtPrice)){
-                        var url = '<?php echo URL_BASE . '/products?price='; ?>'+txtPrice+'&action=>';
+                $("#priceBig").click(function() {
+                    var txtPrice = $("#txtPrice").val();
+                    if (txtPrice != '' && !isNaN(txtPrice)) {
+                        var url = '<?php echo URL_BASE . '/products?price='; ?>' + txtPrice + '&action=>';
                         $("#content_left").load(url);
                     }
                 });
@@ -114,15 +114,22 @@
                         </div>
                         <div class="clear"></div>
                         <div class="right_content_half_content" >
-                            <b>Flower:</b><br/>
-                            <input type="text" id="txtSearch" placeholder="Search..." size="12" />
-                            <input type="button" id="btnSearch" value="Search" />
-                            <br/>
-                            <b>Price:</b> 
-                            <br/><input type="radio" name="rdb" id="priceMin"/>Min >> Max
-                            <br/><input type="radio" name="rdb" id="priceMax"/>Max >> Min
-                            <br/><b>>></b><input type="radio" name="rdb" id="priceSmarl"/>
-                            $<input type="text" id="txtPrice" size="2" /><input type="radio" name="rdb" id="priceBig"/><b><<</b>
+                            <div class="contact_form form_search">
+                                <div class="form_subtitle">Flower</div>
+                                <input type="text" id="txtSearch" placeholder="Search..." size="12" />
+                                <input type="button" id="btnSearch" value="Search" />
+                            </div>
+                             <div class="contact_form form_search">
+                                <div class="form_subtitle">Price</div>
+                                <input type="radio" name="rdb" id="priceMin"/>Min >> Max
+                                <input type="radio" name="rdb" id="priceMax"/>Max >> Min <br/>
+                                Order By:<input type="text" id="txtPrice" size="2" /><br/>
+                                <input type="radio" name="rdb" id="priceSmarl"/>Smaller<br/>
+                                <input type="radio" name="rdb" id="priceBig"/>Larger
+                            </div>
+
+                            <div class="clear"></div>
+                            
                         </div>
                     </div>
                     <div class="right_content_half">
@@ -172,22 +179,22 @@
                     <div class="">
                         Quảng cáo ở đây
                         <?php
-                            include_once 'listAds.php';
+                        include_once 'listAds.php';
                         ?>
-                        </div>
-                        <!--end of Search-->
-                        <!--end of cart-->
                     </div>
-                    <!--end of right content-->
-                    <div class="clear"></div>
-                    <div class=""></div>
+                    <!--end of Search-->
+                    <!--end of cart-->
                 </div>
-                <!--end of center content-->
-                <div class="footer">
-                    <div class="left_footer"><img src="<?php echo URL_BASE ?>/templates/default/images/footer_logo.gif" alt=""/></div>
-                    <div class="right_footer">
-                        <a href="<?php echo URL_BASE ?>/index">home</a>
-                        <a href="<?php echo URL_BASE ?>/about">about us</a>
+                <!--end of right content-->
+                <div class="clear"></div>
+                <div class=""></div>
+            </div>
+            <!--end of center content-->
+            <div class="footer">
+                <div class="left_footer"><img src="<?php echo URL_BASE ?>/templates/default/images/footer_logo.gif" alt=""/></div>
+                <div class="right_footer">
+                    <a href="<?php echo URL_BASE ?>/index">home</a>
+                    <a href="<?php echo URL_BASE ?>/about">about us</a>
                     <a href="#">services</a>
                     <a href="#">contact us</a>
                 </div>

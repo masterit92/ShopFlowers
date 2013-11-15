@@ -8,7 +8,7 @@ class Default_Models_tblProducts extends Models_tblProduct {
 
     public function getListProNew() {
         $listPro = array();
-        $execute = $this->queryUnit->getSelect('tbl_products', null, ' post_date DESC limit 0,8');
+        $execute = $this->queryUnit->getSelect('tbl_products', null, ' post_date DESC limit 0,6');
         if (mysql_num_rows($execute) > 0) {
             while ($row = mysql_fetch_assoc($execute)) {
                 $listPro[] = $this->setCustomerValue($row);
@@ -19,7 +19,7 @@ class Default_Models_tblProducts extends Models_tblProduct {
 
     public function getProRelated($cat_id, $price, $proID) {
         $listPro = array();
-        $execute = $this->queryUnit->getSelect('tbl_products', "cat_id='" . $cat_id . "' AND `pro_id`<> $proID AND price <($price+5) AND price >($price-5) limit 0,4");
+        $execute = $this->queryUnit->getSelect('tbl_products', "cat_id='" . $cat_id . "' AND `pro_id`<> $proID AND price <($price+5) AND price >($price-5) limit 0,3");
         if (mysql_num_rows($execute) > 0) {
             while ($row = mysql_fetch_assoc($execute)) {
                 $listPro[] = $this->setCustomerValue($row);
@@ -51,7 +51,7 @@ class Default_Models_tblProducts extends Models_tblProduct {
     }
     public function getProBestSellers(){
         $listPro=array();
-        $sql= "SELECT * FROM tbl_products  inner join tbl_order_details  on tbl_products.pro_id=tbl_order_details.pro_id order by quantity DESC limit 0,2";
+        $sql= "SELECT * FROM tbl_products  inner join tbl_order_details  on tbl_products.pro_id=tbl_order_details.pro_id order by quantity DESC limit 0,3";
         $result= $this->queryUnit->executeQuery($sql);
         if(mysql_num_rows($result)>0){
             while ($row= mysql_fetch_assoc($result)){

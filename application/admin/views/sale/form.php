@@ -31,12 +31,12 @@
     $().ready(function() {
         $("#saleForm").validate({
             rules: {
-                percent: "required",
+                percent:{required:true, number:true} ,
                 date_start: "required",
                 date_end: "required"
             },
             messages: {
-                percent: "Please enter percent decrease.",
+                percent: "Please enter or number percent decrease .",
                 date_start: "Please enter date start.",
                 date_end: "Please enter date end."
             }

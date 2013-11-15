@@ -120,13 +120,15 @@ body {
     margin: 5px;
     float: left;
     width: 175px;
+    min-height: 305px;
 }
 
 
 
 .right_content_half_content {
     background: #ebebeb;
-    padding: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -348,5 +350,9 @@ a.contact{
     color:#FFFFFF;
     font-size:11px;
     line-height:20px;
+}
+.form_search{
+    width: 100px;
+   
 }
 

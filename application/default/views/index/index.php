@@ -29,7 +29,7 @@ if (count($this->listSale) > 0) {
                 </div>
             </div>
 
-            <?php }
+        <?php }
         ?>
     </div>
     <div class="clear"></div><?php
@@ -45,16 +45,26 @@ if (count($this->listSale) > 0) {
     <div class="clear"></div>
     <?php
     $pro = new Default_Models_tblProducts();
-    foreach ($this->listProNew as $key => $pro) {
+    $i=0;
+    foreach ($this->listProNew as $pro) {
+        $i++;
         ?>
         <div class="div_pro_list">
             <div class="pro_item">
                 <a href="<?php echo URL_BASE . '/products/detailPro' ?>?pro_id=<?php echo $pro->getProId(); ?>">
-                    <img src="<?php echo URL_BASE ?>/<?php echo $pro->getThumb() ?>" title="<?php echo $pro->getName(); ?>" alt="No Image" width="85" height="80"/>
+                    <img src="<?php echo URL_BASE ?>/<?php echo $pro->getThumb() ?>" title="<?php echo $pro->getName(); ?>" alt="No Image" width="110" height="100"/>
                     <?php echo $pro->getName(); ?>
                 </a>
             </div>
         </div>
-    <?php } ?>
+        <?php
+        if ($i === 3) {
+            $i = 0;
+            ?>
+            <div class="clear"></div>
+            <?php
+        }
+    }
+    ?>
 </div>
 

@@ -98,7 +98,7 @@ if (count($listProR) > 0) {
             <div class="div_pro_list">
                 <div class="pro_item">
                     <a href="<?php echo URL_BASE . '/products/detailPro' ?>?pro_id=<?php echo $proR->getProId(); ?>">
-                        <img src="<?php echo URL_BASE ?>/<?php echo $proR->getThumb() ?>" title="<?php echo $proR->getName(); ?>" alt="No Image" width="90" height="90"/>
+                        <img src="<?php echo URL_BASE ?>/<?php echo $proR->getThumb() ?>" title="<?php echo $proR->getName(); ?>" alt="No Image" width="100" height="100"/>
                         <?php echo $proR->getName(); ?>
                     </a>
                 </div>
