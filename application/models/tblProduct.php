@@ -218,7 +218,7 @@ class Models_tblProduct extends Libs_Model {
     public function getProByPrice($price, $condition) {
         $listPro = array();
 
-        $execute = $this->queryUnit->getSelect('tbl_products', " price $condition $price");
+        $execute = $this->queryUnit->getSelect('tbl_products', " price $condition $price or price= $price");
         if (mysql_num_rows($execute) > 0) {
             while ($row = mysql_fetch_assoc($execute)) {
                 $listPro[] = $this->setCustomerValue($row);
