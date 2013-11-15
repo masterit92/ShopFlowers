@@ -85,5 +85,42 @@ var BaseController = {
     },
     addClass: function() {
         $("#testMenu").addClass('active');
+    },
+    /**
+     * @desc: update status order
+     * 
+     * @author: ThaiNV
+     * @since: 15/11/2013
+     */
+    updateCartStatus: function() {
+        var aryId = document.getElementsByName('checkOne[]');
+        if (!aryId) {
+            alert('No item select');
+            return;
+        }
+        var str = 'aryId=0';
+        for (i = 0; i < aryId.length; i++) {
+            if (aryId[i].checked === true) {
+                str += ',' + aryId[i].value;
+            }
+        }
+        if (str === 'aryId=0') {
+            alert('No item select');
+            return;
+        }
+        if (confirm('Are you sure?')) {
+            var url = ROOT_URL + '/admin/shoppingcart/changeStatus';
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: str,
+                success: function(data) {
+                    var obj = $.parseJSON(data);
+                    if (obj.intIsOk === 1) {
+                        window.location.href = ROOT_URL + '/admin/shoppingcart';
+                    }
+                }
+            });
+        }
     }
 };
