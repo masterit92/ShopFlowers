@@ -1,6 +1,6 @@
 <!--Products -->
 <?php
-$page = new Libs_splitPage($this->listAllPro, 12);
+$page = new Libs_splitPage($this->listAllPro, 10);
 if(!empty($this->listAllPro)){
 ?>
 <div class="pro_box">

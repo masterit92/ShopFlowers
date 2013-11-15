@@ -143,7 +143,7 @@ class Admin_Controllers_Products extends Libs_Controller {
                 $url_img = "templates/default/images";
                 $arr_img = $upImg->addImg($url_img, 'img', $_FILES['img']['name']);
                 if ($_GET['action'] == 'insert') {
-                    $numImg = $img->numImgByProID(1);
+                    $numImg = $img->numImgByProID($_GET['pro_id']);
 
                     foreach ($arr_img as $key => $value) {
                         if ($numImg < 4) {

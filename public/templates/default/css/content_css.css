@@ -45,7 +45,6 @@
     padding: 5px;
     border: #999999 solid 1px;
     width: 300px;
-    height: 130px;
 }
 .pro_box_img_detail{
     float: left;
@@ -109,4 +108,11 @@
 }
 .detail_img img{
     margin: inherit;
+}
+.pro_box_content_sale{
+    min-height: 120px;
+}
+.best{
+    width: 170px;
+    text-align: center;
 }

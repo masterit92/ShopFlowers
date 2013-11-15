@@ -3,19 +3,7 @@
     <h2><?php echo ( $this->create ? 'New Sale' : 'Edit Sale' )?> </h2>
         <form id="saleForm" action="<?php echo URL_BASE?>/admin/sale/<?php echo ( $this->create ? 'postCreate' : 'postEdit' )?>" method="POST" enctype="multipart/form-data">                    
     <input type="hidden" name="saleId" value="<?php echo ( $this->create ? '' : $this->sale->getSaleId() )?>" />
-    <fieldset><legend>Upload Image</legend>
-    <div>
-        <div>
-            <div>
-                <label for="image"></label>                  
-                <div>
-                    <input type="file" value="" id="image" name="image[]" multiple/>
-                    <input type="text" name="saleImage" value="<?php echo ( $this->create ? '' : $this->sale->getImage() )?>" />
-                </div>
-            </div> 
-            <div><img src="<?php echo URL_BASE?>/<?php echo ( $this->create ? '' : $this->sale->getImage() )?>" alt=""height="70" width="70"/></div>
-        </div>
-    </div></fieldset>     
+    <input type="hidden" name="pro_id" value="<?php echo $_GET['pro_id'];?>" />
     
     <fieldset><legend>Basic Information</legend>            
         <p><label for="date_start">Date Start</label>              

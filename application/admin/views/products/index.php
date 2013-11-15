@@ -24,7 +24,7 @@ $page = new Libs_splitPage($this->listAllPro, 10);
 <table cellpadding="5" cellspacing="0" border="1">
     <thead>
         <tr>
-            <td colspan="9">
+            <td colspan="10">
                 Search: <input type="text" name="txtSearch" placeholder="Search..." id="txtSearch" class="required"/>
                 <input type="button" value="Search" id="btnSearch"/>
             </td>
@@ -40,6 +40,7 @@ $page = new Libs_splitPage($this->listAllPro, 10);
             <th>Post Date</th>
             <th>Status</th>
             <th>Album Images</th>
+            <th>Sale</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -75,8 +76,11 @@ $page = new Libs_splitPage($this->listAllPro, 10);
                         <a href="<?php echo URL_BASE ?>/admin/products/imgByProID?pro_id=<?php echo $pro->getProId(); ?>">View</a>
                     </td>
                     <td>
-                        <a href="<?php echo URL_BASE ?>/admin/products/formData?pro_id=<?php echo $pro->getProId() ?>&&page=<?php echo $_GET['page'] ?>">Edit</a>
-                        <a href="<?php echo URL_BASE ?>/admin/products/delete?pro_id=<?php echo $pro->getProId() ?>&&page=<?php echo $_GET['page'] ?>" onclick="return confirm('Delete?');">Delete</a>
+                        <a href="<?php echo URL_BASE.'/admin/sale?pro_id='.$pro->getProId();?>">View</a>
+                    </td>
+                    <td>
+                        <a href="<?php echo URL_BASE ?>/admin/products/formData?pro_id=<?php echo $pro->getProId() ?>&page=<?php echo $_GET['page'] ?>">Edit</a>
+                        <a href="<?php echo URL_BASE ?>/admin/products/delete?pro_id=<?php echo $pro->getProId() ?>&page=<?php echo $_GET['page'] ?>" onclick="return confirm('Delete?');">Delete</a>
                     </td>
                 </tr>
                 <?php

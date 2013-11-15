@@ -4,6 +4,7 @@
         });
     });
 </script>
+<script type="text/javascript" src="<?php echo URL_BASE . '/templates/admin/style/ckeditor/ckeditor.js' ?>"></script>
 <style>
     .error {
         color: red;
@@ -29,6 +30,7 @@
         <p>
             <label>Name:</label>
             <input type="text" placeholder="Name..." class="text-long required" name="txtName" value="<?php if (isset($_GET['pro_id'])) echo $pro->getName(); ?>"/>
+
         </p>
         <p>
             <label>Thumb:</label>

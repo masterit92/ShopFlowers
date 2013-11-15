@@ -1,16 +1,7 @@
 <?php
 class Admin_Models_tblSales extends  Models_tblSales{
-
-    public function getAllSale(){
-        $listSale = array();
-        $execute = $this->queryUnit->getSelect('tbl_sales');
-        if (mysql_num_rows($execute) > 0) {
-            while ($row = mysql_fetch_assoc($execute)) {
-                $sale = $this->setSaleValues($row);
-                $listSale[] = $sale;
-            }
-        }
-        return $listSale;
+    public function __construct() {
+        parent::__construct();
     }
 
     public function getDateEndSale($date_end){

@@ -49,6 +49,17 @@ class Default_Models_tblProducts extends Models_tblProduct {
         }
         return $intIsOk;
     }
+    public function getProBestSellers(){
+        $listPro=array();
+        $sql= "SELECT * FROM tbl_products  inner join tbl_order_details  on tbl_products.pro_id=tbl_order_details.pro_id order by quantity DESC limit 0,2";
+        $result= $this->queryUnit->executeQuery($sql);
+        if(mysql_num_rows($result)>0){
+            while ($row= mysql_fetch_assoc($result)){
+                $listPro[]= $this->setCustomerValue($row);
+            }
+        }
+        return $listPro;
+    }
 
 }
 

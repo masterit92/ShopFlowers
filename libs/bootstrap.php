@@ -77,7 +77,7 @@ class Libs_Bootstrap
     }
     private  function delegate(){
         $this->_parseUrl($module,$controller,$action,$param);
-        define('URL_BASE',$this->getUrlCurrent());
+       // define('URL_BASE',$this->getUrlCurrent());
         define('MODULE',$module);
         define('CONTROLLER',$controller);
         define('ACTION',$action);

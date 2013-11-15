@@ -33,7 +33,8 @@
                 $("#btnSearch").click(function() {
                     var txtSearch = $("#txtSearch").val();
                     if (txtSearch != '') {
-                        var url = '<?php echo URL_BASE . '/products?search='; ?>' + txtSearch;
+                        var url = "<?php echo URL_BASE . "/products?search="; ?>"+txtSearch;
+                        // alert(url);
                         $("#content_left").load(url);
                     }
                 });
@@ -50,8 +51,24 @@
                     var url = '<?php echo URL_BASE . '/products?cat_id='; ?>'+catID;
                     $("#content_left").load(url);
                 });
-                
+                $("#priceSmarl").click(function (){
+                    var txtPrice= $("#txtPrice").val();
+                    if(txtPrice!=''){
+                        //alert(isNumber(txtPrice));
+                        var url = '<?php echo URL_BASE . '/products?price='; ?>'+txtPrice+'&action=<';
+                        $("#content_left").load(url);
+                    }
+                });
+                $("#priceBig").click(function (){
+                    var txtPrice= $("#txtPrice").val();
+                    if(txtPrice!=''){
+                        var url = '<?php echo URL_BASE . '/products?price='; ?>'+txtPrice+'&action=>';
+                        $("#content_left").load(url);
+                    }
+                });
+
                 $(".zoom_01").elevateZoom({zoomWindowPosition: 1, zoomWindowOffetx: 10});
+
                 
                 
             });
@@ -93,13 +110,15 @@
                         </div>
                         <div class="clear"></div>
                         <div class="right_content_half_content" >
-                            <b>Flower:</b>
-                            <input type="text" id="txtSearch" placeholder="Search..."/>
-                            <input type="button" id="btnSearch" value="Search"/>
+                            <b>Flower:</b><br/>
+                            <input type="text" id="txtSearch" placeholder="Search..." size="12" />
+                            <input type="button" id="btnSearch" value="Search" />
                             <br/>
                             <b>Price:</b> 
-                            <br/><input type="radio" name="rdb" id="priceMin">Min >> Max
-                                <br/><input type="radio" name="rdb" id="priceMax">Max >> Min
+                            <br/><input type="radio" name="rdb" id="priceMin"/>Min >> Max
+                            <br/><input type="radio" name="rdb" id="priceMax"/>Max >> Min
+                            <br/><b>>></b><input type="radio" name="rdb" id="priceSmarl"/>
+                            $<input type="text" id="txtPrice" size="2" /><input type="radio" name="rdb" id="priceBig"/><b><<</b>
                         </div>
                     </div>
                     <div class="right_content_half">
@@ -109,14 +128,7 @@
                         </div>
                         <div class="clear"></div>
                         <div class="right_content_half_content">
-                            Best Sellers<br/>
-                            Best Sellers<br/>
-                            Best Sellers<br/>
-                            Best Sellers<br/>
-                            Best Sellers<br/>
-                            Best Sellers<br/>
-                            Best Sellers<br/>
-                            Best Sellers<br/>
+                            <?php include_once 'BestSellers.php'; ?>
                         </div>
                     </div>
                     <div class="right_content_half">
@@ -126,7 +138,7 @@
                         </div>
                         <div class="clear"></div>
                         <div class="right_content_half_box">
-                            Promotions
+                            <?php include_once 'list_pro_sasle.php'; ?>
                         </div>
                     </div>
                     <div class="right_content_half">
@@ -158,20 +170,20 @@
                         <?php
                             include_once 'listAds.php';
                         ?>
+                        </div>
+                        <!--end of Search-->
+                        <!--end of cart-->
                     </div>
-                    <!--end of Search-->
-                    <!--end of cart-->
+                    <!--end of right content-->
+                    <div class="clear"></div>
+                    <div class=""></div>
                 </div>
-                <!--end of right content-->
-                <div class="clear"></div>
-                <div class=""></div>
-            </div>
-            <!--end of center content-->
-            <div class="footer">
-                <div class="left_footer"><img src="<?php echo URL_BASE ?>/templates/default/images/footer_logo.gif" alt=""/></div>
-                <div class="right_footer">
-                    <a href="<?php echo URL_BASE ?>/index">home</a>
-                    <a href="<?php echo URL_BASE ?>/about">about us</a>
+                <!--end of center content-->
+                <div class="footer">
+                    <div class="left_footer"><img src="<?php echo URL_BASE ?>/templates/default/images/footer_logo.gif" alt=""/></div>
+                    <div class="right_footer">
+                        <a href="<?php echo URL_BASE ?>/index">home</a>
+                        <a href="<?php echo URL_BASE ?>/about">about us</a>
                     <a href="#">services</a>
                     <a href="#">contact us</a>
                 </div>

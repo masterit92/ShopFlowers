@@ -9,7 +9,7 @@ foreach ($model->getParentCat() as $key => $cat) {
     foreach ($child_cats as $key => $child_cat) {
         ?>
             <img src="<?php echo URL_BASE ?>/templates/default/images/flowers.png" width="16" height="16"/>
-            <a style="cursor:pointer" class="cat<?php echo $i?>" cat_id="<?php echo $child_cat->getCatId();?>"><?php echo $child_cat->getName(); ?></a><br/>
+            <a style="cursor:pointer" class="cat" cat_id="<?php echo $child_cat->getCatId();?>"><?php echo $child_cat->getName(); ?></a><br/>
         <?php
     }
 }
