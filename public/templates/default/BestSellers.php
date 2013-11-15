@@ -1,4 +1,5 @@
 <?php
+
 $model_pro = new Default_Models_tblProducts();
 $list_pro = $model_pro->getProBestSellers();
 foreach ($list_pro as $pro_ByID) {

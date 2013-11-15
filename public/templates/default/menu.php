@@ -35,5 +35,6 @@
             <img src="<?php echo URL_BASE?>/templates/default/images/contact.png"/> Contact
         </a>
     </li>
+	
 </ul>
 <!--trangvt insert link of contact and buyingtip, news-->

@@ -21,4 +21,5 @@ foreach ($listSale as $sale) {
         break;
     }
 }
+
 ?>
