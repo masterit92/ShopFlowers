@@ -83,13 +83,15 @@ class Default_Controllers_Customers extends Libs_Controller{
 
                 if(!$mail->Send()){ 
                     $this->view->msg = "Send mail error!";
+                    $this->view->render('customers/register');
                 }else{
                    $cus->insertCus($cus);
                     $this->view->msg = "Register successful! Please login now."; 
+                    $this->view->render('customers/index');
                 }    
             //END
                 
-            $this->view->render('customers/index');
+            
         }
         //$this->view->render('customers/register');
     }

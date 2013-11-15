@@ -21,7 +21,7 @@
         </a>
     </li>
     <li <?php if(strtolower(CONTROLLER)=='service') echo "class='selected'"?>>
-        <a href="#">
+        <a href="<?php echo URL_BASE?>/service">
             <img src="<?php echo URL_BASE?>/templates/default/images/service.png"/>Services
         </a>
     </li>

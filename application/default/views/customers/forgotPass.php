@@ -39,7 +39,7 @@
 <style type="text/css">
     #formForgot label.error {
         color: #FB3A3A;
-        margin-left: 80px;
+        margin-left: 0px;
         width: auto;
         display: inline;
     }
