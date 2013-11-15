@@ -58,14 +58,16 @@
                     <div id="container">
                         <div id="sidebar">
                             <ul class="sideNav">
+                                <li><a href="<?php echo URL_BASE . '/admin' ?>">Dashboard</a></li>
+                                <li><a href="#">---------------------- </a></li>
                                 <li><a href="<?php echo URL_BASE . '/admin/news' ?>">Manager news</a></li>
-                                <li><a href="#">----------------------</a></li>
-                                <li><a href="#">----------------------</a></li>
                                 <li><a href="<?php echo URL_BASE . '/admin/about' ?>">Manager About</a></li>
-                                <!--trangvt insert link-->
-                                <li><a href="<?php echo URL_BASE . '/admin/paymentMethod' ?>">Manager Payment</a></li>
                                 <li><a href="<?php echo URL_BASE . '/admin/contact' ?>">Manager Contact</a></li>
+                                <li><a href="<?php echo URL_BASE ?>/admin/ads">Manager Ads</a></li>
+                                
                                 <li><a href="<?php echo URL_BASE ?>/admin/products">Manager Product</a></li>
+                                <li><a href="<?php echo URL_BASE ?>/admin/category">Manager Category</a></li>
+                                <li><a href="<?php echo URL_BASE . '/admin/paymentMethod' ?>">Manager Payment</a></li>
                                 <li><a href="<?php echo URL_BASE ?>/admin/customers">Manager Customer</a></li>
                                 <li><a href="#">---------------------- </a></li>
                                 <?php
@@ -73,10 +75,7 @@
                                     $permission = new Admin_Models_tblUsers();
                                     if ($permission->isAdmin()) {
                                         ?>
-                                        <li><a href="#">Manager Hùng</a></li>
-                                        <li><a href="#">---------------------- </a></li>
-                                        <li><a href="#">----------------------</a></li>
-                                        <li><a href="#">----------------------</a></li>
+                                        <li><a href="<?php echo URL_BASE ?>/admin/user">Manager Users</a></li>
                                         <?php
                                     }
                                 }

@@ -316,6 +316,7 @@ class Models_tblCustomers extends Libs_Model
         }
         return false;
     }    
+    
     public function getActiveKey($resetkey)
     {
         $cus = null;
